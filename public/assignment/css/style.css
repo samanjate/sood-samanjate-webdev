@@ -3,5 +3,8 @@ input.form-control {
 }
 
 body {
-    padding-top: 36px;
+    padding-top: 60px;
 }
+
+.navbar-blue
+{background-color:dodgerblue;border-color:dodgerblue}
