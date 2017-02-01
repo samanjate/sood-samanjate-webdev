@@ -122,7 +122,7 @@ body {
     background-color: #363b3e;
 }
 
-@media (min-width: 666px) {
+@media (min-width: 375px) {
     .navbar-nav>li>a {
         padding-top: 9px;
         padding-bottom: 9px;
