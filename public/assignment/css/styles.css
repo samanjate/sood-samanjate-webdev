@@ -7,6 +7,10 @@ textarea.form-control {
     height: 90px;
 }
 
+a:hover {
+    text-decoration:none;
+}
+
 .insert-margin {
     margin-bottom: 15px;
 }
