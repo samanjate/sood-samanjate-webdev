@@ -12,12 +12,20 @@
 
         vm.deleteWebsite = deleteWebsite;
         vm.editWebsite = editWebsite;
+        vm.createWebsite = createWebsite;
+        vm.websiteList = websiteList;
+        vm.goToProfile = goToProfile;
+        vm.goToEditWebsite = goToEditWebsite;
 
         function init() {
             vm.websites = WebsiteService.findWebsitesByUser(userId);
             vm.website = WebsiteService.findWebsiteById(webId);
         }
         init();
+
+        function createWebsite() {
+            $location.url("/user/"+userId+"/website/new");
+        }
 
         function editWebsite(website) {
             website._id = webId;
@@ -29,6 +37,18 @@
         function deleteWebsite(website) {
             WebsiteService.deleteWebsite(webId);
             $location.url("/user/"+userId+"/website");
+        }
+
+        function websiteList() {
+            $location.url("/user/"+userId+"/website");
+        }
+
+        function goToProfile() {
+            $location.url("/user/"+userId);
+        }
+
+        function goToEditWebsite(website) {
+            $location.url("/user/"+userId+"/website/"+website._id);
         }
 
     }

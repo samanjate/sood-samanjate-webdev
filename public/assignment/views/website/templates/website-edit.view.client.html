@@ -2,7 +2,7 @@
     <div class="row container-fluid">
         <div class="col-sm-4 hidden-xs">
             <div class="navbar-text pull-left">
-                <a href="website-list.view.client.html">
+                <a ng-click="websiteEditModel.websiteList()">
                     <span class="glyphicon glyphicon-chevron-left"></span>
                 </a>
             </div>
@@ -12,25 +12,25 @@
                 </a>
             </div>
             <div class="navbar-text pull-right">
-                <a ng-click="websiteEditModel.editWebsite()">
+                <a ng-click="websiteEditModel.createWebsite()">
                     <span class="glyphicon glyphicon-plus"></span>
                 </a>
             </div>
         </div>
         <div class="col-sm-8">
             <div class="navbar-text pull-left hidden-sm hidden-md hidden-lg">
-                <a href="website-list.view.client.html">
+                <a ng-click="websiteEditModel.websiteList()">
                     <span class="glyphicon glyphicon-chevron-left"></span>
                 </a>
             </div>
             <div class="navbar-text pull-right">
-                <a href="website-list.view.client.html">
+                <a ng-click="websiteEditModel.editWebsite(websiteEditModel.website)">
                     <span class="glyphicon glyphicon-ok"></span>
                 </a>
             </div>
             <div class="navbar-header">
                 <a class="navbar-brand no-left-padding no-left-margin">
-                    New Website
+                    Edit Website
                 </a>
             </div>
         </div>
@@ -48,7 +48,7 @@
                         </a>
                     </div>
                     <div class="col-xs-2">
-                        <a href="website-edit.view.client.html">
+                        <a ng-click="websiteEditModel.goToEditWebsite(w)">
                             <span class="glyphicon glyphicon-cog pull-right"></span>
                         </a>
                     </div>
@@ -77,7 +77,7 @@
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container-fluid">
         <div class="navbar-text pull-right">
-            <a href="../../user/templates/profile.view.client.html">
+            <a ng-click="websiteEditModel.goToProfile()">
                 <span class="glyphicon glyphicon-user"></span>
             </a>
         </div>

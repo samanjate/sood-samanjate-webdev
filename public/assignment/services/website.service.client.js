@@ -22,8 +22,9 @@
         return api;
 
         function createWebsite(userId, website) {
-            website._id = Math.floor(Math.random() * 999);
-            website.developerId = userId;
+            website._id = String(Math.floor(Math.random() * 999));
+            website.developerId = String(userId);
+            console.log(website);
             websites.push(website);
         }
 

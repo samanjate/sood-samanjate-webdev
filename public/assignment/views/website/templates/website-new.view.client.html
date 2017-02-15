@@ -2,7 +2,7 @@
     <div class="row container-fluid">
         <div class="col-sm-4 hidden-xs">
             <div class="navbar-text pull-left">
-                <a href="website-list.view.client.html">
+                <a ng-click="websiteNewModel.websiteList()">
                     <span class="glyphicon glyphicon-chevron-left"></span>
                 </a>
             </div>
@@ -12,19 +12,19 @@
                 </a>
             </div>
             <div class="navbar-text pull-right">
-                <a href="website-new.view.client.html">
+                <a ng-click="websiteNewModel.createWebsite()">
                     <span class="glyphicon glyphicon-plus"></span>
                 </a>
             </div>
         </div>
         <div class="col-sm-8">
             <div class="navbar-text pull-left hidden-sm hidden-md hidden-lg">
-                <a href="website-list.view.client.html">
+                <a ng-click="websiteNewModel.websiteList()">
                     <span class="glyphicon glyphicon-chevron-left"></span>
                 </a>
             </div>
             <div class="navbar-text pull-right">
-                <a ng-click="websiteNewModel.createNewWebsite(website)">
+                <a ng-click="websiteNewModel.createNewWebsite(websiteNewModel.website)">
                     <span class="glyphicon glyphicon-ok"></span>
                 </a>
             </div>
@@ -48,7 +48,7 @@
                         </a>
                     </div>
                     <div class="col-xs-2">
-                        <a href="website-edit.view.client.html">
+                        <a ng-click="websiteNewModel.goToEditWebsite(w)">
                             <span class="glyphicon glyphicon-cog pull-right"></span>
                         </a>
                     </div>
@@ -58,13 +58,13 @@
     </div>
     <div class="col-sm-8">
         <label for="website-name">Name</label>
-        <input ng-model="website.name"
+        <input ng-model="websiteNewModel.website.name"
                placeholder="Name"
                class="form-control insert-margin"
                id="website-name"/>
 
         <label for="website-description">Description</label>
-        <textarea ng-model="website.description"
+        <textarea ng-model="websiteNewModel.website.description"
                   placeholder="Description"
                   class="form-control insert-margin"
                   id="website-description"></textarea>
@@ -74,7 +74,7 @@
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container-fluid">
         <div class="navbar-text pull-right">
-            <a href="../../user/templates/profile.view.client.html">
+            <a ng-click="websiteNewModel.goToProfile()">
                 <span class="glyphicon glyphicon-user"></span>
             </a>
         </div>
