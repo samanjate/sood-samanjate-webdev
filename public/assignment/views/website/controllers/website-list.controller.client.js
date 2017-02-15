@@ -17,6 +17,7 @@
         vm.createWebsite = createWebsite;
         vm.goToProfile = goToProfile;
         vm.editWebsite = editWebsite;
+        vm.goToPages = goToPages;
 
         function createWebsite() {
             $location.url("/user/"+userId+"/website/new");
@@ -28,6 +29,10 @@
 
         function editWebsite(website) {
             $location.url("/user/"+userId+"/website/"+website._id);
+        }
+
+        function goToPages(website) {
+            $location.url("/user/"+userId+"/website/"+website._id+"/page");
         }
 
     }

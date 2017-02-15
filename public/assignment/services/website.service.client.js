@@ -24,7 +24,6 @@
         function createWebsite(userId, website) {
             website._id = String(Math.floor(Math.random() * 999));
             website.developerId = String(userId);
-            console.log(website);
             websites.push(website);
         }
 
@@ -55,6 +54,8 @@
         function updateWebsite(websiteId, website) {
             for(var w in websites) {
                 if(websites[w]._id === websiteId) {
+                    website._id = websiteId;
+                    website.developerId = websites[w].developerId;
                     websites[w] = website;
                 }
             }

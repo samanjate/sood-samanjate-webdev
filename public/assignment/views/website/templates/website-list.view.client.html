@@ -24,7 +24,7 @@
         <li ng-repeat="website in websiteListModel.websites" class="list-group-item">
             <div class="row">
                 <div class="col-xs-10">
-                    <a href="../../page/templates/page-list.view.client.html">
+                    <a ng-click="websiteListModel.goToPages(website)">
                         {{website.name}}
                     </a>
                 </div>

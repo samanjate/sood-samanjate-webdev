@@ -47,13 +47,19 @@
                 controllerAs: "websiteEditModel"
             })
             .when("/user/:uid/website/:wid/page", {
-                templateUrl: "views/page/templates/page-list.view.client.html"
+                templateUrl: "views/page/templates/page-list.view.client.html",
+                controller: "PageListController",
+                controllerAs: "pageListModel"
             })
             .when("/user/:uid/website/:wid/page/new", {
-                templateUrl: "views/page/templates/page-new.view.client.html"
+                templateUrl: "views/page/templates/page-new.view.client.html",
+                controller: "PageNewController",
+                controllerAs: "pageNewModel"
             })
             .when("/user/:uid/website/:wid/page/:pid", {
-                templateUrl: "views/page/templates/page-edit.view.client.html"
+                templateUrl: "views/page/templates/page-edit.view.client.html",
+                controller: "PageEditController",
+                controllerAs: "pageEditModel"
             })
             .when("/user/:uid/website/:wid/page/:pid/widget", {
                 templateUrl: "views/widget/templates/widget-list.view.client.html"

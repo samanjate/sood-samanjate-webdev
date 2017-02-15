@@ -1,12 +1,12 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-text pull-left">
-            <a href="../../website/templates/website-list.view.client.html">
+            <a ng-click="pageListModel.goToWebsiteList()">
                 <span class="glyphicon glyphicon-chevron-left"></span>
             </a>
         </div>
         <div class="navbar-text pull-right">
-            <a href="page-new.view.client.html">
+            <a ng-click="pageListModel.goToPageNew()">
                 <span class="glyphicon glyphicon-plus"></span>
             </a>
         </div>
@@ -21,71 +21,15 @@
 <div class="container-fluid">
 
     <ul class="list-group">
-        <li class="list-group-item">
+        <li ng-repeat="page in pageListModel.pages" class="list-group-item">
             <div class="row">
                 <div class="col-xs-10">
                     <a href="../../widget/templates/widget-list.view.client.html">
-                        Blog Post
+                        {{page.name}}
                     </a>
                 </div>
                 <div class="col-xs-2">
-                    <a href="page-edit.view.client.html">
-                        <span class="glyphicon glyphicon-cog pull-right"></span>
-                    </a>
-                </div>
-            </div>
-        </li>
-        <li class="list-group-item">
-            <div class="row">
-                <div class="col-xs-10">
-                    <a href="../../widget/templates/widget-list.view.client.html">
-                        Blogs
-                    </a>
-                </div>
-                <div class="col-xs-2">
-                    <a href="page-edit.view.client.html">
-                        <span class="glyphicon glyphicon-cog pull-right"></span>
-                    </a>
-                </div>
-            </div>
-        </li>
-        <li class="list-group-item">
-            <div class="row">
-                <div class="col-xs-10">
-                    <a href="../../widget/templates/widget-list.view.client.html">
-                        Home
-                    </a>
-                </div>
-                <div class="col-xs-2">
-                    <a href="page-edit.view.client.html">
-                        <span class="glyphicon glyphicon-cog pull-right"></span>
-                    </a>
-                </div>
-            </div>
-        </li>
-        <li class="list-group-item">
-            <div class="row">
-                <div class="col-xs-10">
-                    <a href="../../widget/templates/widget-list.view.client.html">
-                        About
-                    </a>
-                </div>
-                <div class="col-xs-2">
-                    <a href="page-edit.view.client.html">
-                        <span class="glyphicon glyphicon-cog pull-right"></span>
-                    </a>
-                </div>
-            </div>
-        </li>
-        <li class="list-group-item">
-            <div class="row">
-                <div class="col-xs-10">
-                    <a href="../../widget/templates/widget-list.view.client.html">
-                        Contact Us
-                    </a>
-                </div>
-                <div class="col-xs-2">
-                    <a href="page-edit.view.client.html">
+                    <a ng-click="pageListModel.goToPageEdit(page)">
                         <span class="glyphicon glyphicon-cog pull-right"></span>
                     </a>
                 </div>
@@ -97,7 +41,7 @@
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container-fluid">
         <div class="navbar-text pull-right">
-            <a href="../../user/templates/profile.view.client.html">
+            <a ng-click="pageListModel.goToProfile()">
                 <span class="glyphicon glyphicon-user"></span>
             </a>
         </div>
