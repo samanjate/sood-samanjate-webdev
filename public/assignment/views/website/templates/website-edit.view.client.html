@@ -1,0 +1,85 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="row container-fluid">
+        <div class="col-sm-4 hidden-xs">
+            <div class="navbar-text pull-left">
+                <a href="website-list.view.client.html">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                </a>
+            </div>
+            <div class="navbar-header">
+                <a class="navbar-brand">
+                    Websites
+                </a>
+            </div>
+            <div class="navbar-text pull-right">
+                <a ng-click="websiteEditModel.editWebsite()">
+                    <span class="glyphicon glyphicon-plus"></span>
+                </a>
+            </div>
+        </div>
+        <div class="col-sm-8">
+            <div class="navbar-text pull-left hidden-sm hidden-md hidden-lg">
+                <a href="website-list.view.client.html">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                </a>
+            </div>
+            <div class="navbar-text pull-right">
+                <a href="website-list.view.client.html">
+                    <span class="glyphicon glyphicon-ok"></span>
+                </a>
+            </div>
+            <div class="navbar-header">
+                <a class="navbar-brand no-left-padding no-left-margin">
+                    New Website
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<div class="row container-fluid">
+    <div class="col-sm-4 hidden-xs">
+        <ul class="list-group">
+            <li ng-repeat="w in websiteEditModel.websites" class="list-group-item">
+                <div class="row">
+                    <div class="col-xs-10">
+                        <a href="../../page/templates/page-list.view.client.html">
+                            {{w.name}}
+                        </a>
+                    </div>
+                    <div class="col-xs-2">
+                        <a href="website-edit.view.client.html">
+                            <span class="glyphicon glyphicon-cog pull-right"></span>
+                        </a>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="col-sm-8">
+        <label for="website-name">Website Name</label>
+        <input ng-model="websiteEditModel.website.name"
+               placeholder="Name"
+               class="form-control insert-margin"
+               id="website-name"
+        value="websiteEditModel.website.name"/>
+
+        <label for="website-description">Website Description</label>
+        <textarea ng-model="websiteEditModel.website.description"
+                  placeholder="Description"
+                  class="form-control insert-margin"
+                  id="website-description">{{websiteEditModel.website.description}}</textarea>
+
+        <a ng-click="websiteEditModel.deleteWebsite()" class="btn btn-danger btn-block">Delete</a>
+    </div>
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+        <div class="navbar-text pull-right">
+            <a href="../../user/templates/profile.view.client.html">
+                <span class="glyphicon glyphicon-user"></span>
+            </a>
+        </div>
+    </div>
+</nav>

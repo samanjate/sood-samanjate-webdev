@@ -1,23 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="../css/styles.css" rel="stylesheet"/>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Widget YouTube</title>
-</head>
-<body>
-
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-text pull-left">
-            <a href="widget-list.html">
+            <a href="widget-list.view.client.html">
                 <span class="glyphicon glyphicon-chevron-left"></span>
             </a>
         </div>
         <div class="navbar-text pull-right">
-            <a href="widget-list.html">
+            <a href="widget-list.view.client.html">
                 <span class="glyphicon glyphicon-ok"></span>
             </a>
         </div>
@@ -31,15 +20,15 @@
 
 <div class="container-fluid">
     <label for="widget-name">Name</label>
-    <input placeholder="YouTube"
-           value="Live performance"
+    <input placeholder="Image"
+           value="Vegas"
            class="form-control insert-margin"
            id="widget-name"/>
 
     <label for="widget-text">Text</label>
     <input placeholder="Some text here..."
-           value="Rockstarr the movie"
            class="form-control insert-margin"
+           value="Las Vegas: The Strip"
            id="widget-text"></input>
 
     <label for="widget-url">URL</label>
@@ -50,22 +39,27 @@
 
     <label for="widget-width">Width</label>
     <input placeholder="30%"
-           value="100%"
            class="form-control insert-margin"
+           value="100%"
            id="widget-width"></input>
 
-    <a href="widget-list.html" class="btn btn-danger btn-block">Delete</a>
+    <label for="widget-upload">Upload</label>
+    <input placeholder="No file Choosen"
+           type="file"
+           class="form-control insert-margin"
+           id="widget-upload"></input>
+
+
+    <a class="btn btn-primary btn-block">Upload Image</a>
+    <a href="widget-list.view.client.html" class="btn btn-danger btn-block">Delete</a>
 </div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container-fluid">
         <div class="navbar-text pull-right">
-            <a href="../user/profile.html">
+            <a href="../../user/templates/profile.view.client.html">
                 <span class="glyphicon glyphicon-user"></span>
             </a>
         </div>
     </div>
 </nav>
-
-</body>
-</html>

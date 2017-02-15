@@ -1,0 +1,65 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-text pull-right">
+            <a ng-click="profileController.updateUser(profileController.user)">
+                <span class="glyphicon glyphicon-ok"></span>
+            </a>
+        </div>
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">
+                Profile
+            </a>
+        </div>
+    </div>
+</nav>
+
+
+<div class="container-fluid">
+
+    <div ng-show="profileController.message" class="alert alert-success" role="alert">
+        {{profileController.message}}
+    </div>
+
+    <div ng-show="profileController.error" class="alert alert-danger" role="alert">
+        {{profileController.error}}
+    </div>
+
+    <label>Username</label>
+    <input ng-model="profileController.user.username" class="form-control" type="text" placeholder="Username"/>
+
+    <label for="email">Email</label>
+    <input id="email" class="form-control" type="email" placeholder="Email"/>
+
+    <label for="first">First Name</label>
+    <input ng-model="profileController.user.firstName" id="first" class="form-control" type="text" placeholder="First Name"/>
+
+    <label for="last">Last Name</label>
+    <input ng-model="profileController.user.lastName" id="last" class="form-control" type="text" placeholder="Last Name"/>
+
+    <a class="btn btn-success btn-block" ng-click="profileController.updateUser(profileController.user)">
+        Update
+    </a>
+
+    <a class="btn btn-primary btn-block" ng-click="profileController.websiteList()">
+        Websites
+    </a>
+
+    <a class="btn btn-danger btn-block" ng-click="profileController.deleteUser()">
+        Unregister
+    </a>
+
+    <a class="btn btn-danger btn-block" href="#/login">
+        Logout
+    </a>
+
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+        <div class="navbar-text pull-right">
+                <a>
+                    <span class="glyphicon glyphicon-user"></span>
+                </a>
+        </div>
+    </div>
+</nav>

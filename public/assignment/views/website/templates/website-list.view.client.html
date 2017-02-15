@@ -1,0 +1,49 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-text pull-left">
+            <a ng-click="websiteListModel.goToProfile()">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+            </a>
+        </div>
+        <div class="navbar-text pull-right">
+            <a ng-click="websiteListModel.createWebsite()">
+                <span class="glyphicon glyphicon-plus"></span>
+            </a>
+        </div>
+        <div class="navbar-header">
+            <a class="navbar-brand no-left-padding no-left-margin">
+                Websites
+            </a>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid">
+
+    <ul class="list-group">
+        <li ng-repeat="website in websiteListModel.websites" class="list-group-item">
+            <div class="row">
+                <div class="col-xs-10">
+                    <a href="../../page/templates/page-list.view.client.html">
+                        {{website.name}}
+                    </a>
+                </div>
+                <div class="col-xs-2">
+                    <a ng-click="websiteListModel.editWebsite(website)">
+                        <span class="glyphicon glyphicon-cog pull-right"></span>
+                    </a>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+        <div class="navbar-text pull-right">
+            <a href="../../user/templates/profile.view.client.html">
+                <span class="glyphicon glyphicon-user"></span>
+            </a>
+        </div>
+    </div>
+</nav>
