@@ -1,51 +1,8 @@
-<nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container-fluid">
-        <div class="navbar-text pull-left">
-            <a href="widget-list.view.client.html">
-                <span class="glyphicon glyphicon-chevron-left"></span>
-            </a>
-        </div>
-        <div class="navbar-text pull-right">
-            <a href="widget-list.view.client.html">
-                <span class="glyphicon glyphicon-ok"></span>
-            </a>
-        </div>
-        <div class="navbar-header">
-            <a class="navbar-brand no-left-padding no-left-margin">
-                Widget Edit
-            </a>
-        </div>
-    </div>
-</nav>
-
-<div class="container-fluid">
-    <label for="widget-name">Name</label>
-    <input class="form-control insert-margin"
-           placeholder="Name"
-           value="Heading"
-           id="widget-name"/>
-
-    <label for="widget-text">Text</label>
-    <input placeholder="Some text here..."
-           class="form-control insert-margin"
-           value="US Senate reaches compromise"
-           id="widget-text"></input>
-
-    <label for="widget-size">Size</label>
-    <input placeholder="Widget's size"
-           class="form-control insert-margin"
-           value="3"
-           id="widget-size"></input>
-
-    <a href="widget-list.view.client.html" class="btn btn-danger btn-block">Delete</a>
+<div>
+    <h1 ng-if="widget.size == 1">{{widget.text}}</h1>
+    <h2 ng-if="widget.size == 2">{{widget.text}}</h2>
+    <h3 ng-if="widget.size == 3">{{widget.text}}</h3>
+    <h4 ng-if="widget.size == 4">{{widget.text}}</h4>
+    <h5 ng-if="widget.size == 5">{{widget.text}}</h5>
+    <h6 ng-if="widget.size == 6">{{widget.text}}</h6>
 </div>
-
-<nav class="navbar navbar-default navbar-fixed-bottom">
-    <div class="container-fluid">
-        <div class="navbar-text pull-right">
-            <a href="../../user/templates/profile.view.client.html">
-                <span class="glyphicon glyphicon-user"></span>
-            </a>
-        </div>
-    </div>
-</nav>

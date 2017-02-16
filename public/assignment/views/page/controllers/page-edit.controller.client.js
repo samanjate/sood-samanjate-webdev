@@ -24,6 +24,7 @@
         vm.editPage = editPage;
         vm.goToPageNew = goToPageNew;
         vm.goToPageEdit = goToPageEdit;
+        vm.goToWidgetList = goToWidgetList;
 
         function goToProfile() {
             $location.url("/user/"+userId);
@@ -46,6 +47,9 @@
         }
         function goToPageEdit(p) {
             $location.url("/user/"+userId+"/website/"+webId+"/page/"+p._id);
+        }
+        function goToWidgetList(p) {
+            $location.url("/user/"+userId+"/website/"+webId+"/page/"+p._id+"/widget");
         }
 
     }

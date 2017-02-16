@@ -20,6 +20,7 @@
         vm.createNewPage = createNewPage;
         vm.goToPageList = goToPageList;
         vm.goToPageNew = goToPageNew;
+        vm.goToWidgetList = goToWidgetList;
 
         function goToProfile() {
             $location.url("/user/"+userId);
@@ -36,6 +37,9 @@
         }
         function goToPageNew() {
             $location.url("/user/"+userId+"/website/"+webId+"/page/new");
+        }
+        function goToWidgetList(p) {
+            $location.url("/user/"+userId+"/website/"+webId+"/page/"+p._id+"/widget");
         }
 
     }

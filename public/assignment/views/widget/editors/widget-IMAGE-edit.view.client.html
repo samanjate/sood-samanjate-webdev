@@ -1,0 +1,39 @@
+<div class="container-fluid">
+    <label for="widget-name">Name</label>
+    <input ng-model="widgetEditModel.widget.widgetType"
+           placeholder="Image"
+           value="widgetEditModel.widget.widgetType"
+           class="form-control insert-margin"
+           id="widget-name"/>
+
+    <label for="widget-text">Text</label>
+    <input ng-model="widgetEditModel.widget.text"
+           placeholder="Some text here..."
+           class="form-control insert-margin"
+           value="widgetEditModel.widget.text"
+           id="widget-text"></input>
+
+    <label for="widget-url">URL</label>
+    <input ng-model="widgetEditModel.widget.url"
+           placeholder="https://..."
+           class="form-control insert-margin"
+           value="widgetEditModel.widget.url"
+           id="widget-url"></input>
+
+    <label for="widget-width">Width</label>
+    <input ng-model="widgetEditModel.widget.width"
+           placeholder="30%"
+           class="form-control insert-margin"
+           value="widgetEditModel.widget.width"
+           id="widget-width"></input>
+
+    <label for="widget-upload">Upload</label>
+    <input placeholder="No file Choosen"
+           type="file"
+           class="form-control insert-margin"
+           id="widget-upload"></input>
+
+
+    <a ng-click="widgetEditModel.updateWidget()" class="btn btn-primary btn-block">Upload Image</a>
+    <a ng-click="widgetEditModel.deleteWidget()" class="btn btn-danger btn-block">Delete</a>
+</div>

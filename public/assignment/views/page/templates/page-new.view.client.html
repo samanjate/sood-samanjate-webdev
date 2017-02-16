@@ -43,7 +43,7 @@
             <li ng-repeat="page in pageNewModel.pages" class="list-group-item">
                 <div class="row">
                     <div class="col-xs-10">
-                        <a href="../../widget/templates/widget-list.view.client.html">
+                        <a ng-click="pageNewModel.goToWidgetList(page)">
                             {{page.name}}
                         </a>
                     </div>

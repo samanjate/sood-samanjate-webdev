@@ -1,12 +1,12 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-text pull-left">
-            <a href="../../page/templates/page-list.view.client.html">
+            <a ng-click="widgetListModel.goToPageList()">
                 <span class="glyphicon glyphicon-chevron-left"></span>
             </a>
         </div>
         <div class="navbar-text pull-right">
-            <a href="widget-chooser.view.client.html">
+            <a ng-click="widgetListModel.goToChooser()">
                 <span class="glyphicon glyphicon-plus"></span>
             </a>
         </div>
@@ -17,59 +17,30 @@
 </nav>
 
 <div class="container-fluid">
-    <div>
-        <div class="jga-toolbar">
-            <a href="widget-heading.view.client.html">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
-            <span class="glyphicon glyphicon-align-justify"></span>
-        </div>
-        <h1>Lorem Ipsum</h1>
-    </div>
-    <div>
-        <h3>"Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..."</h3>
-    </div>
-    <div>
-        <div class="jga-toolbar">
-            <a href="widget-image.view.client.html">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
-            <span class="glyphicon glyphicon-align-justify"></span>
+
+    <div ng-repeat="widget in widgetListModel.widgets">
+        <div ng-switch="widget.widgetType">
+            <div class="jga-toolbar">
+                <a ng-click="widgetListModel.goToEditWidget(widget)">
+                    <span class="glyphicon glyphicon-cog"></span>
+                </a>
+                <span class="glyphicon glyphicon-align-justify"></span>
+            </div>
+            <div ng-switch-when="HEADER">
+                <div ng-include="'views/widget/templates/widget-heading.view.client.html'"></div>
+            </div>
+            <div ng-switch-when="IMAGE">
+                <div ng-include="'views/widget/templates/widget-image.view.client.html'"></div>
+            </div>
+            <div ng-switch-when="HTML" ng-bind-html="widgetListModel.getTrustedHTML(widget.text)">
+                {{widget.text}}
+            </div>
+            <div ng-switch-when="YOUTUBE">
+                <div ng-include="'views/widget/templates/widget-youtube.view.client.html'"></div>
+            </div>
         </div>
 
-        <img width="100%" src="http://68.media.tumblr.com/73a29437be6f2e37248a4978f3b988c1/tumblr_oirikcwI3O1swacvso1_1280.jpg">
     </div>
-    <div>
-        <div class="jga-toolbar">
-            <a>
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
-            <span class="glyphicon glyphicon-align-justify"></span>
-        </div>
-        <p>
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-        </p>
-    </div>
-    <div>
-        <div class="jga-toolbar">
-            <a href="widget-youtube.view.client.html">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
-            <span class="glyphicon glyphicon-align-justify"></span>
-        </div>
-        <iframe width=100% src="https://www.youtube.com/embed/hY9Wye29mJY" frameborder="0" allowfullscreen></iframe>
-    </div>
-    <div class="jga-toolbar">
-        <a>
-            <span class="glyphicon glyphicon-cog"></span>
-        </a>
-        <span class="glyphicon glyphicon-align-justify"></span>
-    </div>
-    <p>
-        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-    </p>
-</div>
-
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container-fluid">
         <div class="navbar-text pull-left">
@@ -79,7 +50,7 @@
                 <span class="glyphicon glyphicon-eye-open"></span>
         </div>
         <div class="navbar-text pull-right">
-            <a href="../../user/templates/profile.view.client.html">
+            <a ng-click="widgetListModel.goToProfile()">
                 <span class="glyphicon glyphicon-user"></span>
             </a>
         </div>

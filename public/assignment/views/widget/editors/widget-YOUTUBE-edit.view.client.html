@@ -1,0 +1,31 @@
+<div class="container-fluid">
+    <label for="widget-name">Name</label>
+    <input ng-model="widgetEditModel.widget.widgetType"
+           placeholder="YouTube"
+           value="widgetEditModel.widget.widgetType"
+           class="form-control insert-margin"
+           id="widget-name"/>
+
+    <label for="widget-text">Text</label>
+    <input ng-model="widgetEditModel.widget.text"
+           placeholder="Some text here..."
+           value="widgetEditModel.widget.text"
+           class="form-control insert-margin"
+           id="widget-text"></input>
+
+    <label for="widget-url">URL</label>
+    <input ng-model="widgetEditModel.widget.url"
+           placeholder="https://..."
+           class="form-control insert-margin"
+           value="widgetEditModel.widget.url"
+           id="widget-url"></input>
+
+    <label for="widget-width">Width</label>
+    <input ng-model="widgetEditModel.widget.width"
+           placeholder="30%"
+           value="widgetEditModel.widget.width"
+           class="form-control insert-margin"
+           id="widget-width"></input>
+
+    <a ng-click="widgetEditModel.deleteWidget()" class="btn btn-danger btn-block">Delete</a>
+</div>

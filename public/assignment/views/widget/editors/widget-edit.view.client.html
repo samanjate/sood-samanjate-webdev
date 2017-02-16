@@ -1,33 +1,30 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-text pull-left">
-            <a href="widget-list.view.client.html">
+            <a ng-click="widgetEditModel.goToWidgetList()">
                 <span class="glyphicon glyphicon-chevron-left"></span>
+            </a>
+        </div>
+        <div class="navbar-text pull-right">
+            <a ng-click="widgetEditModel.updateWidget()">
+                <span class="glyphicon glyphicon-ok"></span>
             </a>
         </div>
         <div class="navbar-header">
             <a class="navbar-brand no-left-padding no-left-margin">
-                Choose Widget
+                Widget Edit
             </a>
         </div>
     </div>
 </nav>
 
-<div class="container-fluid">
-
-    <ul class="list-group">
-        <li ng-repeat="widget in widgetChooserModel.widgets" class="list-group-item">
-                    <a ng-click="widgetChooserModel.goToEditWidget(widget)">
-                        {{widget}}
-                    </a>
-        </li>
-    </ul>
+<div ng-include="widgetEditModel.getEditorTemplateUrl(widgetEditModel.widget.widgetType)">
 </div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container-fluid">
         <div class="navbar-text pull-right">
-            <a href="../../user/templates/profile.view.client.html">
+            <a ng-click="widgetEditModel.goToProfile()">
                 <span class="glyphicon glyphicon-user"></span>
             </a>
         </div>
