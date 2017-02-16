@@ -16,6 +16,9 @@
         init();
 
         vm.goToEditWidget = goToEditWidget;
+        vm.goToProfile = goToProfile;
+        vm.goToWebsiteList = goToWebsiteList;
+
         function goToEditWidget(wType) {
             var widget = {
                 "_id" : String(Math.floor(Math.random() * 999)),
@@ -23,6 +26,14 @@
             };
             WidgetService.createWidget(vm.pageId,widget);
             $location.url("/user/"+vm.userId+"/website/"+vm.webId+"/page/"+vm.pageId+"/widget/"+widget._id);
+        }
+
+        function goToProfile() {
+            $location.url("/user/"+vm.userId);
+        }
+
+        function goToWebsiteList() {
+            $location.url("/user/"+vm.userId+"/website/"+vm.webId+"/page/"+vm.pageId+"/widget");
         }
 
     }
