@@ -16,12 +16,20 @@
         vm.goToProfile = goToProfile;
 
         function init() {
-            vm.websites = WebsiteService.findWebsitesByUser(userId);
+            WebsiteService
+                .findWebsitesByUser(userId)
+                .success(function (allWebsites) {
+                    vm.websites = allWebsites;
+                });
         }
         init();
 
         function createNewWebsite(website) {
-            WebsiteService.createWebsite(userId,website);
+            WebsiteService
+                .createWebsite(userId,website)
+                .success(function () {
+                    
+                });
             $location.url("/user/"+userId+"/website");
         }
 

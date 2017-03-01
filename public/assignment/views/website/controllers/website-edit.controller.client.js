@@ -18,8 +18,16 @@
         vm.goToEditWebsite = goToEditWebsite;
 
         function init() {
-            vm.websites = WebsiteService.findWebsitesByUser(userId);
-            vm.website = WebsiteService.findWebsiteById(webId);
+            WebsiteService
+                .findWebsitesByUser(userId)
+                .success(function (allWebsites) {
+                    vm.websites = allWebsites;
+                });
+            WebsiteService
+                .findWebsiteById(webId,userId)
+                .success(function (websites) {
+                    vm.website = websites;
+                });
         }
         init();
 
@@ -27,15 +35,20 @@
             $location.url("/user/"+userId+"/website/new");
         }
 
-        function editWebsite(website) {
-            website._id = webId;
-            website.developerId = userId;
-            WebsiteService.updateWebsite(webId,website);
+        function editWebsite(newWebsite) {
+            WebsiteService
+                .updateWebsite(webId, userId, newWebsite)
+                .success(function () {
+                    
+                });
             $location.url("/user/"+userId+"/website");
         }
 
         function deleteWebsite(website) {
-            WebsiteService.deleteWebsite(webId);
+            WebsiteService
+                .deleteWebsite(webId, userId)
+                .success(function () {
+                });
             $location.url("/user/"+userId+"/website");
         }
 

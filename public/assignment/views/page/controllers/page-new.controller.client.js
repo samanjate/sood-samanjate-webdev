@@ -11,7 +11,11 @@
         var webId = $routeParams['wid'];
 
         function init() {
-            vm.pages = PageService.findPageByWebsiteId(webId);
+            PageService
+                .findPageByWebsiteId(userId, webId)
+                .success(function (pages) {
+                    vm.pages = pages;
+                });
         }
         init();
 
@@ -29,7 +33,11 @@
             $location.url("/user/"+userId+"/website/"+webId+"/page/"+p._id);
         }
         function createNewPage(page) {
-            PageService.createPage(webId,page);
+            PageService
+                .createPage(userId, webId,page)
+                .success(function () {
+                    
+                });
             $location.url("/user/"+userId+"/website/"+webId+"/page");
         }
         function goToPageList() {

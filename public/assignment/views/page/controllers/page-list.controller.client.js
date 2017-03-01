@@ -11,7 +11,11 @@
         var webId = $routeParams['wid'];
 
         function init() {
-            vm.pages = PageService.findPageByWebsiteId(webId);
+            PageService
+                .findPageByWebsiteId(userId, webId)
+                .success(function (pages) {
+                    vm.pages = pages;
+                });
         }
         init();
 

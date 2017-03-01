@@ -15,12 +15,18 @@
         vm.register = register;
 
         function register(user) {
-            var nuser = UserService.createUser(user);
-            if(nuser) {
-                $location.url("/user/" + nuser._id);
-            } else {
-                vm.error = "User already exists";
-            }
+            UserService
+                .findUserByUsername(user.username)
+                .success(function (user) {
+                    vm.error = 'Username already taken';
+                })
+                .error(function (err) {
+                    UserService
+                        .createUser(user)
+                        .success(function (userId) {
+                            $location.url("/user/"+userId);
+                        });
+                });
         }
     }
 

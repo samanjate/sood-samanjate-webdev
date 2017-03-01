@@ -13,8 +13,16 @@
 
 
         function init() {
-            vm.pages = PageService.findPageByWebsiteId(webId);
-            vm.page = PageService.findPageById(pageId);
+            PageService
+                .findPageByWebsiteId(userId, webId)
+                .success(function (pages) {
+                    vm.pages = pages;
+                });
+            PageService
+                .findPageById(userId, webId, pageId)
+                .success(function (page) {
+                    vm.page = page;
+                });
         }
         init();
 
@@ -35,11 +43,19 @@
         }
 
         function deletePage() {
-            PageService.deletePage(pageId);
+            PageService
+                .deletePage(userId, webId, pageId)
+                .success(function () {
+                    
+                });
             $location.url("/user/"+userId+"/website/"+webId+"/page");
         }
         function editPage(page) {
-            PageService.updatePage(pageId,page);
+            PageService
+                .updatePage(userId, webId, pageId, page)
+                .success(function () {
+                    
+                });
             $location.url("/user/"+userId+"/website/"+webId+"/page");
         }
         function goToPageNew() {
