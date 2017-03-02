@@ -28,9 +28,8 @@
             WebsiteService
                 .createWebsite(userId,website)
                 .success(function () {
-                    
+                    $location.url("/user/"+userId+"/website");
                 });
-            $location.url("/user/"+userId+"/website");
         }
 
         function createWebsite() {

@@ -46,17 +46,17 @@
             PageService
                 .deletePage(userId, webId, pageId)
                 .success(function () {
-                    
+                    $location.url("/user/"+userId+"/website/"+webId+"/page");
                 });
-            $location.url("/user/"+userId+"/website/"+webId+"/page");
+
         }
         function editPage(page) {
             PageService
                 .updatePage(userId, webId, pageId, page)
                 .success(function () {
-                    
+                    $location.url("/user/"+userId+"/website/"+webId+"/page");
                 });
-            $location.url("/user/"+userId+"/website/"+webId+"/page");
+
         }
         function goToPageNew() {
             $location.url("/user/"+userId+"/website/"+webId+"/page/new");

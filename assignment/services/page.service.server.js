@@ -61,7 +61,7 @@ module.exports = function (app) {
                 var index = pages.indexOf(pages[p]);
                 if(index > -1) {
                     pages.splice(index,1);
-                    return;
+                    res.sendStatus(200);
                 }
             }
         }

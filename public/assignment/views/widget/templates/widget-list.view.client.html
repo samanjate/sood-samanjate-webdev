@@ -16,31 +16,31 @@
     </div>
 </nav>
 
-<div class="container-fluid">
 
-    <div ng-repeat="widget in widgetListModel.widgets">
-        <div ng-switch="widget.widgetType">
-            <div class="jga-toolbar">
-                <a ng-click="widgetListModel.goToEditWidget(widget)">
-                    <span class="glyphicon glyphicon-cog"></span>
-                </a>
-                <span class="glyphicon glyphicon-align-justify"></span>
-            </div>
-            <div ng-switch-when="HEADER">
-                <div ng-include="'views/widget/templates/widget-heading.view.client.html'"></div>
-            </div>
-            <div ng-switch-when="IMAGE">
-                <div ng-include="'views/widget/templates/widget-image.view.client.html'"></div>
-            </div>
-            <div ng-switch-when="HTML" ng-bind-html="widgetListModel.getTrustedHTML(widget.text)">
-                {{widget.text}}
-            </div>
-            <div ng-switch-when="YOUTUBE">
-                <div ng-include="'views/widget/templates/widget-youtube.view.client.html'"></div>
+<div wbdv-sortable class="container-fluid">
+        <div ng-repeat="widget in widgetListModel.widgets">
+            <div ng-switch="widget.widgetType">
+                <div class="jga-toolbar">
+                    <a ng-click="widgetListModel.goToEditWidget(widget)">
+                        <span class="glyphicon glyphicon-cog"></span>
+                    </a>
+                    <span class="glyphicon glyphicon-align-justify"></span>
+                </div>
+                <div ng-switch-when="HEADER">
+                    <div ng-include="'views/widget/templates/widget-heading.view.client.html'"></div>
+                </div>
+                <div ng-switch-when="IMAGE">
+                    <div ng-include="'views/widget/templates/widget-image.view.client.html'"></div>
+                </div>
+                <div ng-switch-when="HTML" ng-bind-html="widgetListModel.getTrustedHTML(widget.text)">
+                    {{widget.text}}
+                </div>
+                <div ng-switch-when="YOUTUBE">
+                    <div ng-include="'views/widget/templates/widget-youtube.view.client.html'"></div>
+                </div>
             </div>
         </div>
-
-    </div>
+</div>
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container-fluid">
         <div class="navbar-text pull-left">

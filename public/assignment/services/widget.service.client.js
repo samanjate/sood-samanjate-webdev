@@ -3,18 +3,7 @@
         .module("WebAppMaker")
         .factory("WidgetService", WidgetService);
 
-    function WidgetService() {
-        var widgets = [
-            { "_id": "123", "widgetType": "HEADER", "pageId": "321", "size": 2, "text": "GIZMODO"},
-            { "_id": "234", "widgetType": "HEADER", "pageId": "321", "size": 4, "text": "Lorem ipsum"},
-            { "_id": "345", "widgetType": "IMAGE", "pageId": "321", "width": "100%",
-                "url": "http://lorempixel.com/400/200/"},
-            { "_id": "456", "widgetType": "HTML", "pageId": "321", "text": "<p>Lorem ipsum</p>"},
-            { "_id": "567", "widgetType": "HEADER", "pageId": "321", "size": 4, "text": "Lorem ipsum"},
-            { "_id": "678", "widgetType": "YOUTUBE", "pageId": "321", "width": "100%",
-                "url": "https://youtu.be/AM2Ivdi9c4E" },
-            { "_id": "789", "widgetType": "HTML", "pageId": "321", "text": "<p>Lorem ipsum</p>"}
-        ];
+    function WidgetService($http) {
 
         var api = {
             "createWidget": createWidget,
@@ -22,62 +11,38 @@
             "findWidgetById" : findWidgetById,
             "updateWidget" : updateWidget,
             "deleteWidget" : deleteWidget,
-            "findDistinctWidget" : findDistinctWidget
+            "findDistinctWidget" : findDistinctWidget,
+            "updateWidgetPosition" : updateWidgetPosition
         };
 
         return api;
 
-        function createWidget(pageId, widget) {
-            widget.pageId = pageId;
-            widgets.push(widget);
+        function createWidget(userId, webId, pageId, newWidget) {
+            return $http.post("/api/user/"+userId+"/website/"+webId+"/page/"+pageId+"/widget/new/", newWidget);
         }
 
-        function findWidgetsByPageId(pageId) {
-            var allWidgets = [];
-            for(var w in widgets) {
-                if(widgets[w].pageId === pageId) {
-                    allWidgets.push(widgets[w]);
-                }
-            }
-            return allWidgets;
+        function findWidgetsByPageId(userId, websiteId, pageId) {
+            return $http.get("/api/user/"+userId+"/website/"+websiteId+"/page/"+pageId+"/widget/");
         }
 
-        function findWidgetById(widgetId) {
-            for(var w in widgets) {
-                if(widgets[w]._id === widgetId) {
-                    return widgets[w];
-                }
-            }
-            return null;
+        function findWidgetById(userId, websiteId, pageId, widgetId) {
+            return $http.get("/api/user/"+userId+"/website/"+websiteId+"/page/"+pageId+"/widget/"+widgetId);
         }
 
-        function updateWidget(widgetId, widget) {
-            for(var w in widgets) {
-                if(widgets[w]._id === widgetId ) {
-                    widgets[w] = widget;
-                }
-            }
+        function updateWidget(userId, webId, pageId, widgetId, newWidget) {
+            return $http.put("/api/user/"+userId+"/website/"+webId+"/page/"+pageId+"/widget/"+widgetId, newWidget);
         }
 
-        function deleteWidget(widgetId) {
-            for(var w in widgets) {
-                if(widgets[w]._id === widgetId) {
-                    var index = widgets.indexOf(findWidgetById(widgetId));
-                    if(index > -1) {
-                        widgets.splice(index,1);
-                    }
-                }
-            }
+        function deleteWidget(userId, webId, pageId, widgetId) {
+            return $http.delete("/api/user/"+userId+"/website/"+webId+"/page/"+pageId+"/widget/" + widgetId);
         }
         
-        function findDistinctWidget() {
-            var distinctWidgets = [];
-            for(var w in widgets) {
-                if(!distinctWidgets.includes(widgets[w].widgetType)) {
-                    distinctWidgets.push(widgets[w].widgetType);
-                }
-            }
-            return distinctWidgets;
+        function findDistinctWidget(userId, webId, pageId) {
+            //return $http.get("/api/user/"+userId+"/website/"+webId+"/page/"+pageId+"/widget/new/");
+        }
+
+        function updateWidgetPosition(pageId,initialIndex,finalIndex) {
+            return $http.put("/api/user/page/"+pageId+"?initial=" + initialIndex + "&final=" + finalIndex);
         }
     }
 })();

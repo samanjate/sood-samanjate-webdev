@@ -34,7 +34,6 @@ module.exports = function (app) {
                 res.json(websites[w]);
             }
         }
-        return;
     }
 
     function updateWebsite(req, res) {
@@ -49,7 +48,6 @@ module.exports = function (app) {
                 res.json(websites[w]);
             }
         }
-        return;
     }
     
     function createWebsite(req, res) {
@@ -69,7 +67,7 @@ module.exports = function (app) {
                 var index = websites.indexOf(websites[w]);
                 if (index > -1) {
                     websites.splice(index, 1);
-                    return;
+                    res.sendStatus(200);
                 }
             }
         }

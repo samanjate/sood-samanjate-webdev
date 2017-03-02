@@ -36,9 +36,8 @@
             PageService
                 .createPage(userId, webId,page)
                 .success(function () {
-                    
+                    $location.url("/user/"+userId+"/website/"+webId+"/page");
                 });
-            $location.url("/user/"+userId+"/website/"+webId+"/page");
         }
         function goToPageList() {
             $location.url("/user/"+userId+"/website/"+webId+"/page/");

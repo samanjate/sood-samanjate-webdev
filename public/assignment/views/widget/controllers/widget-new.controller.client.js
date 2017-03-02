@@ -11,7 +11,7 @@
         vm.pageId = $routeParams['pid'];
 
         function init() {
-            vm.widgets = WidgetService.findDistinctWidget();
+            vm.widgets = ["HTML", "YOUTUBE", "IMAGE", "HEADER"];
         }
         init();
 
@@ -24,8 +24,11 @@
                 "_id" : String(Math.floor(Math.random() * 999)),
                 "widgetType" : String(wType)
             };
-            WidgetService.createWidget(vm.pageId,widget);
-            $location.url("/user/"+vm.userId+"/website/"+vm.webId+"/page/"+vm.pageId+"/widget/"+widget._id);
+            WidgetService
+                .createWidget(vm.userId, vm.webId, vm.pageId,widget)
+                .success(function (result) {
+                    $location.url("/user/"+vm.userId+"/website/"+vm.webId+"/page/"+vm.pageId+"/widget/"+widget._id);
+                });
         }
 
         function goToProfile() {

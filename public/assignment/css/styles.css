@@ -26,6 +26,10 @@ body {
     border-bottom-color: #000;
 }
 
+.hidethis {
+    display: none;
+}
+
 .navbar-default .navbar-brand {
     color: white;
 }

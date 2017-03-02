@@ -81,6 +81,6 @@ module.exports = function (app) {
         if (index > -1) {
             users.splice(index, 1);
         }
-        return;
+        res.sendStatus(200);
     }
 }

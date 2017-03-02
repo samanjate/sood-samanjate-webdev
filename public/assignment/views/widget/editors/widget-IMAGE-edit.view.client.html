@@ -1,39 +1,46 @@
 <div class="container-fluid">
-    <label for="widget-name">Name</label>
-    <input ng-model="widgetEditModel.widget.widgetType"
-           placeholder="Image"
-           value="widgetEditModel.widget.widgetType"
-           class="form-control insert-margin"
-           id="widget-name"/>
+        <form action="/api/upload" method="post" enctype="multipart/form-data">
+            <input name="uid" value="{{widgetEditModel.userId}}" class="hidethis">
+            <input name="wid" value="{{widgetEditModel.webId}}" class="hidethis">
+            <input name="wgid" value="{{widgetEditModel.widget._id}}" class="hidethis">
 
-    <label for="widget-text">Text</label>
-    <input ng-model="widgetEditModel.widget.text"
-           placeholder="Some text here..."
-           class="form-control insert-margin"
-           value="widgetEditModel.widget.text"
-           id="widget-text"></input>
+            <div class="form-group">
+                <label for="widget-name">Name</label>
+                <input ng-model="widgetEditModel.widget.widgetType"
+                       placeholder="Image"
+                       value="widgetEditModel.widget.widgetType"
+                       class="form-control insert-margin"
+                       id="widget-name"/>
 
-    <label for="widget-url">URL</label>
-    <input ng-model="widgetEditModel.widget.url"
-           placeholder="https://..."
-           class="form-control insert-margin"
-           value="widgetEditModel.widget.url"
-           id="widget-url"></input>
+                <label for="widget-text">Text</label>
+                <input ng-model="widgetEditModel.widget.text"
+                       placeholder="Some text here..."
+                       class="form-control insert-margin"
+                       value="widgetEditModel.widget.text"
+                       id="widget-text"></input>
 
-    <label for="widget-width">Width</label>
-    <input ng-model="widgetEditModel.widget.width"
-           placeholder="30%"
-           class="form-control insert-margin"
-           value="widgetEditModel.widget.width"
-           id="widget-width"></input>
+                <label for="widget-url">URL</label>
+                <input ng-model="widgetEditModel.widget.url"
+                       placeholder="https://..."
+                       class="form-control insert-margin"
+                       value="widgetEditModel.widget.url"
+                       id="widget-url"></input>
 
-    <label for="widget-upload">Upload</label>
-    <input placeholder="No file Choosen"
-           type="file"
-           class="form-control insert-margin"
-           id="widget-upload"></input>
+                <label for="widget-width">Width</label>
+                <input ng-model="widgetEditModel.widget.width"
+                       placeholder="30%"
+                       class="form-control insert-margin"
+                       value="widgetEditModel.widget.width"
+                       id="widget-width"></input>
 
+                <label for="file-up">Upload Image</label>
+                <input id="file-up" name="myFile" type="file" class="form-control"/>
+            </div>
 
-    <a ng-click="widgetEditModel.updateWidget()" class="btn btn-primary btn-block">Upload Image</a>
-    <a ng-click="widgetEditModel.deleteWidget()" class="btn btn-danger btn-block">Delete</a>
+            <div>
+                <button type="submit" class="btn btn-block btn-primary">Upload Image</button>
+                <a ng-click="widgetEditModel.updateWidget()" class="btn btn-success btn-block">Upload URL Image</a>
+                <a ng-click="widgetEditModel.deleteWidget()" class="btn btn-danger btn-block">Delete</a>
+            </div>
+        </form>
 </div>

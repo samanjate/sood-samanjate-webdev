@@ -1,6 +1,3 @@
-/**
- * Created by samanjatesood on 14/02/17.
- */
 (function () {
     angular
         .module("WebAppMaker")
@@ -12,11 +9,15 @@
 
         vm.userId = $routeParams['uid'];
         vm.webId = $routeParams['wid'];
-        vm.webId = $routeParams['pid'];
+        vm.pageId = $routeParams['pid'];
         vm.wgId = $routeParams['wgid'];
 
         function init() {
-            vm.widget = WidgetService.findWidgetById(vm.wgId);
+            WidgetService
+                .findWidgetById(vm.userId, vm.webId, vm.pageId, vm.wgId)
+                .success(function (widget) {
+                     vm.widget = widget;
+                 });
         }
         init();
 
@@ -31,16 +32,23 @@
         }
 
         function deleteWidget() {
-            WidgetService.deleteWidget(vm.wgId);
-            $location.url("/user/"+vm.userId+"/website/"+vm.webId+"/page/"+vm.webId+"/widget");
+            WidgetService
+                .deleteWidget(vm.userId, vm.webId, vm.pageId, vm.wgId)
+                .success(function () {
+                    $location.url("/user/"+vm.userId+"/website/"+vm.webId+"/page/"+vm.pageId+"/widget");
+                });
         }
 
         function goToWidgetList() {
-            $location.url("/user/"+vm.userId+"/website/"+vm.webId+"/page/"+vm.webId+"/widget");
+            $location.url("/user/"+vm.userId+"/website/"+vm.webId+"/page/"+vm.pageId+"/widget");
         }
         function updateWidget() {
-            WidgetService.updateWidget(vm.wgId, vm.widget);
-            $location.url("/user/"+vm.userId+"/website/"+vm.webId+"/page/"+vm.webId+"/widget");
+            WidgetService
+                .updateWidget(vm.userId, vm.webId, vm.pageId, vm.wgId, vm.widget)
+                .success(function () {
+
+                });
+            $location.url("/user/"+vm.userId+"/website/"+vm.webId+"/page/"+vm.pageId+"/widget");
         }
         function goToProfile() {
             $location.url("/user/"+vm.userId);

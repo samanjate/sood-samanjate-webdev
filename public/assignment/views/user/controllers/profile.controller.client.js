@@ -35,8 +35,8 @@
             UserService
                 .deleteUser(userId)
                 .success(function () {
+                    $location.url("/login");
                 });
-            $location.url("/login");
         }
 
         function websiteList() {

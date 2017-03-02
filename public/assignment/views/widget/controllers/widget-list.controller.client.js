@@ -12,8 +12,16 @@
         vm.doYouTrust = doYouTrust;
         vm.getTrustedHTML = getTrustedHTML;
 
+        // $(".widget-list").sortable({
+        //     axis: "y"
+        // });
+
         function init() {
-            vm.widgets = WidgetService.findWidgetsByPageId(vm.pageId);
+             WidgetService
+                 .findWidgetsByPageId(vm.userId, vm.webId, vm.pageId)
+                 .success(function (widgets) {
+                     vm.widgets = widgets;
+                 });
         }
         init();
         
@@ -21,6 +29,7 @@
         vm.goToChooser =goToChooser;
         vm.goToPageList = goToPageList;
         vm.goToProfile = goToProfile;
+        vm.updateWidgetPosition = updateWidgetPosition;
         
         function doYouTrust(widgetUrl) {
             var urlParts = widgetUrl.split('/');
@@ -42,6 +51,9 @@
         }
         function goToProfile() {
             $location.url("/user/"+vm.userId);
+        }
+        function updateWidgetPosition(startIndex, finalIndex, pageId) {
+            return $http.put("/page/" + pageId + "/widget?initial=" + startIndex + "&final=" + finalIndex);
         }
     }
 })();

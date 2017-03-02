@@ -39,17 +39,17 @@
             WebsiteService
                 .updateWebsite(webId, userId, newWebsite)
                 .success(function () {
-                    
+                    $location.url("/user/"+userId+"/website");
                 });
-            $location.url("/user/"+userId+"/website");
+
         }
 
         function deleteWebsite(website) {
             WebsiteService
                 .deleteWebsite(webId, userId)
                 .success(function () {
+                    $location.url("/user/"+userId+"/website");
                 });
-            $location.url("/user/"+userId+"/website");
         }
 
         function websiteList() {
