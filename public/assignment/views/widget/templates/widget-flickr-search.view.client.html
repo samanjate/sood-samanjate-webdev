@@ -1,20 +1,18 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
-        <div class="pull-right>
-            <a class="navbar-brand"
-               ng-click="model.updateWidget(model.widget)">
-                <span class="glyphicon glyphicon-ok-sign"></span>
+        <div class="navbar-text pull-left">
+            <a href="#/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget/{{model.wgid}}/">
+                <span class="glyphicon glyphicon-chevron-left"></span>
             </a>
         </div>
         <div class="navbar-header">
-            <a class="navbar-brand"
-               href="#/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget/{{model.wgid}}/">
-                <span class="glyphicon glyphicon-chevron-left"></span>
+            <a class="navbar-brand no-left-padding no-left-margin">
+                Search Flickr
             </a>
-            <a class="navbar-brand">Seach Flickr</a>
         </div>
     </div>
 </nav>
+
 
 <div class="container-fluid">
     <div class="row">
