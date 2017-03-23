@@ -47,7 +47,6 @@ module.exports = function () {
         return WebsiteModel.update({_id:websiteId},{$set:updatedWebsite});
     }
     function deleteWebsite(websiteId){
-        // Delete a website, its reference in parent and its children
         return WebsiteModel.findOne({_id:websiteId}).populate('_user').then(function (website) {
             website._user.websites.splice(website._user.websites.indexOf(websiteId),1);
             website._user.save();
@@ -82,7 +81,6 @@ module.exports = function () {
     }
 
     function deleteWebsiteAndChildren(websiteId){
-        // Delete the website and its children (pages)
         return WebsiteModel.findById({_id: websiteId}).select({'pages':1})
             .then(function (website) {
                 var pagesOfWebsite = website.pages;

@@ -46,7 +46,6 @@ module.exports = function () {
         return PageModel.update({_id:pageId},{$set: updatedPage});
     }
     function deletePage(pageId) {
-        // Delete a page, its reference in parent website and its children (widgets)
         return PageModel.findById(pageId).populate('_website').then(function (page) {
             page._website.pages.splice(page._website.pages.indexOf(pageId),1);
             page._website.save();
@@ -58,8 +57,6 @@ module.exports = function () {
 
     function recursiveDelete(widgetsOfPage, pageId) {
         if(widgetsOfPage.length == 0){
-            // All widgets of page successfully deleted
-            // Delete the page
             return PageModel.remove({_id: pageId})
                 .then(function (response) {
                     if(response.result.n == 1 && response.result.ok == 1){
@@ -81,7 +78,6 @@ module.exports = function () {
     }
 
     function deletePageAndChildren(pageId) {
-        // Delete the page and its children (widgets)
         return PageModel.findById({_id: pageId})
             .then(function (page) {
                 var widgetsOfPage = page.widgets;
