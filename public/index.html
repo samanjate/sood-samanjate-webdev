@@ -1,30 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="homepage/js/app.js"></script>
+    <link href="homepage/css/styles.css" rel="stylesheet"/>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Web Dev Course Home Page</title>
 </head>
 <body>
-    <h1>Web Dev Course Home Page</h1>
 
-    <p>
-        Customize this home page to your linking.
-    </p>
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="row container-fluid">
+        <div class="col-sm-12 hidden-xs hidden-sm text-center dropdown">
+            <a href="#" class="navbar-brand">
+                <span class="logo glyphicon glyphicon-equalizer"></span>
+            </a>
+            <ul class="nav navbar-nav">
+                <li><a href="project/index.html">PROJECT</a></li>
+                <li><a href="assignment/index.html">ASSIGNMENT</a></li>
+                <li><a href="test/index.html">TEST MONGO-DB</a></li>
+                <li><a href="https://github.com/samanjate/sood-samanjate-webdev">GITHUB REPOSITORY</a></li>
+                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">CONTACT<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="https://github.com/samanjate/">GITHUB</a></li>
+                        <li><a href="https://www.linkedin.com/in/samanjate/">LINKEDIN</a></li>
+                        <li><a href="https://www.facebook.com/samanjate">FACEBOOK</a></li>
+                        <li><a href="https://www.instagram.com/saman.sood/">INSTAGRAM</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div class="col-sm-4 col-xs-4 hidden-md hidden-lg">
+            <div id="main" class="navbar-brand pull-left">
+                <span class="small-screen-navbar" onclick="openNav()">&#9776;</span>
+            </div>
+            <div id="mySidenav" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                <a href="project/index.html">PROJECT</a>
+                <a href="assignment/index.html">ASSIGNMENT</a>
+                <a href="test/index.html">TEST MONGO-DB</a>
+                <a href="https://github.com/samanjate/sood-samanjate-webdev">GITHUB REPOSITORY</a>
+            </div>
+        </div>
+        <div class="col-sm-4 col-xs-4 hidden-md hidden-lg text-center">
+            <a href="#" class="navbar-brand text-center">
+                <span class="logo glyphicon glyphicon-equalizer"></span>
+            </a>
+        </div>
+        <div class="col-sm-4 col-xs-4 hidden-md hidden-lg">
+            <a href="#" class="small-screen-navbar navbar-brand pull-right">
+                <span class="logo glyphicon glyphicon-search"></span>
+            </a>
+        </div>
 
-    <h2>Required links</h2>
-    <ul>
-        <li>
-            <a href="project/index.html">Project</a>
-        </li>
-        <li>
-            <a href="assignment/index.html">Assignment</a>
-        </li>
-        <li>
-            <a href="test/index.html">Test MongoDB</a>
-        </li>
-        <li>
-            <a href="https://github.com/samanjate/sood-samanjate-webdev">Your public repository at GitHub.com</a>
-        </li>
-    </ul>
+    </div>
+</nav>
+
+<div id="ImageCarousel" class="container-fluid carousel slide" data-ride="carousel">
+
+    <ol class="carousel-indicators">
+        <li data-target="#ImageCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#ImageCarousel" data-slide-to="1"></li>
+    </ol>
+
+    <div class="carousel-inner" role="listbox">
+        <div class="item active">
+            <img src="homepage/images/2.jpg" alt="Boston" width="100%">
+        </div>
+
+        <div class="item">
+            <img src="homepage/images/3.jpg" alt="New York" width="100%">
+        </div>
+    </div>
+
+    <a class="left carousel-control" href="#ImageCarousel" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#ImageCarousel" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>
+
+<div class="container-fluid row">
+    <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4 override-padding hoverable">
+        <img src="homepage/images/4.1.jpg" alt="" width="100%">
+    </div>
+    <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4 override-padding hoverable">
+        <img src="homepage/images/5.1.jpg" alt="" width="100%">
+    </div>
+    <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4 override-padding hoverable">
+        <img src="homepage/images/6.1.jpg" alt="" width="100%">
+    </div>
+
+</div>
+
 </body>
 </html>

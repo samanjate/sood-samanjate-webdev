@@ -3,12 +3,13 @@
             <input name="uid" value="{{widgetEditModel.userId}}" class="hidethis">
             <input name="wid" value="{{widgetEditModel.webId}}" class="hidethis">
             <input name="wgid" value="{{widgetEditModel.widget._id}}" class="hidethis">
+            <input name="pid" value="{{widgetEditModel.pageId}}" class="hidethis">
 
             <div class="form-group">
                 <label for="widget-name">Name</label>
-                <input ng-model="widgetEditModel.widget.widgetType"
+                <input ng-model="widgetEditModel.widget.name"
                        placeholder="Image"
-                       value="widgetEditModel.widget.widgetType"
+                       value="widgetEditModel.widget.name"
                        class="form-control insert-margin"
                        id="widget-name"/>
 
@@ -29,6 +30,7 @@
                 <label for="widget-width">Width</label>
                 <input ng-model="widgetEditModel.widget.width"
                        placeholder="30%"
+                       name="width"
                        class="form-control insert-margin"
                        value="widgetEditModel.widget.width"
                        id="widget-width"></input>
@@ -38,6 +40,10 @@
             </div>
 
             <div>
+                <a class="btn btn-info btn-block"
+                   href="#/user/{{widgetEditModel.userId}}/website/{{widgetEditModel.webId}}/page/{{widgetEditModel.pageId}}/widget/{{widgetEditModel.widget._id}}/flickrsearch">
+                            Search Flickr
+                        </a>
                 <button type="submit" class="btn btn-block btn-primary">Upload Image</button>
                 <a ng-click="widgetEditModel.updateWidget()" class="btn btn-success btn-block">Upload URL Image</a>
                 <a ng-click="widgetEditModel.deleteWidget()" class="btn btn-danger btn-block">Delete</a>

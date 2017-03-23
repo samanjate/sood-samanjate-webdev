@@ -43,6 +43,7 @@
             $location.url("/user/"+vm.userId+"/website/"+vm.webId+"/page/"+vm.pageId+"/widget");
         }
         function updateWidget() {
+            console.log(vm.widget.url);
             WidgetService
                 .updateWidget(vm.userId, vm.webId, vm.pageId, vm.wgId, vm.widget)
                 .success(function () {

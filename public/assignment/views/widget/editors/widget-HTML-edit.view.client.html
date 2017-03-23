@@ -1,17 +1,20 @@
 <div class="container-fluid">
     <label for="widget-name">Name</label>
-    <input ng-model="widgetEditModel.widget.widgetType"
+    <input ng-model="widgetEditModel.widget.name"
            class="form-control insert-margin"
            placeholder="Name"
-           value="widgetEditModel.widget.widgetType"
+           value="widgetEditModel.widget.name"
            id="widget-name"/>
 
     <label for="widget-text">Text</label>
-    <input ng-model="widgetEditModel.widget.text"
-           placeholder="Some text here..."
-           class="form-control insert-margin"
-           value="widgetEditModel.widget.text"
-           id="widget-text"></input>
-
+    <div id="widget-text"
+         value="widgetEditModel.widget.text"
+         ng-model="widgetEditModel.widget.text"
+         text-angular
+         ta-toolbar="[['h1','h2','h3'],['bold','italics','underline','strikeThrough'],
+        ['ul','ol'],['justifyLeft','justifyCenter','justifyRight','justifyFull'],
+        ['indent','outdent'],['html']]">
+    </div>
+    <br/>
     <a ng-click="widgetEditModel.deleteWidget()" class="btn btn-danger btn-block">Delete</a>
 </div>

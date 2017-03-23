@@ -23,11 +23,13 @@
             UserService
                 .updateUser(userId, newUser)
                 .success(function (user) {
-                    if(user != null) {
+                    if(user) {
                         vm.message = "User Successfully Updated!"
-                    } else {
-                        vm.error = "Unable to update user";
                     }
+                })
+                .error(function (error) {
+                    vm.error = "Unable to update user";
+                    return null;
                 });
         }
 

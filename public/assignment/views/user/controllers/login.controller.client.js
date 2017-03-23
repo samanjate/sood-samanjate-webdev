@@ -7,7 +7,6 @@
         var vm = this;
 
         function init() {
-
         }
         init();
 
@@ -16,13 +15,16 @@
 
         function login(user) {
             var promise = UserService.findUserByCredentials(user.username,user.password);
-            promise.success(function (user) {
+            promise
+                .success(function (user) {
                 if(user) {
                     $location.url("/user/" + user._id);
-                } else {
-                    vm.error = "User not found";
                 }
-            });
+            })
+                .error(function (error) {
+                    vm.error = "User not found";
+                    return null;
+                });
 
         }
     }

@@ -1,0 +1,169 @@
+input {
+    margin-bottom: 5px;
+}
+
+textarea.form-control {
+    margin-bottom: 15px;
+    height: 90px;
+}
+
+a:hover {
+    text-decoration:none;
+}
+
+.insert-margin {
+    margin-bottom: 15px;
+}
+
+body {
+    padding-top: 53px;
+    padding-bottom: 60px;
+    overflow: auto;
+}
+
+.navbar-default {
+    background-color: rgba(0,0,0,0.8);
+    border-bottom-color: rgba(0,0,0,0.8);
+}
+
+.navbar-default .navbar-brand{
+    padding-left: 30px;
+    padding-right: 30px;
+    position: relative;
+    height: 44px;
+    letter-spacing: -.01em;
+    color: #ffffff;
+    font-size: 11px;
+    font-weigth: 300;
+    font-family: "Helvetica Neue";
+    z-index: 1;
+    display: inline-block;
+    opacity: 1;
+    text-decoration: none;
+    float: none;
+
+}
+.navbar .navbar-nav {
+    display: inline-block;
+    float: none;
+    vertical-align: middle;
+
+}
+
+.logo {
+    font-size: 16px;
+}
+
+.logo:hover {
+    text-decoration: none;
+}
+
+.fit-image {
+    width: 100%;
+}
+#ImageCarousel {
+    padding-right: 0px;
+    padding-left: 0px;
+}
+.navbar .navbar-collapse {
+    text-align: center;
+}
+
+.navbar-default .navbar-nav>li>a {
+    color: #ffffff;
+    font-size: 11px;
+}
+
+.navbar-default .navbar-nav>li>a:focus, .navbar-default .navbar-nav>li>a:hover {
+    color: #ffffff;
+    background-color: #333;
+}
+
+.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover {
+    color: #ffffff;
+    background-color: #333;
+}
+
+.dropdown-menu>li>a {
+    display: block;
+    padding: 3px 20px;
+    clear: both;
+    font-weight: 400;
+    font-size: 10px;
+    line-height: 1.42857143;
+    color: #333;
+    white-space: nowrap;
+}
+
+ul.nav li.dropdown:hover > ul.dropdown-menu {
+    display: block;
+}
+
+/* side bar navigation */
+
+body {
+    font-family: "Lato", sans-serif;
+    transition: background-color .5s;
+}
+
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 11px;
+    color: #818181;
+    display: block;
+    transition: 0.3s
+}
+
+.sidenav a:hover, .offcanvas a:focus{
+    color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+#main {
+    transition: margin-left .5s;
+    padding: 16px;
+}
+
+@media screen and (max-height: 450px) {
+    .sidenav {padding-top: 55px;}
+    .sidenav a {font-size: 11px;}
+}
+
+.small-screen-navbar {
+    font-size:16px;
+    cursor:pointer;
+}
+/* end of sidebar navigation */
+
+.override-padding {
+    padding-right: 1px;
+    padding-left: 1px;
+    padding-top: 1px;
+    padding-bottom: 1px;
+}
+
+.hoverable img:hover {
+    opacity: 0.8;
+    cursor: pointer;
+}

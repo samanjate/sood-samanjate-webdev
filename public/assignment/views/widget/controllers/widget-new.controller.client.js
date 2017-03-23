@@ -11,7 +11,7 @@
         vm.pageId = $routeParams['pid'];
 
         function init() {
-            vm.widgets = ["HTML", "YOUTUBE", "IMAGE", "HEADER"];
+            vm.widgets = ['HEADER','IMAGE','YOUTUBE','HTML','TEXT'];
         }
         init();
 
@@ -20,14 +20,14 @@
         vm.goToWebsiteList = goToWebsiteList;
 
         function goToEditWidget(wType) {
-            var widget = {
-                "_id" : String(Math.floor(Math.random() * 999)),
-                "widgetType" : String(wType)
-            };
+            var widget = {};
+            widget.type = String(wType);
             WidgetService
                 .createWidget(vm.userId, vm.webId, vm.pageId,widget)
-                .success(function (result) {
-                    $location.url("/user/"+vm.userId+"/website/"+vm.webId+"/page/"+vm.pageId+"/widget/"+widget._id);
+                .success(function (widget) {
+                    if(widget) {
+                        $location.url("/user/"+vm.userId+"/website/"+vm.webId+"/page/"+vm.pageId+"/widget/"+widget._id);
+                    }
                 });
         }
 

@@ -23,8 +23,8 @@
                 .error(function (err) {
                     UserService
                         .createUser(user)
-                        .success(function (userId) {
-                            $location.url("/user/"+userId);
+                        .success(function (user) {
+                            $location.url("/user/"+user._id);
                         });
                 });
         }
