@@ -1,0 +1,54 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="row container-fluid">
+
+    </div>
+</nav>
+
+<!-- upcoming movies carousel -->
+
+<div class="hidden-sm hidden-xs" id="slides_control">
+    <carousel interval="model.myInterval">
+        <slide ng-repeat="slide in model.slides" active="slide.active">
+            <img ng-src="https://image.tmdb.org/t/p/w500/{{slide.backdrop_path}}">
+            <div class="carousel-caption">
+                <h6>{{slide.title}}</h6>
+            </div>
+        </slide>
+    </carousel>
+    <h4 id="push-down">Upcoming Movies</h4>
+</div>
+<div class="hidden-sm hidden-xs" id="titles">
+    <h4>Top 5 Rated Movies</h4>
+    <table class="table table-hover">
+        <tbody>
+        <tr ng-repeat="movie in model.topMovies | limitTo:5">
+            <th scope="row">{{$index + 1}}</th>
+            <td>{{movie.title}}</td>
+            <td>{{movie.vote_average}}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- end of carousel -->
+
+<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+
+<!-- upcoming movies carousel -->
+
+<div class="hidden-sm hidden-xs" id="titles2">
+    <h4>Top 5 Rated TV Shows</h4>
+    <table class="table table-hover">
+        <tbody>
+        <tr ng-repeat="tvshow in model.topTvShows | limitTo:5">
+            <th scope="row">{{$index + 1}}</th>
+            <td>{{tvshow.original_name}}</td>
+            <td>{{tvshow.vote_average}}</td>
+        </tr>
+        </tbody>
+    </table>
+    <img src=""/>
+</div>
+
+<!-- end of carousel -->
+

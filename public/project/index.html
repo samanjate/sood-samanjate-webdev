@@ -1,10 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="GoMovies">
 <head>
+    <!-- css -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="css/movie-site-styles.css" rel="stylesheet"/>
+    <!-- end of css -->
+
+    <!-- AngulatJS, Bootstrap, and application JavaScripts -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.10.0/ui-bootstrap-tpls.min.js"></script>
+    <script src="app.js"></script>
+    <script src="config.js"></script>
+
+    <script src="js/movie-site.js"></script>
+    <!-- end of js -->
+
+    <!-- controllers -->
+    <script src="views/general/controllers/home.controller.client.js"></script>
+
+    <!-- services -->
+    <script src="services/movie.service.client.js"></script>
+    <script src="services/tvshow.service.client.js"></script>
+
+    <!-- favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+
     <meta charset="UTF-8">
-    <title>Project Home Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>GoMovies</title>
 </head>
 <body>
-    <h1>Project Home Page</h1>
+    <div ng-view></div>
 </body>
 </html>
