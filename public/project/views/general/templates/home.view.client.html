@@ -1,12 +1,30 @@
 <nav class="navbar navbar-default navbar-fixed-top">
-    <div class="row container-fluid">
-
+    <div class="container-fluid">
+        <div class="navbar-text pull-left">
+            <a class="paint nav-glyp">
+                <span class="glyphicon glyphicon-film"></span>
+            </a>
+        </div>
+        <div class="search-bar navbar-text text-center">
+            <input type="text" placeholder="Search..." class="form-control" id="usr">
+        </div>
+        <div class="navbar-text text-center">
+            <a class="paint nav-glyp">
+                <span class="adjust-with-search-bar glyphicon glyphicon-search"></span>
+            </a>
+        </div>
+        <div class="navbar-text pull-right">
+            <a class="paint nav-glyp">
+                <span class="glyphicon glyphicon-user"></span>
+                <p class="select-size">LOGIN</p>
+            </a>
+        </div>
     </div>
 </nav>
 
 <!-- upcoming movies carousel -->
 
-<div class="hidden-sm hidden-xs" id="slides_control">
+<div class="hidden-sm hidden-xs img-control" id="slides_control">
     <carousel interval="model.myInterval">
         <slide ng-repeat="slide in model.slides" active="slide.active">
             <img ng-src="https://image.tmdb.org/t/p/w500/{{slide.backdrop_path}}">
@@ -32,9 +50,9 @@
 
 <!-- end of carousel -->
 
-<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
 
-<!-- upcoming movies carousel -->
+<!-- TV Shows -->
 
 <div class="hidden-sm hidden-xs" id="titles2">
     <h4>Top 5 Rated TV Shows</h4>
@@ -47,8 +65,22 @@
         </tr>
         </tbody>
     </table>
-    <img src=""/>
+    <h4>Latest TV Shows</h4>
 </div>
 
-<!-- end of carousel -->
+<div class="slide-left text-center">
+    <div class="hidden-sm hidden-xs imgContainer" ng-repeat="tvshow in model.latestTvShows | limitTo:3">
+        <img class="tv-show-img" ng-src="https://image.tmdb.org/t/p/w500/{{tvshow.poster_path}}"/>
+    </div>
+</div>
+
+<!-- end -->
+
+<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+<hr>
+
+<nav class="navbar-adj navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+    </div>
+</nav>
 

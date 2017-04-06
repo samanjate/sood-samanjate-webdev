@@ -1,0 +1,118 @@
+<!-- Top menu on small screens -->
+<header class="ss-container ss-top ss-black ss-xlarge ss-padding-16">
+    <span class="ss-left ss-padding">GO MOVIES</span>
+    <span class="ss-right glyphicon glyphicon-user ss-padding"></span>
+</header>
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="ss-overlay ss-animate-opacity" onclick="ss_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+<!-- !PAGE CONTENT! -->
+<div class="ss-main ss-content" style="max-width:1600px;margin-top:83px">
+
+    <!-- Photo grid -->
+    <div ng-switch on="type" class="row hidden-xs">
+        <div ng-switch-when="movies" ng-repeat="slide in model.slides | limitTo:8" class="ss-quarter">
+            <img ng-src="https://image.tmdb.org/t/p/w500/{{slide.poster_path}}" style="width:100%" alt="{{slide.overview}}">
+        </div>
+        <div ng-switch-when="tv" ng-repeat="slide in model.topTvShows | limitTo:8" class="ss-quarter">
+            <img ng-src="https://image.tmdb.org/t/p/w500/{{slide.poster_path}}" style="width:100%" alt="{{slide.overview}}">
+        </div>
+        <div ng-switch-default ng-repeat="slide in model.slides | limitTo:8" class="ss-quarter">
+            <img ng-src="https://image.tmdb.org/t/p/w500/{{slide.poster_path}}" style="width:100%" alt="{{slide.overview}}">
+        </div>
+    </div>
+
+    <!-- Pagination -->
+    <div class="ss-center ss-padding-32 hidden-xs">
+        <div class="ss-bar">
+            <a class="ss-bar-item">«</a>
+            <a ng-click="type='movies'" class="ss-bar-item ss-button ss-hover-black btn">MOVIES</a>
+            <a ng-click="type='tv'" class="ss-bar-item ss-button ss-hover-black btn">TV SHOWS</a>
+            <a class="ss-bar-item">»</a>
+        </div>
+    </div>
+
+    <div class="hidden-sm hidden-md hidden-lg">
+        <carousel interval="model.myInterval">
+            <slide ng-repeat="slide in model.slides" active="slide.active">
+                <img ng-src="https://image.tmdb.org/t/p/w500/{{slide.backdrop_path}}">
+                <div class="carousel-caption">
+                    <h6>{{slide.title}}</h6>
+                </div>
+            </slide>
+        </carousel>
+    </div>
+
+    <!-- About section -->
+    <div class="ss-container ss-dark-grey ss-center ss-text-light-grey ss-padding-32" id="about">
+            <h2 class="ss-padding-16-bottom">Top 5 Rated</h2>
+            <div class="ss-row-padding" style="margin:0 -16px">
+                <div class="ss-half ss-margin-bottom">
+                    <ul class="ss-ul ss-white ss-center">
+                        <li class="ss-black ss-xlarge ss-padding-32">Movies</li>
+                        <li ng-repeat="movie in model.topMovies | limitTo:5" class="ss-padding-32"><a class="pull-left">{{movie.title}}</a><a class="pull-right">{{movie.vote_average}}</a></li>
+                    </ul>
+                </div>
+
+                <div class="ss-half">
+                    <ul class="ss-ul ss-white ss-center">
+                        <li class="ss-black ss-xlarge ss-padding-32">TV Shows</li>
+                        <li ng-repeat="tvshow in model.topTvShows | limitTo:5" class="ss-padding-32"><a class="pull-left">{{tvshow.original_name}}</a><a class="pull-right">{{tvshow.vote_average}}</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact section -->
+    <div class="ss-container ss-light-grey ss-padding-32 ss-padding-large">
+        <div class="ss-content" style="max-width:600px">
+            <h4 class="ss-center"><span class="ss-xxxlarge glyphicon glyphicon-search"></span></h4>
+            <form action="" target="_blank">
+                <div class="ss-section">
+                    <input class="form-control"
+                           placeholder="Search movies, TV, actors, more..."
+                           type="text"
+                           name="Name"
+                           required>
+                </div>
+                <button type="submit" class="btn btn-block ss-black">Search</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="ss-container ss-padding-32 ss-grey">
+        <div class="ss-row-padding">
+            <div class="ss-third">
+                <h3>TODAY ON TV</h3>
+                <img ng-src="https://image.tmdb.org/t/p/w500/{{model.airingNow[0].backdrop_path}}"
+                     class="ss-left ss-margin-right">
+            </div>
+
+            <div class="ss-third">
+                <h3>POPULAR ACTORS</h3>
+                <ul class="ss-ul">
+                    <li ng-repeat="person in model.people | limitTo:2" class="ss-padding-16 ss-hover-black">
+                        <img ng-src="https://image.tmdb.org/t/p/w500/{{person.profile_path}}"
+                             class="ss-left ss-margin-right ss-popular-actors">
+                        <span class="ss-large">{{person.name}}</span><br>
+                        <span class="ss-small">{{person.known_for[0].original_title}}</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="ss-third">
+                <h3>MOVIE GENRES</h3>
+                <a ng-repeat="genre in model.genres">
+                    <span class="btn ss-hover-black ss-tag ss-dark-grey ss-small ss-margin-bottom">{{genre.name}}</span>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+<div class="ss-black ss-center ss-padding-24">Copyright © Samanjate Sood. All rights reserved.</div>
+
+    <!-- End page content -->
+</div>

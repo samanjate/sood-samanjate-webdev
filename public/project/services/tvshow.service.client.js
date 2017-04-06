@@ -9,13 +9,25 @@
         var language = 'en-US';
 
         var api = {
-            "topRatedTvShows" : topRatedTvShows
+            "topRatedTvShows" : topRatedTvShows,
+            "latestTvShows" : latestTvShows,
+            "airingNow" : airingNow
         };
 
         return api;
 
         function topRatedTvShows() {
             var url = 'https://api.themoviedb.org/3/tv/top_rated?api_key='+ key + '&language='+ language + '&page=1';
+            return $http.get(url);
+        }
+
+        function latestTvShows() {
+            var url = 'https://api.themoviedb.org/3/tv/popular?api_key=' + key + '&language=' + language + '&page=1';
+            return $http.get(url);
+        }
+        
+        function airingNow() {
+            var url = 'https://api.themoviedb.org/3/tv/airing_today?api_key='+key+'&language='+language+'&page=1';
             return $http.get(url);
         }
     }

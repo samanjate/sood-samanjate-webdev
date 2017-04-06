@@ -6,7 +6,7 @@
     function Config($routeProvider) {
         $routeProvider
             .when("/", {
-                templateUrl: "views/general/templates/home.view.client.html",
+                templateUrl: "views/general/templates/home2.view.client.html",
                 controller: "HomeController",
                 controllerAs: "model"
             })

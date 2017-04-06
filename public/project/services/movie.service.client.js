@@ -10,7 +10,9 @@
 
         var api = {
             "searchUpcomingMovies" : searchUpcomingMovies,
-            "topRatedMovies" : topRatedMovies
+            "topRatedMovies" : topRatedMovies,
+            "movieGenres" : movieGenres,
+            "popularPeople" : popularPeople
         };
 
         return api;
@@ -23,6 +25,20 @@
         function topRatedMovies() {
             var url = 'https://api.themoviedb.org/3/movie/top_rated?api_key='+ key + '&language='+ language + '&page=1';
             return $http.get(url);
+        }
+
+        function movieGenres() {
+            var url = 'https://api.themoviedb.org/3/genre/movie/list?api_key='+key+'&language='+language;
+            return $http.get(url);
+        }
+
+        function popularPeople() {
+            var url = 'https://api.themoviedb.org/3/person/popular?api_key='+key+'&language='+language+'&page=1';
+            return $http.get(url);
+        }
+        
+        function getPeopleById(id) {
+            
         }
     }
 
