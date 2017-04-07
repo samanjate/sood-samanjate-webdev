@@ -15,7 +15,7 @@
                 controller: "HomeController",
                 controllerAs: "model"
             })
-            .when("/search", {
+            .when("/:uid/search", {
                 templateUrl: "views/general/templates/search.view.client.html",
                 controller: "SearchController",
                 controllerAs: "model"

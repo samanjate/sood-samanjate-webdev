@@ -3,10 +3,11 @@
         .module("GoMovies")
         .controller("SearchController", searchController);
 
-    function searchController($routeParams, SearchService) {
+    function searchController($routeParams, $location, SearchService) {
         var vm = this;
         vm.keyword = $routeParams.keyword;
         vm.genre = $routeParams.genre;
+        var userId = $routeParams['uid'];
 
         function init() {
             if(vm.genre) {
@@ -38,6 +39,13 @@
 
         }
         init();
+
+        vm.goToMoviePage = goToMoviePage;
+
+        function goToMoviePage(movieId) {
+            if(userId) $location.url("/" + userId + "/movie/" + movieId);
+            else $location.url("/0/movie/" + movieId);
+        }
 
     }
 

@@ -78,6 +78,14 @@ h5 {
     opacity: 0.6;
     transition: 0.3s
 }
+.ss-onesixteen img {
+    margin-bottom: -6px;
+    cursor: pointer
+}
+.ss-onesixteen img:hover {
+    opacity: 0.6;
+    transition: 0.3s
+}
 .ss-padding-32 {
     padding-top: 16px!important;
     padding-bottom: 32px!important;
@@ -613,7 +621,8 @@ a {
 .ss-third,
 .ss-twothird,
 .ss-threequarter,
-.ss-quarter {
+.ss-quarter,
+.ss-onesixteen {
     float: left;
     width: 100%
 }
@@ -654,6 +663,9 @@ a {
     width: 99.99999%
 }
 @media (min-width: 601px) {
+    .ss-onesixteen {
+        width: 6.25%
+    }
     .ss-col.m1 {
         width: 8.33333%
     }
@@ -949,6 +961,7 @@ a {
 .ss-row-padding>.ss-twothird,
 .ss-row-padding>.ss-threequarter,
 .ss-row-padding>.ss-quarter,
+.ss-row-padding>.ss-onesixteen,
 .ss-row-padding>.ss-col {
     padding: 0 8px
 }
@@ -1563,6 +1576,15 @@ a {
 .ss-search-poster {
     width: 150px;
 }
+.ss-hover-effect img:hover {
+    opacity: 0.6;
+    transition: 0.3s;
+    cursor: pointer;
+}
+.ss-poster-style {
+    width: 50%;
+    margin-left: 25%;
+}
 /* --------------------------------- */
 a:hover {
     text-decoration:none;
@@ -1572,3 +1594,5 @@ a:hover {
 .grid-style {
     width: 100%;
 }
+/* */
+/* --------------------------------- */

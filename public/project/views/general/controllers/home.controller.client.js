@@ -55,11 +55,16 @@
         vm.goToMoviePage = goToMoviePage;
         
         function searchResults() {
-            if(vm.searchKeyword) $location.url("/search?keyword=" + vm.searchKeyword);
+            if(vm.searchKeyword) {
+                if(userId) $location.url("/" + userId + "/search?keyword=" + vm.searchKeyword);
+                else $location.url("/0/search?keyword=" + vm.searchKeyword);
+            }
+
         }
 
         function findGenreMovies(name, id) {
-            $location.url("/search?keyword=" + name + "&genre=" + id);
+            if(userId) $location.url("/" + userId + "/search?keyword=" + name + "&genre=" + id);
+            else $location.url("/0/search?keyword=" + name + "&genre=" + id);
         }
 
         function goToMoviePage(movieId) {

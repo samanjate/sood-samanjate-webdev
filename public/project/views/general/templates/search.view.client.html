@@ -9,7 +9,7 @@
 
     <div class="ss-container ss-light-grey ss-padding-32 ss-padding-large">
         <!-- movie search results -->
-        <div ng-if="model.movies.length" class="ss-content">
+        <div ng-if="model.movies.length" class="ss-content ss-hover-effect">
             <ul class="ss-ul ss-white">
                 <li class="ss-black ss-xlarge ss-padding-32">Movies</li>
                 <li ng-repeat="movie in model.movies" class="ss-padding-32">
@@ -18,15 +18,17 @@
                             <img class="ss-search-poster"
                                  ng-if="movie.poster_path"
                                  ng-src="https://image.tmdb.org/t/p/w500/{{movie.poster_path}}"
-                                 class="pull-left" />
+                                 class="pull-left"
+                                 ng-click="model.goToMoviePage(movie.id)"/>
 
                             <img class="ss-search-poster"
                                  ng-if="!movie.poster_path"
                                  src="http://s3.amazonaws.com/static.betaeasy.com/screenshot/456/456-25984-14192637741419263774.42.jpeg"
-                                 class="pull-left" />
+                                 class="pull-left"
+                                 ng-click="model.goToMoviePage(movie.id)"/>
                         </div>
                         <div class="ss-half">
-                            <h3>{{movie.title}} ({{movie.release_date.substr(0,4)}})</h3>
+                            <h3 ng-click="model.goToMoviePage(movie.id)">{{movie.title}} ({{movie.release_date.substr(0,4)}})</h3>
                             <span class="ss-small">{{movie.overview.substr(0,250)}}...</span>
                         </div>
                     </div>
@@ -91,6 +93,6 @@
 
     </div>
 
-
+    <div class="ss-black ss-center ss-padding-24">Copyright © Samanjate Sood. All rights reserved.</div>
 
 </div>

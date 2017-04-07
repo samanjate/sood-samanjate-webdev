@@ -4,4 +4,76 @@
     <span class="ss-right glyphicon glyphicon-user ss-padding"></span>
 </header>
 
-{{model.movie}}
+<div class="ss-main ss-content ss-content-page">
+
+    <!-- Movie details -->
+    <div class="ss-container ss-padding-16 ss-padding-large">
+        <div class="ss-row-padding" style="margin:0 -16px">
+            <div class="ss-half ss-margin-bottom">
+                <img ng-click=""
+                     ng-if="model.movie.poster_path"
+                     ng-src="https://image.tmdb.org/t/p/w500/{{model.movie.poster_path}}"
+                     class="ss-poster-style ss-padding-small">
+                <img ng-click=""
+                     ng-if="!model.movie.poster_path"
+                     src="http://s3.amazonaws.com/static.betaeasy.com/screenshot/456/456-25984-14192637741419263774.42.jpeg"
+                     class="ss-poster-style ss-padding-small">
+            </div>
+            <div class="ss-half">
+                <h3 class="ss-xxxlarge">{{model.movie.original_title}} ({{model.movie.release_date.substr(0,4)}})</h3>
+                <h3 class="ss-large">{{model.movie.overview}}</h3>
+                <h3></h3>
+                <span class="ss-large ss-left glyphicon glyphicon-time ss-padding"></span>
+                <h3 class="ss-large ss-padding">Runtime: {{model.movie.runtime}} mins</h3>
+                <h3></h3>
+                <span class="ss-large ss-left glyphicon glyphicon-star ss-padding"></span>
+                <h3 class="ss-large ss-padding">Ratings: {{model.movie.vote_average}}/10</h3>
+            </div>
+        </div>
+    </div>
+    <!-- end -->
+
+    <!-- Cast -->
+    <div ng-if="model.cast.length" class="ss-container ss-dark-grey ss-padding-16 ss-padding-large">
+        <h3>CAST</h3>
+        <div class="ss-row-padding ss-padding-small">
+            <div ng-repeat="actor in model.cast | limitTo:16" class="ss-onesixteen ss-padding-16">
+                <img ng-click=""
+                     ng-if="actor.profile_path"
+                     ng-src="https://image.tmdb.org/t/p/w500/{{actor.profile_path}}"
+                     class="ss-col.s12 ss-padding-small">
+                <img ng-click=""
+                     ng-if="!actor.profile_path"
+                     src="http://s3.amazonaws.com/static.betaeasy.com/screenshot/456/456-25984-14192637741419263774.42.jpeg"
+                     class="ss-col.s12 ss-padding-small">
+                <h6 class="ss-padding-small ss-small">{{actor.name}}</h6>
+            </div>
+        </div>
+    </div>
+    <!-- end -->
+
+    <!-- Trailers -->
+    <div ng-if="model.trailers.length" class="ss-container ss-light-grey ss-padding-16 ss-padding-large">
+        <h3>TRAILERS</h3>
+        <div class="ss-row-padding ss-padding-16">
+            <div ng-repeat="trailer in model.trailers | limitTo:3" class="ss-third">
+                <iframe class="ss-black" width="100%" ng-src="{{trailer.video_path}}" frameborder="0" allowfullscreen=""></iframe>
+            </div>
+        </div>
+    </div>
+    <!-- end -->
+
+    <!-- Similar Movies -->
+    <div ng-if="model.similarMovies.length" class="ss-container ss-grey ss-padding-16 ss-padding-large">
+        <h3>SIMILAR MOVIES</h3>
+        <div ng-repeat="movie in model.similarMovies | limitTo:4" class="ss-quarter ss-padding-16">
+            <img ng-click="model.goToMoviePage(movie.id)"
+                 ng-src="https://image.tmdb.org/t/p/w500/{{movie.poster_path}}"
+                 class="ss-col.s12 ss-padding">
+            <h6 class="ss-padding">{{movie.original_title}}</h6>
+        </div>
+    </div>
+    <!-- end -->
+
+    <div class="ss-black ss-center ss-padding-24">Copyright © Samanjate Sood. All rights reserved.</div>
+</div>
