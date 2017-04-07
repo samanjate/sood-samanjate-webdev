@@ -1,86 +1,114 @@
-<nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container-fluid">
-        <div class="navbar-text pull-left">
-            <a class="paint nav-glyp">
-                <span class="glyphicon glyphicon-film"></span>
-            </a>
+<!-- Top navbar -->
+<header class="ss-container ss-top ss-black ss-xlarge ss-padding-16">
+    <span class="ss-left ss-padding">GO MOVIES</span>
+    <span class="ss-right glyphicon glyphicon-user ss-padding"></span>
+</header>
+
+<!-- !PAGE CONTENT! -->
+<div class="ss-main ss-content ss-content-page">
+
+    <!-- Photo grid -->
+    <div ng-switch on="type" class="row hidden-xs">
+        <div ng-switch-when="movies" ng-repeat="slide in model.slides | limitTo:8" class="ss-quarter">
+            <img ng-click="model.goToMoviePage(slide.id)" ng-src="https://image.tmdb.org/t/p/w500/{{slide.poster_path}}" style="width:100%" alt="{{slide.overview}}">
         </div>
-        <div class="search-bar navbar-text text-center">
-            <input type="text" placeholder="Search..." class="form-control" id="usr">
+        <div ng-switch-when="tv" ng-repeat="slide in model.topTvShows | limitTo:8" class="ss-quarter">
+            <img ng-src="https://image.tmdb.org/t/p/w500/{{slide.poster_path}}" style="width:100%" alt="{{slide.overview}}">
         </div>
-        <div class="navbar-text text-center">
-            <a class="paint nav-glyp">
-                <span class="adjust-with-search-bar glyphicon glyphicon-search"></span>
-            </a>
-        </div>
-        <div class="navbar-text pull-right">
-            <a class="paint nav-glyp">
-                <span class="glyphicon glyphicon-user"></span>
-                <p class="select-size">LOGIN</p>
-            </a>
+        <div ng-switch-default ng-repeat="slide in model.slides | limitTo:8" class="ss-quarter">
+            <img ng-click="model.goToMoviePage(slide.id)" ng-src="https://image.tmdb.org/t/p/w500/{{slide.poster_path}}" style="width:100%" alt="{{slide.overview}}">
         </div>
     </div>
-</nav>
 
-<!-- upcoming movies carousel -->
+    <!-- Pagination -->
+    <div class="ss-center ss-padding-32 hidden-xs">
+        <div class="ss-bar">
+            <a class="ss-bar-item">«</a>
+            <a ng-click="type='movies'" class="ss-bar-item ss-button ss-hover-black btn">MOVIES</a>
+            <a ng-click="type='tv'" class="ss-bar-item ss-button ss-hover-black btn">TV SHOWS</a>
+            <a class="ss-bar-item">»</a>
+        </div>
+    </div>
 
-<div class="hidden-sm hidden-xs img-control" id="slides_control">
-    <carousel interval="model.myInterval">
-        <slide ng-repeat="slide in model.slides" active="slide.active">
-            <img ng-src="https://image.tmdb.org/t/p/w500/{{slide.backdrop_path}}">
-            <div class="carousel-caption">
-                <h6>{{slide.title}}</h6>
+    <div class="hidden-sm hidden-md hidden-lg">
+        <carousel interval="model.myInterval">
+            <slide ng-repeat="slide in model.slides" active="slide.active">
+                <img ng-src="https://image.tmdb.org/t/p/w500/{{slide.backdrop_path}}">
+                <div class="carousel-caption">
+                    <h6>{{slide.title}}</h6>
+                </div>
+            </slide>
+        </carousel>
+    </div>
+
+    <!-- About section -->
+    <div class="ss-container ss-dark-grey ss-center ss-text-light-grey ss-padding-32" id="about">
+        <h2 class="ss-padding-16-bottom">Top 5 Rated</h2>
+        <div class="ss-row-padding" style="margin:0 -16px">
+            <div class="ss-half ss-margin-bottom">
+                <ul class="ss-ul ss-white ss-center">
+                    <li class="ss-black ss-xlarge ss-padding-32">Movies</li>
+                    <li ng-repeat="movie in model.topMovies | limitTo:5" class="ss-padding-32"><a class="pull-left">{{movie.title}}</a><a class="pull-right">{{movie.vote_average}}</a></li>
+                </ul>
             </div>
-        </slide>
-    </carousel>
-    <h4 id="push-down">Upcoming Movies</h4>
-</div>
-<div class="hidden-sm hidden-xs" id="titles">
-    <h4>Top 5 Rated Movies</h4>
-    <table class="table table-hover">
-        <tbody>
-        <tr ng-repeat="movie in model.topMovies | limitTo:5">
-            <th scope="row">{{$index + 1}}</th>
-            <td>{{movie.title}}</td>
-            <td>{{movie.vote_average}}</td>
-        </tr>
-        </tbody>
-    </table>
-</div>
 
-<!-- end of carousel -->
-
-<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-
-<!-- TV Shows -->
-
-<div class="hidden-sm hidden-xs" id="titles2">
-    <h4>Top 5 Rated TV Shows</h4>
-    <table class="table table-hover">
-        <tbody>
-        <tr ng-repeat="tvshow in model.topTvShows | limitTo:5">
-            <th scope="row">{{$index + 1}}</th>
-            <td>{{tvshow.original_name}}</td>
-            <td>{{tvshow.vote_average}}</td>
-        </tr>
-        </tbody>
-    </table>
-    <h4>Latest TV Shows</h4>
-</div>
-
-<div class="slide-left text-center">
-    <div class="hidden-sm hidden-xs imgContainer" ng-repeat="tvshow in model.latestTvShows | limitTo:3">
-        <img class="tv-show-img" ng-src="https://image.tmdb.org/t/p/w500/{{tvshow.poster_path}}"/>
+            <div class="ss-half">
+                <ul class="ss-ul ss-white ss-center">
+                    <li class="ss-black ss-xlarge ss-padding-32">TV Shows</li>
+                    <li ng-repeat="tvshow in model.topTvShows | limitTo:5" class="ss-padding-32"><a class="pull-left">{{tvshow.original_name}}</a><a class="pull-right">{{tvshow.vote_average}}</a></li>
+                </ul>
+            </div>
+        </div>
     </div>
 </div>
 
-<!-- end -->
-
-<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-<hr>
-
-<nav class="navbar-adj navbar navbar-default navbar-fixed-bottom">
-    <div class="container-fluid">
+<!-- Search -->
+<div class="ss-container ss-light-grey ss-padding-32 ss-padding-large">
+    <div class="ss-content ss-search-section">
+        <h4 class="ss-center"><span class="ss-xxxlarge glyphicon glyphicon-search"></span></h4>
+            <div class="ss-section">
+                <input class="form-control"
+                       ng-model="model.searchKeyword"
+                       placeholder="Search movies, TV, actors, more..."
+                       type="text"
+                       name="Name"
+                       required>
+            </div>
+            <a ng-click="model.searchResults()" class="btn btn-block ss-black">Search</a>
     </div>
-</nav>
+</div>
 
+<!-- Footer -->
+<footer class="ss-container ss-padding-32 ss-grey">
+    <div class="ss-row-padding">
+        <div class="ss-third">
+            <h3>TODAY ON TV</h3>
+            <img ng-src="https://image.tmdb.org/t/p/w500/{{model.airingNow[0].backdrop_path}}"
+                 class="ss-left ss-margin-right">
+        </div>
+
+        <div class="ss-third">
+            <h3>POPULAR ACTORS</h3>
+            <ul class="ss-ul">
+                <li ng-repeat="person in model.people | limitTo:2" class="ss-padding-16 ss-hover-black">
+                    <img ng-src="https://image.tmdb.org/t/p/w500/{{person.profile_path}}"
+                         class="ss-left ss-margin-right ss-popular-actors">
+                    <span class="ss-large">{{person.name}}</span><br>
+                    <span class="ss-small">{{person.known_for[0].original_title}}</span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="ss-third">
+            <h3>MOVIE GENRES</h3>
+            <a ng-click="model.findGenreMovies(genre.name, genre.id)" ng-repeat="genre in model.genres">
+                <span class="btn ss-hover-black ss-tag ss-dark-grey ss-small ss-margin-bottom">{{genre.name}}</span>
+            </a>
+        </div>
+    </div>
+</footer>
+
+<div class="ss-black ss-center ss-padding-24">Copyright © Samanjate Sood. All rights reserved.</div>
+
+<!-- End page content -->
+</div>

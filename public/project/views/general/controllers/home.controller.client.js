@@ -3,10 +3,13 @@
         .module("GoMovies")
         .controller("HomeController", homeController);
 
-    function homeController(MovieService, TvShowService) {
+    function homeController($location, $routeParams, MovieService, TvShowService) {
         var vm = this;
 
+        var userId = $routeParams['uid'];
+
         function init() {
+            vm.searchKeyword = null;
             vm.myInterval = 3000;
             MovieService
                 .searchUpcomingMovies()
@@ -45,6 +48,24 @@
                 })
         }
         init();
+
+        // event handlers
+        vm.searchResults = searchResults;
+        vm.findGenreMovies = findGenreMovies;
+        vm.goToMoviePage = goToMoviePage;
+        
+        function searchResults() {
+            if(vm.searchKeyword) $location.url("/search?keyword=" + vm.searchKeyword);
+        }
+
+        function findGenreMovies(name, id) {
+            $location.url("/search?keyword=" + name + "&genre=" + id);
+        }
+
+        function goToMoviePage(movieId) {
+            if(userId) $location.url("/" + userId + "/movie/" + movieId);
+            else $location.url("/0/movie/" + movieId);
+        }
 
     }
 

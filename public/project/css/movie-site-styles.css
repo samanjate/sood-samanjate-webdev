@@ -1553,6 +1553,16 @@ a {
 .ss-popular-actors {
     width: 40px;
 }
+.ss-content-page {
+    max-width:1600px;
+    margin-top:83px
+}
+.ss-search-section {
+    max-width:600px;
+}
+.ss-search-poster {
+    width: 150px;
+}
 /* --------------------------------- */
 a:hover {
     text-decoration:none;

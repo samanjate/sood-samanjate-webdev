@@ -12,7 +12,8 @@
             "searchUpcomingMovies" : searchUpcomingMovies,
             "topRatedMovies" : topRatedMovies,
             "movieGenres" : movieGenres,
-            "popularPeople" : popularPeople
+            "popularPeople" : popularPeople,
+            "getMovieById" : getMovieById
         };
 
         return api;
@@ -36,9 +37,10 @@
             var url = 'https://api.themoviedb.org/3/person/popular?api_key='+key+'&language='+language+'&page=1';
             return $http.get(url);
         }
-        
-        function getPeopleById(id) {
-            
+
+        function getMovieById(movieId) {
+            var url = 'https://api.themoviedb.org/3/movie/'+movieId+'?api_key='+key+'&language=' + language;
+            return $http.get(url);
         }
     }
 
