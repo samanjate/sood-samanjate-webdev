@@ -78,6 +78,7 @@
             else $location.url("/0/person/" + personId);
         }
 
+
     }
 
 })();

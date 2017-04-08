@@ -1,6 +1,6 @@
 <!-- Top navbar -->
 <header class="ss-container ss-top ss-black ss-xlarge ss-padding-16">
-    <span class="ss-left ss-padding">GO MOVIES</span>
+    <span ng-click="model.goToHomePage()" class="ss-left ss-padding">GO MOVIES</span>
     <span class="ss-right glyphicon glyphicon-user ss-padding"></span>
 </header>
 
@@ -68,7 +68,12 @@
         <h3>SIMILAR MOVIES</h3>
         <div ng-repeat="movie in model.similarMovies | limitTo:4" class="ss-quarter ss-padding-16">
             <img ng-click="model.goToMoviePage(movie.id)"
+                 ng-if="movie.poster_path"
                  ng-src="https://image.tmdb.org/t/p/w500/{{movie.poster_path}}"
+                 class="ss-col.s12 ss-padding">
+            <img ng-click="model.goToMoviePage(movie.id)"
+                 ng-if="!movie.poster_path"
+                 ng-src="http://s3.amazonaws.com/static.betaeasy.com/screenshot/456/456-25984-14192637741419263774.42.jpeg"
                  class="ss-col.s12 ss-padding">
             <h6 class="ss-padding">{{movie.original_title}}</h6>
         </div>

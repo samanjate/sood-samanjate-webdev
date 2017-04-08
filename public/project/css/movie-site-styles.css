@@ -1576,7 +1576,10 @@ a {
 .ss-search-poster {
     width: 150px;
 }
-.ss-hover-effect img:hover {
+.ss-hover-effect
+img:hover,
+span:hover,
+a:hover{
     opacity: 0.6;
     transition: 0.3s;
     cursor: pointer;

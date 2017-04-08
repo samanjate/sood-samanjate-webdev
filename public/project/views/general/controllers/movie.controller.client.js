@@ -36,6 +36,7 @@
 
         vm.goToMoviePage = goToMoviePage;
         vm.goToPersonProfile = goToPersonProfile;
+        vm.goToHomePage = goToHomePage;
 
         function goToMoviePage(movieId) {
             if(userId) $location.url("/" + userId + "/movie/" + movieId);
@@ -45,6 +46,10 @@
         function goToPersonProfile(personId) {
             if(userId) $location.url("/" + userId + "/person/" + personId);
             else $location.url("/0/person/" + personId);
+        }
+
+        function goToHomePage() {
+            $location.url("/");
         }
 
     }

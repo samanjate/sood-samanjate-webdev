@@ -1,5 +1,5 @@
 <header class="ss-container ss-top ss-black ss-xlarge ss-padding-16">
-    <span class="ss-left ss-padding">GO MOVIES</span>
+    <span ng-click="model.goToHomePage()" class="ss-left ss-padding">GO MOVIES</span>
     <span class="ss-right glyphicon glyphicon-user ss-padding"></span>
 </header>
 
@@ -38,7 +38,7 @@
         <!-- end -->
 
         <!-- tv search results -->
-        <div ng-if="model.tv.length" class="ss-content">
+        <div ng-if="model.tv.length" class="ss-content ss-hover-effect">
             <ul class="ss-ul ss-white">
                 <li class="ss-black ss-xlarge ss-padding-32">TV Shows</li>
                 <li ng-repeat="t in model.tv" class="ss-padding-32">
@@ -65,18 +65,20 @@
         <!-- end -->
 
         <!-- people search results -->
-        <div ng-if="model.people.length" class="ss-content">
+        <div ng-if="model.people.length" class="ss-content ss-hover-effect">
             <ul class="ss-ul ss-white">
                 <li class="ss-black ss-xlarge ss-padding-32">Celebrities</li>
                 <li ng-repeat="person in model.people" class="ss-padding-32">
                     <div class="ss-row-padding" style="margin:0 -16px">
                         <div class="ss-half ss-margin-bottom ss-center">
                             <img class="ss-search-poster"
+                                 ng-click="model.goToPersonProfile(person.id)"
                                  ng-if="person.profile_path"
                                  ng-src="https://image.tmdb.org/t/p/w500/{{person.profile_path}}"
                                  class="pull-left" />
 
                             <img class="ss-search-poster"
+                                 ng-click="model.goToPersonProfile(person.id)"
                                  ng-if="!person.profile_path"
                                  src="http://s3.amazonaws.com/static.betaeasy.com/screenshot/456/456-25984-14192637741419263774.42.jpeg"
                                  class="pull-left" />

@@ -48,14 +48,28 @@
             <div class="ss-half ss-margin-bottom">
                 <ul class="ss-ul ss-white ss-center">
                     <li class="ss-black ss-xlarge ss-padding-32">Movies</li>
-                    <li ng-repeat="movie in model.topMovies | limitTo:5" class="ss-padding-32"><a class="pull-left">{{movie.title}}</a><a class="pull-right">{{movie.vote_average}}</a></li>
+                    <li ng-repeat="movie in model.topMovies | limitTo:5" class="ss-hover-effect ss-padding-32">
+                        <a ng-click="model.goToMoviePage(movie.id)" class="pull-left">
+                            {{movie.title}}
+                        </a>
+                        <p class="pull-right">
+                            {{movie.vote_average}}
+                        </p>
+                    </li>
                 </ul>
             </div>
 
             <div class="ss-half">
                 <ul class="ss-ul ss-white ss-center">
                     <li class="ss-black ss-xlarge ss-padding-32">TV Shows</li>
-                    <li ng-repeat="tvshow in model.topTvShows | limitTo:5" class="ss-padding-32"><a class="pull-left">{{tvshow.original_name}}</a><a class="pull-right">{{tvshow.vote_average}}</a></li>
+                    <li ng-repeat="tvshow in model.topTvShows | limitTo:5" class="ss-padding-32">
+                        <a class="pull-left">
+                            {{tvshow.original_name}}
+                        </a>
+                        <p class="pull-right">
+                            {{tvshow.vote_average}}
+                        </p>
+                    </li>
                 </ul>
             </div>
         </div>

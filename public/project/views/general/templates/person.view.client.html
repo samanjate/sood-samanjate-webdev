@@ -1,6 +1,6 @@
 <!-- Top navbar -->
-<header class="ss-container ss-top ss-black ss-xlarge ss-padding-16">
-    <span class="ss-left ss-padding">GO MOVIES</span>
+<header class="ss-hover-effect ss-container ss-top ss-black ss-xlarge ss-padding-16">
+    <span ng-click="model.goToHomePage()" class="ss-left ss-padding">GO MOVIES</span>
     <span class="ss-right glyphicon glyphicon-user ss-padding"></span>
 </header>
 
@@ -57,7 +57,7 @@
     <div ng-if="model.person.movie_credits.cast.length" class="ss-container ss-gray ss-padding-16 ss-padding-large">
         <h3>FEATURED IN</h3>
         <div ng-repeat="movie in model.person.movie_credits.cast | limitTo:8" class="ss-quarter ss-padding-16">
-            <img ng-click=""
+            <img ng-click="model.goToMoviePage(movie.id)"
                  ng-if="movie.poster_path"
                  ng-src="https://image.tmdb.org/t/p/w500/{{movie.poster_path}}"
                  class="ss-col.s12 ss-padding">
