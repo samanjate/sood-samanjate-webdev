@@ -35,10 +35,16 @@
         init();
 
         vm.goToMoviePage = goToMoviePage;
+        vm.goToPersonProfile = goToPersonProfile;
 
         function goToMoviePage(movieId) {
             if(userId) $location.url("/" + userId + "/movie/" + movieId);
             else $location.url("/0/movie/" + movieId);
+        }
+
+        function goToPersonProfile(personId) {
+            if(userId) $location.url("/" + userId + "/person/" + personId);
+            else $location.url("/0/person/" + personId);
         }
 
     }

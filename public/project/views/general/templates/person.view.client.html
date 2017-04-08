@@ -1,0 +1,69 @@
+<!-- Top navbar -->
+<header class="ss-container ss-top ss-black ss-xlarge ss-padding-16">
+    <span class="ss-left ss-padding">GO MOVIES</span>
+    <span class="ss-right glyphicon glyphicon-user ss-padding"></span>
+</header>
+
+<div class="ss-main ss-content ss-content-page">
+
+    <!-- Movie details -->
+    <div class="ss-container ss-padding-16 ss-padding-large">
+        <div class="ss-row-padding" style="margin:0 -16px">
+            <div class="ss-half ss-margin-bottom">
+                <img ng-if="model.person.profile_path"
+                     ng-src="https://image.tmdb.org/t/p/w500/{{model.person.profile_path}}"
+                     class="ss-poster-style ss-padding-small">
+                <img ng-if="!model.person.profile_path"
+                     src="http://s3.amazonaws.com/static.betaeasy.com/screenshot/456/456-25984-14192637741419263774.42.jpeg"
+                     class="ss-poster-style ss-padding-small">
+            </div>
+            <div class="ss-half">
+                <h3 class="ss-xxxlarge">{{model.person.name}}</h3>
+
+                <span ng-if="model.person.birthday" class="ss-large ss-left glyphicon glyphicon-play ss-padding"></span>
+                <h3 ng-if="model.person.birthday" class="ss-large ss-padding">Born: {{model.person.birthday}}</h3>
+                <span ng-if="model.person.deathday" class="ss-large ss-left glyphicon glyphicon-play ss-padding"></span>
+                <h3 ng-if="model.person.deathday" class="ss-large ss-padding">Died: {{model.person.deathday}}</h3>
+                <span ng-if="model.person.place_of_birth" class="ss-large ss-left glyphicon glyphicon-play ss-padding"></span>
+                <h3 ng-if="model.person.place_of_birth" class="ss-large ss-padding">Birthplace: {{model.person.place_of_birth}}</h3>
+                <h3 ng-if="model.person.biography" class="ss-large">{{model.person.biography}}</h3>
+            </div>
+        </div>
+    </div>
+    <!-- end -->
+
+    <!-- Person photos -->
+    <div ng-if="model.person.images.profiles.length" class="ss-container ss-dark-gray ss-padding-16 ss-padding-large">
+        <h3>PHOTOS</h3>
+        <div ng-repeat="image in model.person.images.profiles | limitTo:4" class="ss-quarter ss-padding-16">
+            <img onclick="onClick(this)"
+                 ng-if="image.file_path"
+                 ng-src="https://image.tmdb.org/t/p/w500/{{image.file_path}}"
+                 class="ss-col.s12 ss-padding">
+        </div>
+    </div>
+    <!-- end -->
+
+    <!-- image popup -->
+    <div id="modal" class="ss-modal ss-black" style="padding-top:0" onclick="this.style.display='none'">
+        <span class="ss-xxlarge ss-left glyphicon glyphicon-remove ss-display-topright"></span>
+        <div class="ss-modal-content ss-animate-zoom ss-center ss-transparent ss-padding-64 ss-small">
+            <img id="actor_photo" class="ss-image" style="width: 50%">
+        </div>
+    </div>
+    <!-- end -->
+
+    <!-- Movies Appeared in Movies -->
+    <div ng-if="model.person.movie_credits.cast.length" class="ss-container ss-gray ss-padding-16 ss-padding-large">
+        <h3>FEATURED IN</h3>
+        <div ng-repeat="movie in model.person.movie_credits.cast | limitTo:8" class="ss-quarter ss-padding-16">
+            <img ng-click=""
+                 ng-if="movie.poster_path"
+                 ng-src="https://image.tmdb.org/t/p/w500/{{movie.poster_path}}"
+                 class="ss-col.s12 ss-padding">
+        </div>
+    </div>
+    <!-- end -->
+
+    <div class="ss-black ss-center ss-padding-24">Copyright © Samanjate Sood. All rights reserved.</div>
+</div>

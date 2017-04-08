@@ -38,11 +38,11 @@
         <h3>CAST</h3>
         <div class="ss-row-padding ss-padding-small">
             <div ng-repeat="actor in model.cast | limitTo:16" class="ss-onesixteen ss-padding-16">
-                <img ng-click=""
+                <img ng-click="model.goToPersonProfile(actor.id)"
                      ng-if="actor.profile_path"
                      ng-src="https://image.tmdb.org/t/p/w500/{{actor.profile_path}}"
                      class="ss-col.s12 ss-padding-small">
-                <img ng-click=""
+                <img ng-click="model.goToPersonProfile(actor.id)"
                      ng-if="!actor.profile_path"
                      src="http://s3.amazonaws.com/static.betaeasy.com/screenshot/456/456-25984-14192637741419263774.42.jpeg"
                      class="ss-col.s12 ss-padding-small">

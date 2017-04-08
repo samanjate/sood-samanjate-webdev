@@ -25,5 +25,10 @@
                 controller: "MovieController",
                 controllerAs: "model"
             })
+            .when("/:uid/person/:pid", {
+                templateUrl: "views/general/templates/person.view.client.html",
+                controller: "PersonController",
+                controllerAs: "model"
+            })
     }
 })();

@@ -90,7 +90,9 @@
         <div class="ss-third">
             <h3>POPULAR ACTORS</h3>
             <ul class="ss-ul">
-                <li ng-repeat="person in model.people | limitTo:2" class="ss-padding-16 ss-hover-black">
+                <li ng-click="model.goToPersonProfile(person.id)"
+                    ng-repeat="person in model.people | limitTo:2"
+                    class="ss-padding-16 ss-hover-black ss-hover-effect">
                     <img ng-src="https://image.tmdb.org/t/p/w500/{{person.profile_path}}"
                          class="ss-left ss-margin-right ss-popular-actors">
                     <span class="ss-large">{{person.name}}</span><br>
