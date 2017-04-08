@@ -13,7 +13,7 @@
             <img ng-click="model.goToMoviePage(slide.id)" ng-src="https://image.tmdb.org/t/p/w500/{{slide.poster_path}}" style="width:100%" alt="{{slide.overview}}">
         </div>
         <div ng-switch-when="tv" ng-repeat="slide in model.topTvShows | limitTo:8" class="ss-quarter">
-            <img ng-src="https://image.tmdb.org/t/p/w500/{{slide.poster_path}}" style="width:100%" alt="{{slide.overview}}">
+            <img ng-click="model.goToTvPage(slide.id)" ng-src="https://image.tmdb.org/t/p/w500/{{slide.poster_path}}" style="width:100%" alt="{{slide.overview}}">
         </div>
         <div ng-switch-default ng-repeat="slide in model.slides | limitTo:8" class="ss-quarter">
             <img ng-click="model.goToMoviePage(slide.id)" ng-src="https://image.tmdb.org/t/p/w500/{{slide.poster_path}}" style="width:100%" alt="{{slide.overview}}">
@@ -63,7 +63,7 @@
                 <ul class="ss-ul ss-white ss-center">
                     <li class="ss-black ss-xlarge ss-padding-32">TV Shows</li>
                     <li ng-repeat="tvshow in model.topTvShows | limitTo:5" class="ss-padding-32">
-                        <a class="pull-left">
+                        <a ng-click="model.goToTvPage(tvshow.id)" class="pull-left">
                             {{tvshow.original_name}}
                         </a>
                         <p class="pull-right">
@@ -95,9 +95,10 @@
 <!-- Footer -->
 <footer class="ss-container ss-padding-32 ss-grey">
     <div class="ss-row-padding">
-        <div class="ss-third">
+        <div class="ss-third ss-hover-effect">
             <h3>TODAY ON TV</h3>
-            <img ng-src="https://image.tmdb.org/t/p/w500/{{model.airingNow[0].backdrop_path}}"
+            <img ng-click="model.goToTvPage(model.airingNow[0].id)"
+                 ng-src="https://image.tmdb.org/t/p/w500/{{model.airingNow[0].backdrop_path}}"
                  class="ss-left ss-margin-right">
         </div>
 

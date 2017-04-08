@@ -45,11 +45,13 @@
                     <div class="ss-row-padding" style="margin:0 -16px">
                         <div class="ss-half ss-margin-bottom ss-center">
                             <img class="ss-search-poster"
+                                 ng-click="model.goToTvPage(t.id)"
                                  ng-if="t.poster_path"
                                  ng-src="https://image.tmdb.org/t/p/w500/{{t.poster_path}}"
                                  class="pull-left" />
 
                             <img class="ss-search-poster"
+                                 ng-click="model.goToTvPage(t.id)"
                                  ng-if="!t.poster_path"
                                  src="http://s3.amazonaws.com/static.betaeasy.com/screenshot/456/456-25984-14192637741419263774.42.jpeg"
                                  class="pull-left" />

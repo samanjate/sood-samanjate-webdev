@@ -28,7 +28,7 @@
         }
 
         function getPersonById(personId) {
-            var tags = 'images,movie_credits';
+            var tags = 'images,movie_credits,tv_credits';
             var url = baseUrl + 'person/'+personId+'?api_key='+key+'&language='+language+'&append_to_response=' + tags;
             return $http.get(url);
         }

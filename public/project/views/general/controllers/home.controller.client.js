@@ -45,7 +45,7 @@
                 .airingNow()
                 .then(function (response) {
                     vm.airingNow = response.data.results;
-                })
+                });
         }
         init();
 
@@ -54,6 +54,7 @@
         vm.findGenreMovies = findGenreMovies;
         vm.goToMoviePage = goToMoviePage;
         vm.goToPersonProfile = goToPersonProfile;
+        vm.goToTvPage = goToTvPage;
         
         function searchResults() {
             if(vm.searchKeyword) {
@@ -78,6 +79,10 @@
             else $location.url("/0/person/" + personId);
         }
 
+        function goToTvPage(tvId) {
+            if(userId) $location.url("/" + userId + "/tv/" + tvId);
+            else $location.url("/0/tv/" + tvId);
+        }
 
     }
 

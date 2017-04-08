@@ -30,5 +30,10 @@
                 controller: "PersonController",
                 controllerAs: "model"
             })
+            .when("/:uid/tv/:tid", {
+                templateUrl: "views/general/templates/tvshow.view.client.html",
+                controller: "TvController",
+                controllerAs: "model"
+            })
     }
 })();

@@ -18,7 +18,7 @@
                         vm.tv = [];
                         vm.other = [];
                         vm.movies = response.data.results;
-                    })
+                    });
             } else {
                 SearchService
                     .getSearchResults(vm.keyword)
@@ -34,7 +34,7 @@
                             else if(vm.results[r].media_type == 'tv') vm.tv.push(vm.results[r]);
                             else vm.other.push(vm.results[r]);
                         }
-                    })
+                    });
             }
 
         }
@@ -43,10 +43,16 @@
         vm.goToMoviePage = goToMoviePage;
         vm.goToHomePage = goToHomePage;
         vm.goToPersonProfile = goToPersonProfile;
+        vm.goToTvPage = goToTvPage;
 
         function goToMoviePage(movieId) {
             if(userId) $location.url("/" + userId + "/movie/" + movieId);
             else $location.url("/0/movie/" + movieId);
+        }
+
+        function goToTvPage(tvId) {
+            if(userId) $location.url("/" + userId + "/tv/" + tvId);
+            else $location.url("/0/tv/" + tvId);
         }
 
         function goToHomePage() {

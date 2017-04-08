@@ -11,23 +11,23 @@
         <div class="ss-row-padding" style="margin:0 -16px">
             <div class="ss-half ss-margin-bottom">
                 <img ng-click=""
-                     ng-if="model.movie.poster_path"
-                     ng-src="https://image.tmdb.org/t/p/w500/{{model.movie.poster_path}}"
+                     ng-if="model.tv.poster_path"
+                     ng-src="https://image.tmdb.org/t/p/w500/{{model.tv.poster_path}}"
                      class="ss-poster-style ss-padding-small">
                 <img ng-click=""
-                     ng-if="!model.movie.poster_path"
+                     ng-if="!model.tv.poster_path"
                      src="http://s3.amazonaws.com/static.betaeasy.com/screenshot/456/456-25984-14192637741419263774.42.jpeg"
                      class="ss-poster-style ss-padding-small">
             </div>
             <div class="ss-half">
-                <h3 class="ss-xxxlarge">{{model.movie.original_title}} ({{model.movie.release_date.substr(0,4)}})</h3>
-                <h3 class="ss-large">{{model.movie.overview}}</h3>
+                <h3 class="ss-xxxlarge">{{model.tv.original_name}} ({{model.tv.first_air_date.substr(0,4)}})</h3>
+                <h3 class="ss-large">{{model.tv.overview}}</h3>
                 <h3></h3>
                 <span class="ss-large ss-left glyphicon glyphicon-time ss-padding"></span>
-                <h3 class="ss-large ss-padding">Runtime: {{model.movie.runtime}} mins</h3>
+                <h3 class="ss-large ss-padding">First air date: {{model.tv.first_air_date}}</h3>
                 <h3></h3>
                 <span class="ss-large ss-left glyphicon glyphicon-star ss-padding"></span>
-                <h3 class="ss-large ss-padding">Ratings: {{model.movie.vote_average}}/10</h3>
+                <h3 class="ss-large ss-padding">Ratings: {{model.tv.vote_average}}/10</h3>
             </div>
         </div>
     </div>
@@ -63,19 +63,19 @@
     </div>
     <!-- end -->
 
-    <!-- Similar Movies -->
-    <div ng-if="model.similarMovies.length" class="ss-container ss-grey ss-padding-16 ss-padding-large">
-        <h3>SIMILAR MOVIES</h3>
-        <div ng-repeat="movie in model.similarMovies | limitTo:4" class="ss-quarter ss-padding-16">
-            <img ng-click="model.goToMoviePage(movie.id)"
-                 ng-if="movie.poster_path"
-                 ng-src="https://image.tmdb.org/t/p/w500/{{movie.poster_path}}"
+    <!-- Similar Tv -->
+    <div ng-if="model.similarTv.length" class="ss-container ss-grey ss-padding-16 ss-padding-large">
+        <h3>SIMILAR TV SHOWS</h3>
+        <div ng-repeat="tv in model.similarTv | limitTo:4" class="ss-quarter ss-padding-16">
+            <img ng-click="model.goToTvPage(tv.id)"
+                 ng-if="tv.poster_path"
+                 ng-src="https://image.tmdb.org/t/p/w500/{{tv.poster_path}}"
                  class="ss-col.s12 ss-padding">
-            <img ng-click="model.goToMoviePage(movie.id)"
-                 ng-if="!movie.poster_path"
+            <img ng-click="model.goToTvPage(tv.id)"
+                 ng-if="!tv.poster_path"
                  ng-src="http://s3.amazonaws.com/static.betaeasy.com/screenshot/456/456-25984-14192637741419263774.42.jpeg"
                  class="ss-col.s12 ss-padding">
-            <h6 class="ss-padding">{{movie.original_title}}</h6>
+            <h6 class="ss-padding">{{tv.original_name}}</h6>
         </div>
     </div>
     <!-- end -->

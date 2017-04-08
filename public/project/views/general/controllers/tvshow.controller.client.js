@@ -1,19 +1,19 @@
 (function () {
     angular
         .module("GoMovies")
-        .controller("MovieController", movieController);
+        .controller("TvController", tvController);
 
-    function movieController($sce, $location, $routeParams, MovieService) {
+    function tvController($sce, $location, $routeParams, TvShowService) {
         var vm = this;
 
         var userId = $routeParams['uid'];
-        var movieId = $routeParams['mid'];
+        var tvId = $routeParams['tid'];
 
         function init() {
-            MovieService
-                .getMovieById(movieId)
+            TvShowService
+                .getTvDetails(tvId)
                 .then(function (response) {
-                    vm.movie = response.data;
+                    vm.tv = response.data;
                     vm.cast = response.data.credits.cast;
                     vm.trailers = [];
                     if (response.data.videos.results.length > 0) {
@@ -26,22 +26,17 @@
                         }
                     }
                 });
-            MovieService
-                .getSimilarMovies(movieId)
+            TvShowService
+                .getSimilarTv(tvId)
                 .then(function (response) {
-                    vm.similarMovies = response.data.results;
+                    vm.similarTv = response.data.results;
                 });
         }
         init();
 
-        vm.goToMoviePage = goToMoviePage;
         vm.goToPersonProfile = goToPersonProfile;
         vm.goToHomePage = goToHomePage;
-
-        function goToMoviePage(movieId) {
-            if(userId) $location.url("/" + userId + "/movie/" + movieId);
-            else $location.url("/0/movie/" + movieId);
-        }
+        vm.goToTvPage = goToTvPage;
 
         function goToPersonProfile(personId) {
             if(userId) $location.url("/" + userId + "/person/" + personId);
@@ -52,6 +47,10 @@
             $location.url("/");
         }
 
+        function goToTvPage(tvId) {
+            if(userId) $location.url("/" + userId + "/tv/" + tvId);
+            else $location.url("/0/tv/" + tvId);
+        }
     }
 
 })();

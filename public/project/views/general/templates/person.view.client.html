@@ -53,14 +53,40 @@
     </div>
     <!-- end -->
 
-    <!-- Movies Appeared in Movies -->
-    <div ng-if="model.person.movie_credits.cast.length" class="ss-container ss-gray ss-padding-16 ss-padding-large">
-        <h3>FEATURED IN</h3>
-        <div ng-repeat="movie in model.person.movie_credits.cast | limitTo:8" class="ss-quarter ss-padding-16">
-            <img ng-click="model.goToMoviePage(movie.id)"
-                 ng-if="movie.poster_path"
-                 ng-src="https://image.tmdb.org/t/p/w500/{{movie.poster_path}}"
-                 class="ss-col.s12 ss-padding">
+    <!-- Movies Appeared in  -->
+    <div ng-if="model.person.movie_credits.cast.length" class="ss-container ss-light-gray ss-padding-16 ss-padding-large">
+        <h3>MOVIES</h3>
+        <div class="row">
+            <div ng-repeat="movie in model.person.movie_credits.cast | limitTo:4" class="ss-quarter ss-padding-16">
+                <img ng-click="model.goToMoviePage(movie.id)"
+                     ng-if="movie.poster_path"
+                     ng-src="https://image.tmdb.org/t/p/w500/{{movie.poster_path}}"
+                     class="ss-col.s12 ss-padding">
+                <img ng-click="model.goToMoviePage(movie.id)"
+                     ng-if="!movie.poster_path"
+                     ng-src="http://s3.amazonaws.com/static.betaeasy.com/screenshot/456/456-25984-14192637741419263774.42.jpeg"
+                     class="ss-col.s12 ss-padding">
+                <h6 class="ss-padding">{{movie.original_title}}</h6>
+            </div>
+        </div>
+    </div>
+    <!-- end -->
+
+    <!-- Tv Appeared in -->
+    <div ng-if="model.person.tv_credits.cast.length" class="ss-container ss-gray ss-padding-16 ss-padding-large">
+        <h3>TV</h3>
+        <div class="row">
+            <div ng-repeat="tv in model.person.tv_credits.cast | limitTo:4" class="ss-quarter ss-padding-16">
+                <img ng-click="model.goToTvPage(tv.id)"
+                     ng-if="tv.poster_path"
+                     ng-src="https://image.tmdb.org/t/p/w500/{{tv.poster_path}}"
+                     class="ss-col.s12 ss-padding">
+                <img ng-click="model.goToTvPage(tv.id)"
+                     ng-if="!tv.poster_path"
+                     ng-src="http://s3.amazonaws.com/static.betaeasy.com/screenshot/456/456-25984-14192637741419263774.42.jpeg"
+                     class="ss-col.s12 ss-padding">
+                <h6 class="ss-padding">{{tv.original_name}}</h6>
+            </div>
         </div>
     </div>
     <!-- end -->
