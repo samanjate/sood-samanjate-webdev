@@ -1,7 +1,9 @@
 <!-- Top navbar -->
 <header class="ss-container ss-top ss-black ss-xlarge ss-padding-16">
-    <span class="ss-left ss-padding">GO MOVIES</span>
-    <span class="ss-right glyphicon glyphicon-user ss-padding"></span>
+    <span ng-click="model.goToHomePage()"
+          class="ss-left ss-padding">GO MOVIES</span>
+    <span ng-click="model.goToLoginOrProfile()"
+          class="ss-right glyphicon glyphicon-user ss-padding"></span>
 </header>
 
 <!-- !PAGE CONTENT! -->
@@ -79,7 +81,7 @@
 <!-- Search -->
 <div class="ss-container ss-light-grey ss-padding-32 ss-padding-large">
     <div class="ss-content ss-search-section">
-        <h4 class="ss-center"><span class="ss-xxxlarge glyphicon glyphicon-search"></span></h4>
+        <h4 ng-click="model.searchResults()" class="ss-center"><span class="ss-xxxlarge glyphicon glyphicon-search"></span></h4>
             <div class="ss-section">
                 <input class="form-control"
                        ng-model="model.searchKeyword"

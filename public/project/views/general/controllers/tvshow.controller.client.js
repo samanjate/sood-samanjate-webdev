@@ -37,6 +37,12 @@
         vm.goToPersonProfile = goToPersonProfile;
         vm.goToHomePage = goToHomePage;
         vm.goToTvPage = goToTvPage;
+        vm.goToLoginOrProfile = goToLoginOrProfile;
+
+        function goToLoginOrProfile() {
+            if(!userId || userId==0) $location.url('/login');
+            else $location.url('/' + userId + '/profile');
+        }
 
         function goToPersonProfile(personId) {
             if(userId) $location.url("/" + userId + "/person/" + personId);

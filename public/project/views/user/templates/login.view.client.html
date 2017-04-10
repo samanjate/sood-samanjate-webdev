@@ -1,0 +1,47 @@
+<header class="ss-container ss-top ss-black ss-xlarge ss-padding-16">
+    <span ng-click="model.goToHomePage()" class="ss-left ss-padding">GO MOVIES</span>
+</header>
+
+
+<!-- !PAGE CONTENT! -->
+<div class="ss-main ss-content ss-content-page">
+
+    <div class="ss-container ss-light-grey ss-padding-32 ss-padding-large">
+        <!-- Login box -->
+        <div class="ss-content ss-hover-effect">
+            <ul class="ss-ul ss-white">
+                <li class="ss-black ss-xlarge ss-padding-32">Log In</li>
+                <li class="ss-padding-32">
+                    <div class="ss-content ss-search-section">
+                        <h4 class="ss-center"><span class="ss-xxxlarge glyphicon glyphicon-log-in"></span></h4>
+                        <div class="ss-section">
+                            <label for="username">Username</label>
+                            <input class="form-control"
+                                   id="username"
+                                   placeholder="Username"
+                                   type="text"
+                                   required>
+                            <br/>
+                            <label for="password">Password</label>
+                            <input class="form-control"
+                                   id="password"
+                                   placeholder="Password"
+                                   type="password"
+                                   required>
+                        </div>
+                        <div class="ss-padding ss-center">
+                            <a class="btn ss-black btn-lg">Log In</a>
+                            <a ng-click="model.goToRegisterPage()"
+                               class="btn ss-black btn-lg">New user?</a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <!-- end -->
+    </div>
+
+    <div class="ss-black ss-center ss-padding-24">Copyright © Samanjate Sood. All rights reserved.</div>
+
+</div>
+<!-- End page content -->

@@ -1224,14 +1224,23 @@ a {
 .ss-margin {
     margin: 16px!important
 }
+.ss-margin-top-large {
+    margin-top: 80px!important
+}
 .ss-margin-top {
     margin-top: 16px!important
+}
+.ss-margin-top-32 {
+    margin-top: 32px!important
 }
 .ss-margin-bottom {
     margin-bottom: 16px!important
 }
 .ss-margin-left {
     margin-left: 16px!important
+}
+.ss-margin-left-32 {
+    margin-left: 32px!important
 }
 .ss-margin-right {
     margin-right: 16px!important
@@ -1264,6 +1273,12 @@ a {
 .ss-padding-64 {
     padding-top: 64px!important;
     padding-bottom: 64px!important
+}
+.ss-padding-left-16 {
+    padding-left: 16px!important;
+}
+.ss-padding-top-80 {
+    padding-top: 80px!important;
 }
 .ss-left {
     float: left!important
@@ -1601,4 +1616,23 @@ a:hover {
     width: 100%;
 }
 /* */
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
 /* --------------------------------- */

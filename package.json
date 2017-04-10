@@ -7,13 +7,14 @@
     "body-parser": "^1.15.1",
     "express": "^4.13.4",
     "mongoose": "^4.4.15",
-    "multer": "^1.3.0"
+    "multer": "^1.3.0",
+    "q" : "^1.4.1"
   },
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
-  "author": "Jose G. Annunziato",
+  "author": "Samanjate Sood",
   "license": "ISC"
 }

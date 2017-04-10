@@ -1,7 +1,9 @@
 <!-- Top navbar -->
 <header class="ss-container ss-top ss-black ss-xlarge ss-padding-16">
-    <span ng-click="model.goToHomePage()" class="ss-left ss-padding">GO MOVIES</span>
-    <span class="ss-right glyphicon glyphicon-user ss-padding"></span>
+    <span ng-click="model.goToHomePage()"
+          class="ss-left ss-padding">GO MOVIES</span>
+    <span ng-click="model.goToLoginOrProfile()"
+          class="ss-right glyphicon glyphicon-user ss-padding"></span>
 </header>
 
 <div class="ss-main ss-content ss-content-page">
@@ -16,7 +18,7 @@
                      class="ss-poster-style ss-padding-small">
                 <img ng-click=""
                      ng-if="!model.movie.poster_path"
-                     src="http://s3.amazonaws.com/static.betaeasy.com/screenshot/456/456-25984-14192637741419263774.42.jpeg"
+                     ng-src="{{model.posterNotFound}}"
                      class="ss-poster-style ss-padding-small">
             </div>
             <div class="ss-half">
@@ -44,7 +46,7 @@
                      class="ss-col.s12 ss-padding-small">
                 <img ng-click="model.goToPersonProfile(actor.id)"
                      ng-if="!actor.profile_path"
-                     src="http://s3.amazonaws.com/static.betaeasy.com/screenshot/456/456-25984-14192637741419263774.42.jpeg"
+                     ng-src="{{model.posterNotFound}}"
                      class="ss-col.s12 ss-padding-small">
                 <h6 class="ss-padding-small ss-xsmall">{{actor.character}} ({{actor.name}})</h6>
             </div>
@@ -73,7 +75,7 @@
                  class="ss-col.s12 ss-padding">
             <img ng-click="model.goToMoviePage(movie.id)"
                  ng-if="!movie.poster_path"
-                 ng-src="http://s3.amazonaws.com/static.betaeasy.com/screenshot/456/456-25984-14192637741419263774.42.jpeg"
+                 ng-src="{{model.posterNotFound}}"
                  class="ss-col.s12 ss-padding">
             <h6 class="ss-padding">{{movie.original_title}}</h6>
         </div>

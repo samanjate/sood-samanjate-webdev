@@ -6,6 +6,8 @@
     function movieController($sce, $location, $routeParams, MovieService) {
         var vm = this;
 
+        vm.posterNotFound = 'http://s3.amazonaws.com/static.betaeasy.com/screenshot/456/456-25984-14192637741419263774.42.jpeg';
+
         var userId = $routeParams['uid'];
         var movieId = $routeParams['mid'];
 
@@ -37,6 +39,12 @@
         vm.goToMoviePage = goToMoviePage;
         vm.goToPersonProfile = goToPersonProfile;
         vm.goToHomePage = goToHomePage;
+        vm.goToLoginOrProfile = goToLoginOrProfile;
+
+        function goToLoginOrProfile() {
+            if(!userId || userId==0) $location.url('/login');
+            else $location.url('/' + userId + '/profile');
+        }
 
         function goToMoviePage(movieId) {
             if(userId) $location.url("/" + userId + "/movie/" + movieId);

@@ -55,6 +55,12 @@
         vm.goToMoviePage = goToMoviePage;
         vm.goToPersonProfile = goToPersonProfile;
         vm.goToTvPage = goToTvPage;
+        vm.goToLoginOrProfile = goToLoginOrProfile;
+        vm.goToHomePage = goToHomePage;
+
+        function goToHomePage() {
+            $location.url("/");
+        }
         
         function searchResults() {
             if(vm.searchKeyword) {
@@ -82,6 +88,11 @@
         function goToTvPage(tvId) {
             if(userId) $location.url("/" + userId + "/tv/" + tvId);
             else $location.url("/0/tv/" + tvId);
+        }
+
+        function goToLoginOrProfile() {
+            if(!userId || userId==0) $location.url('/login');
+            else $location.url('/' + userId + '/profile');
         }
 
     }

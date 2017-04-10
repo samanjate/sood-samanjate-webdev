@@ -15,12 +15,19 @@
                 .then(function (response) {
                     vm.person = response.data;
                 });
+
         }
         init();
 
         vm.goToMoviePage = goToMoviePage;
         vm.goToHomePage = goToHomePage;
         vm.goToTvPage = goToTvPage;
+        vm.goToLoginOrProfile = goToLoginOrProfile;
+
+        function goToLoginOrProfile() {
+            if(!userId || userId==0) $location.url('/login');
+            else $location.url('/' + userId + '/profile');
+        }
 
         function goToMoviePage(movieId) {
             if(userId) $location.url("/" + userId + "/movie/" + movieId);

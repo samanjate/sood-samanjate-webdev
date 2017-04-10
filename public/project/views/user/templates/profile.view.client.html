@@ -1,0 +1,185 @@
+<header class="ss-container ss-top ss-black ss-xlarge ss-padding-16">
+    <span ng-click="model.goToHomePage()" class="ss-left ss-padding">GO MOVIES</span>
+</header>
+
+
+<!-- !PAGE CONTENT! -->
+<div class="ss-main ss-content ss-content-page">
+
+    <div class="ss-container ss-light-grey ss-padding-32 ss-padding-large">
+        <!-- Profile box -->
+        <div class="ss-content ss-hover-effect">
+            <ul class="ss-ul ss-white">
+                <li class="ss-black ss-xlarge ss-padding-32">My Profile</li>
+                <li class="ss-padding-32">
+                    <div class="ss-row">
+                        <div class="ss-quarter ss-padding-large">
+                            <img class="ss-poster-style"
+                                 ng-src="{{model.defaultProfilePic}}"/>
+                            <span class="ss-margin-left-32 ss-margin-top ss-black btn btn-default btn-file">Upload Image<input type="file"></span>
+                            <div class="ss-light-grey ss-margin-top-large">
+                                <div class="ss-dark-gray ss-threequarter ss-margin-top ss-margin-right">
+                                    <h6 class="ss-padding-left-16 ss-large">About</h6>
+                                </div>
+                                <div class="ss-margin-top">
+                                    <h6 class="ss-padding-top-80 ss-padding-16 ss-padding-left-16 ss-small">My name is Saman</h6>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ss-threequarter ss-padding-large">
+                            <h6 class="ss-xlarge">Welcome, Samanjate Sood</h6>
+                            <uib-tabset class="ss-small tabbable">
+                                <uib-tab heading="Summary" ng-attr-active="tabs[0].active">
+                                    <div class="ss-margin">
+                                        <div class="ss-dark-gray ss-threequarter ss-margin-top ss-margin-right">
+                                            <h6 class="ss-padding-left-16 ss-large">WANT-TO-SEE MOVIES</h6>
+                                        </div>
+                                        <div class="ss-quarter ss-padding-16 ss-margin-top">
+                                            <img ng-src="{{model.posterNotFound}}"
+                                                 class="ss-col.s12 ss-padding">
+                                            <h6 class="ss-padding">Title</h6>
+                                        </div>
+                                        <div class="ss-quarter ss-padding-16 ss-margin-top">
+                                            <img ng-src="{{model.posterNotFound}}"
+                                                 class="ss-col.s12 ss-padding">
+                                            <h6 class="ss-padding">Title</h6>
+                                        </div>
+                                        <div class="ss-quarter ss-padding-16 ss-margin-top">
+                                            <img ng-src="{{model.posterNotFound}}"
+                                                 class="ss-col.s12 ss-padding">
+                                            <h6 class="ss-padding">Title</h6>
+                                        </div>
+                                        <div class="ss-quarter ss-padding-16 ss-margin-top">
+                                            <img ng-src="{{model.posterNotFound}}"
+                                                 class="ss-col.s12 ss-padding">
+                                            <h6 class="ss-padding">Title</h6>
+                                        </div>
+                                    </div>
+                                    <div class="ss-margin">
+                                        <div class="ss-dark-gray ss-threequarter ss-margin-top ss-margin-right">
+                                            <h6 class="ss-padding-left-16 ss-large">WANT-TO-SEE TV</h6>
+                                        </div>
+                                        <div class="ss-quarter ss-padding-16 ss-margin-top">
+                                            <img ng-src="{{model.posterNotFound}}"
+                                                 class="ss-col.s12 ss-padding">
+                                            <h6 class="ss-padding">Title</h6>
+                                        </div>
+                                        <div class="ss-quarter ss-padding-16 ss-margin-top">
+                                            <img ng-src="{{model.posterNotFound}}"
+                                                 class="ss-col.s12 ss-padding">
+                                            <h6 class="ss-padding">Title</h6>
+                                        </div>
+                                        <div class="ss-quarter ss-padding-16 ss-margin-top">
+                                            <img ng-src="{{model.posterNotFound}}"
+                                                 class="ss-col.s12 ss-padding">
+                                            <h6 class="ss-padding">Title</h6>
+                                        </div>
+                                        <div class="ss-quarter ss-padding-16 ss-margin-top">
+                                            <img ng-src="{{model.posterNotFound}}"
+                                                 class="ss-col.s12 ss-padding">
+                                            <h6 class="ss-padding">Title</h6>
+                                        </div>
+                                    </div>
+                                    <div class="ss-margin">
+                                        <div class="ss-dark-gray ss-threequarter ss-margin-top ss-margin-right">
+                                            <h6 class="ss-padding-left-16 ss-large">RATING HISTORY</h6>
+                                        </div>
+                                        <div class="ss-padding-16 ss-margin-top ss-row">
+                                            <div class="ss-quarter ss-margin-top-32">
+                                                <img ng-src="{{model.posterNotFound}}"
+                                                 class="ss-col.s12 ss-padding">
+                                            </div>
+                                            <div class="ss-threequarter ss-margin-top-32">
+                                                <h6 class="ss-padding">Title</h6>
+                                            </div>
+                                        </div>
+                                        <div class="ss-padding-16 ss-margin-top ss-row">
+                                            <div class="ss-quarter">
+                                                <img ng-src="{{model.posterNotFound}}"
+                                                     class="ss-col.s12 ss-padding">
+                                            </div>
+                                            <div class="ss-threequarter">
+                                                <h6 class="ss-padding">Title</h6>
+                                            </div>
+                                        </div>
+                                        <div class="ss-padding-16 ss-margin-top ss-row">
+                                            <div class="ss-quarter">
+                                                <img ng-src="{{model.posterNotFound}}"
+                                                     class="ss-col.s12 ss-padding">
+                                            </div>
+                                            <div class="ss-threequarter">
+                                                <h6 class="ss-padding">Title</h6>
+                                            </div>
+                                        </div>
+                                        <div class="ss-padding-16 ss-margin-top ss-row">
+                                            <div class="ss-quarter">
+                                                <img ng-src="{{model.posterNotFound}}"
+                                                     class="ss-col.s12 ss-padding">
+                                            </div>
+                                            <div class="ss-threequarter">
+                                                <h6 class="ss-padding">Title</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </uib-tab>
+                                <uib-tab heading="Movie Ratings" ng-attr-active="tabs[1].active">
+                                    <div class="ss-margin">
+                                        <div class="ss-dark-gray ss-threequarter ss-margin-top ss-margin-right">
+                                            <h6 class="ss-padding-left-16 ss-large">MOVIE RATINGS</h6>
+                                        </div>
+                                        <div class="ss-padding-16 ss-margin-top ss-row">
+                                            <div class="ss-quarter ss-margin-top-32">
+                                                <img ng-src="{{model.posterNotFound}}"
+                                                     class="ss-col.s12 ss-padding">
+                                            </div>
+                                            <div class="ss-threequarter ss-margin-top-32">
+                                                <h6 class="ss-padding">Title</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </uib-tab>
+                                <uib-tab heading="TV Ratings" ng-attr-active="tabs[2].active">
+                                    <div class="ss-margin">
+                                        <div class="ss-dark-gray ss-threequarter ss-margin-top ss-margin-right">
+                                            <h6 class="ss-padding-left-16 ss-large">TV RATINGS</h6>
+                                        </div>
+                                        <div class="ss-padding-16 ss-margin-top ss-row">
+                                            <div class="ss-quarter ss-margin-top-32">
+                                                <img ng-src="{{model.posterNotFound}}"
+                                                     class="ss-col.s12 ss-padding">
+                                            </div>
+                                            <div class="ss-threequarter ss-margin-top-32">
+                                                <h6 class="ss-padding">Title</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </uib-tab>
+                                <uib-tab heading="Critics" ng-attr-active="tabs[3].active">
+                                    <div class="ss-margin">
+                                        <div class="ss-dark-gray ss-threequarter ss-margin-top ss-margin-right">
+                                            <h6 class="ss-padding-left-16 ss-large">CRITIC REVIEWS</h6>
+                                        </div>
+                                        <div class="ss-padding-16 ss-margin-top ss-row">
+                                            <div class="ss-quarter ss-margin-top-32">
+                                                <img ng-src="{{model.posterNotFound}}"
+                                                     class="ss-col.s12 ss-padding">
+                                            </div>
+                                            <div class="ss-threequarter ss-margin-top-32">
+                                                <h6 class="ss-padding">Title</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </uib-tab>
+                            </uib-tabset>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <!-- end -->
+    </div>
+
+    <div class="ss-black ss-center ss-padding-24">Copyright © Samanjate Sood. All rights reserved.</div>
+
+</div>
+<!-- End page content -->
