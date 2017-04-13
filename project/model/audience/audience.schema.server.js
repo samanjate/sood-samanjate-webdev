@@ -11,28 +11,21 @@ var AudienceSchema = mongoose.Schema({
     //movie user wants to see
     wantToSee: [
         {
-            name: String,
             id: String,
-            rating: Number,
-            poster_path: String
-        }
-    ],
+            original_title: String,
+            poster_path: String,
+            vote_average: Number
+        }],
+    wantToSeeTv: [
+        {
+            id: String,
+            original_name: String,
+            poster_path: String,
+            vote_average: Number
+        }],
     // movies rated by users
-    ratings: [
-        {
-            name: String,
-            id: String,
-            rating: Number,
-            poster_path: String
-        }
-    ],
-    follows: [
-        {
-            criticId: String,
-            username: String,
-            profilePic: String
-        }
-    ],
+    ratings: [ {type: mongoose.Schema.Types.ObjectId, ref:'project.rating.gomovies'}],
+    follows: [{type: mongoose.Schema.Types.ObjectId, ref:'project.critic.gomovies'}],
     dateCreated: {type:Date, default: Date.now()}
 
 }, {collection: 'project.audience.gomovies'});

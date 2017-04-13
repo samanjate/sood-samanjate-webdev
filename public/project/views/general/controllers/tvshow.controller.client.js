@@ -31,6 +31,15 @@
                 .then(function (response) {
                     vm.similarTv = response.data.results;
                 });
+            TvShowService
+                .getWantToSeeTv(userId)
+                .then(function (response) {
+                    for(var tv in response.data) {
+                        if(tvId == response.data[tv].id) {
+                            vm.wantToSee = true;
+                        }
+                    }
+                });
         }
         init();
 
@@ -38,6 +47,8 @@
         vm.goToHomePage = goToHomePage;
         vm.goToTvPage = goToTvPage;
         vm.goToLoginOrProfile = goToLoginOrProfile;
+        vm.addToWantToSee = addToWantToSee;
+        vm.deleteToWantToSee = deleteToWantToSee;
 
         function goToLoginOrProfile() {
             if(!userId || userId==0) $location.url('/login');
@@ -50,12 +61,36 @@
         }
 
         function goToHomePage() {
-            $location.url("/");
+            if(!userId || userId==0)  $location.url("/");
+            else $location.url('/' + userId );
         }
 
         function goToTvPage(tvId) {
             if(userId) $location.url("/" + userId + "/tv/" + tvId);
             else $location.url("/0/tv/" + tvId);
+        }
+
+        function addToWantToSee() {
+            TvShowService
+                .getTvDetails(tvId)
+                .then(function (response) {
+                    var tvDetails = response.data;
+                    TvShowService
+                        .addToWantToSee(userId, tvDetails)
+                        .then(function (response) {
+                            vm.wantToSee = true;
+                        }, function (err) {
+                        });
+                });
+        }
+
+        function deleteToWantToSee() {
+            TvShowService
+                .deleteToWantToSee(userId, tvId)
+                .then(function (response) {
+                    vm.wantToSee = false;
+                }, function (err) {
+                });
         }
     }
 

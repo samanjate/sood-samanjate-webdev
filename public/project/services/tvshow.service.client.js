@@ -14,7 +14,10 @@
             "latestTvShows" : latestTvShows,
             "airingNow" : airingNow,
             "getTvDetails" : getTvDetails,
-            "getSimilarTv" : getSimilarTv
+            "getSimilarTv" : getSimilarTv,
+            "getWantToSeeTv": getWantToSeeTv,
+            "addToWantToSee": addToWantToSee,
+            "deleteToWantToSee": deleteToWantToSee
         };
 
         return api;
@@ -43,6 +46,18 @@
         function getSimilarTv(tvId) {
             var url = baseUrl + 'tv/'+tvId+'/similar?api_key='+key+'&language='+language+'&page=1';
             return $http.get(url);
+        }
+
+        function getWantToSeeTv(userId) {
+            return $http.get("/api/audience/wtstv/"+userId);
+        }
+
+        function addToWantToSee(userId, tv) {
+            return $http.post("/api/audience/wtstv/"+userId,tv);
+        }
+
+        function deleteToWantToSee(userId, tvId) {
+            return $http.delete("/api/audience/wtstv/"+userId+'?tid='+ tvId);
         }
     }
 

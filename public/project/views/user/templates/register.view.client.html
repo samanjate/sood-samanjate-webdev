@@ -13,10 +13,14 @@
                 <li class="ss-black ss-xlarge ss-padding-32">Register</li>
                 <li class="ss-padding-32">
                     <div class="ss-content ss-search-section">
+                        <div ng-show="model.error" class="alert alert-danger" role="alert">
+                            {{model.error}}
+                        </div>
                         <h4 class="ss-center"><span class="ss-xxxlarge glyphicon glyphicon-registration-mark"></span></h4>
                         <div class="ss-section">
                             <label for="username">Username</label>
                             <input class="form-control"
+                                   ng-model="model.user.username"
                                    id="username"
                                    placeholder="Username"
                                    type="text"
@@ -24,6 +28,7 @@
                             <br/>
                             <label for="password">Password</label>
                             <input class="form-control"
+                                   ng-model="model.user.password"
                                    id="password"
                                    placeholder="Password"
                                    type="password"
@@ -36,7 +41,18 @@
                                    type="password"
                                    required>
                         </div>
-                        <div class="ss-padding ss-center"><a class="btn ss-black btn-lg">Register</a></div>
+                        <div class="ss-padding">
+                            Register as a Critic?
+                            <label for="chkCritic">
+                                <input id="chkCritic" type="checkbox" ng-model="model.isCritic" />
+                            </label>
+                        </div>
+                        <div class="ss-padding ss-center">
+                            <a ng-click="model.register(model.user)"
+                               class="btn ss-black btn-lg">
+                                Register
+                            </a>
+                        </div>
                     </div>
                 </li>
             </ul>

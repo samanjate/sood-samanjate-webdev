@@ -22,62 +22,75 @@
                                     <h6 class="ss-padding-left-16 ss-large">About</h6>
                                 </div>
                                 <div class="ss-margin-top">
-                                    <h6 class="ss-padding-top-80 ss-padding-16 ss-padding-left-16 ss-small">My name is Saman</h6>
+                                    <h6 ng-if="model.user.bio"
+                                        class="ss-padding-top-80 ss-padding-16 ss-padding-left-16 ss-small">
+                                        {{model.user.bio}}
+                                    </h6>
+                                    <h6 ng-if="!model.user.bio"
+                                        class="ss-padding-top-80 ss-padding-16 ss-padding-left-16 ss-small">
+                                        No user info supplied.
+                                    </h6>
                                 </div>
                             </div>
                         </div>
-                        <div class="ss-threequarter ss-padding-large">
-                            <h6 class="ss-xlarge">Welcome, Samanjate Sood</h6>
+                        <div class="ss-threequarter ss-padding">
+                            <div class="ss-row">
+                                <h6 class="ss-left ss-xlarge">
+                                    Welcome,
+                                    <a ng-if="model.user.firstName">{{model.user.firstName}}</a>
+                                    <a ng-if="model.user.lastName">{{model.user.lastName}}</a>
+                                </h6>
+                                <a ng-click="model.goToEditProfile()"
+                                   class="ss-right ss-small ss-padding">Edit Profile</a>
+                            </div>
                             <uib-tabset class="ss-small tabbable">
                                 <uib-tab heading="Summary" ng-attr-active="tabs[0].active">
                                     <div class="ss-margin">
                                         <div class="ss-dark-gray ss-threequarter ss-margin-top ss-margin-right">
                                             <h6 class="ss-padding-left-16 ss-large">WANT-TO-SEE MOVIES</h6>
                                         </div>
-                                        <div class="ss-quarter ss-padding-16 ss-margin-top">
-                                            <img ng-src="{{model.posterNotFound}}"
+                                        <div ng-if="model.wantToSeeMovies.length"
+                                             ng-repeat="movie in model.wantToSeeMovies | limitTo:4"
+                                             class="ss-quarter ss-padding-16 ss-margin-top">
+                                            <img ng-if="movie.poster_path"
+                                                 ng-click="model.goToMoviePage(movie.id)"
+                                                 ng-src="https://image.tmdb.org/t/p/w500/{{movie.poster_path}}"
                                                  class="ss-col.s12 ss-padding">
-                                            <h6 class="ss-padding">Title</h6>
+                                            <img ng-if="!movie.poster_path"
+                                                 ng-click="model.goToMoviePage(movie.id)"
+                                                 ng-src="{{model.posterNotFound}}"
+                                                 class="ss-col.s12 ss-padding">
+                                            <h6 class="ss-padding">{{movie.original_title}}</h6>
                                         </div>
-                                        <div class="ss-quarter ss-padding-16 ss-margin-top">
-                                            <img ng-src="{{model.posterNotFound}}"
-                                                 class="ss-col.s12 ss-padding">
-                                            <h6 class="ss-padding">Title</h6>
-                                        </div>
-                                        <div class="ss-quarter ss-padding-16 ss-margin-top">
-                                            <img ng-src="{{model.posterNotFound}}"
-                                                 class="ss-col.s12 ss-padding">
-                                            <h6 class="ss-padding">Title</h6>
-                                        </div>
-                                        <div class="ss-quarter ss-padding-16 ss-margin-top">
-                                            <img ng-src="{{model.posterNotFound}}"
-                                                 class="ss-col.s12 ss-padding">
-                                            <h6 class="ss-padding">Title</h6>
+                                        <div class="ss-threequarter ss-margin-top ss-margin-right"
+                                             ng-if="!model.wantToSeeMovies.length">
+                                            <h6 class="ss-padding-left-16 ss-small">
+                                                This user has no Want to See Movie selections yet.
+                                            </h6>
                                         </div>
                                     </div>
                                     <div class="ss-margin">
                                         <div class="ss-dark-gray ss-threequarter ss-margin-top ss-margin-right">
                                             <h6 class="ss-padding-left-16 ss-large">WANT-TO-SEE TV</h6>
                                         </div>
-                                        <div class="ss-quarter ss-padding-16 ss-margin-top">
-                                            <img ng-src="{{model.posterNotFound}}"
+                                        <div ng-if="model.wantToSeeTv.length"
+                                             ng-repeat="tv in model.wantToSeeTv | limitTo:4"
+                                             class="ss-quarter ss-padding-16 ss-margin-top">
+                                            <img ng-if="tv.poster_path"
+                                                 ng-click="model.goToTvPage(tv.id)"
+                                                 ng-src="https://image.tmdb.org/t/p/w500/{{tv.poster_path}}"
                                                  class="ss-col.s12 ss-padding">
-                                            <h6 class="ss-padding">Title</h6>
+                                            <img ng-if="!tv.poster_path"
+                                                 ng-click="model.goToTvPage(tv.id)"
+                                                 ng-src="{{model.posterNotFound}}"
+                                                 class="ss-col.s12 ss-padding">
+                                            <h6 class="ss-padding">{{tv.original_name}}</h6>
                                         </div>
-                                        <div class="ss-quarter ss-padding-16 ss-margin-top">
-                                            <img ng-src="{{model.posterNotFound}}"
-                                                 class="ss-col.s12 ss-padding">
-                                            <h6 class="ss-padding">Title</h6>
-                                        </div>
-                                        <div class="ss-quarter ss-padding-16 ss-margin-top">
-                                            <img ng-src="{{model.posterNotFound}}"
-                                                 class="ss-col.s12 ss-padding">
-                                            <h6 class="ss-padding">Title</h6>
-                                        </div>
-                                        <div class="ss-quarter ss-padding-16 ss-margin-top">
-                                            <img ng-src="{{model.posterNotFound}}"
-                                                 class="ss-col.s12 ss-padding">
-                                            <h6 class="ss-padding">Title</h6>
+                                        <div ng-if="!model.wantToSeeTv.length"
+                                             class="ss-threequarter ss-margin-top ss-margin-right">
+                                            <h6 class="ss-padding-left-16 ss-small">
+                                                This user has no Want to See TV selections yet.
+                                            </h6>
                                         </div>
                                     </div>
                                     <div class="ss-margin">

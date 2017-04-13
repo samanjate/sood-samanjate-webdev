@@ -40,7 +40,8 @@
         }
 
         function goToHomePage() {
-            $location.url("/");
+            if(!userId || userId==0)  $location.url("/");
+            else $location.url('/' + userId );
         }
 
     }

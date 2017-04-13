@@ -12,6 +12,7 @@
         var movieId = $routeParams['mid'];
 
         function init() {
+            vm.wantToSee = false;
             MovieService
                 .getMovieById(movieId)
                 .then(function (response) {
@@ -33,6 +34,15 @@
                 .then(function (response) {
                     vm.similarMovies = response.data.results;
                 });
+            MovieService
+                .getWantToSeeMovies(userId)
+                .then(function (response) {
+                    for(var movie in response.data) {
+                        if(movieId == response.data[movie].id) {
+                            vm.wantToSee = true;
+                        }
+                    }
+                });
         }
         init();
 
@@ -40,6 +50,8 @@
         vm.goToPersonProfile = goToPersonProfile;
         vm.goToHomePage = goToHomePage;
         vm.goToLoginOrProfile = goToLoginOrProfile;
+        vm.addToWantToSee = addToWantToSee;
+        vm.deleteToWantToSee = deleteToWantToSee;
 
         function goToLoginOrProfile() {
             if(!userId || userId==0) $location.url('/login');
@@ -57,7 +69,31 @@
         }
 
         function goToHomePage() {
-            $location.url("/");
+            if(!userId || userId==0)  $location.url("/");
+            else $location.url('/' + userId );
+        }
+
+        function addToWantToSee() {
+            MovieService
+                .getMovieById(movieId)
+                .then(function (response) {
+                    var movieDetails = response.data;
+                    MovieService
+                        .addToWantToSee(userId, movieDetails)
+                        .then(function (response) {
+                            vm.wantToSee = true;
+                        }, function (err) {
+                        });
+                });
+        }
+
+        function deleteToWantToSee() {
+            MovieService
+                .deleteToWantToSee(userId, movieId)
+                .then(function (response) {
+                    vm.wantToSee = false;
+                }, function (err) {
+                });
         }
 
     }

@@ -25,6 +25,11 @@
                 controller: "ProfileController",
                 controllerAs: "model"
             })
+            .when("/:uid/edit-profile", {
+                templateUrl: "views/user/templates/edit-profile.view.client.html",
+                controller: "EditProfileController",
+                controllerAs: "model"
+            })
             .when("/:uid", {
                 templateUrl: "views/general/templates/home.view.client.html",
                 controller: "HomeController",

@@ -14,9 +14,13 @@
                 <li class="ss-padding-32">
                     <div class="ss-content ss-search-section">
                         <h4 class="ss-center"><span class="ss-xxxlarge glyphicon glyphicon-log-in"></span></h4>
+                        <div ng-show="model.error" class="alert alert-danger" role="alert">
+                            {{model.error}}
+                        </div>
                         <div class="ss-section">
                             <label for="username">Username</label>
                             <input class="form-control"
+                                   ng-model="model.user.username"
                                    id="username"
                                    placeholder="Username"
                                    type="text"
@@ -24,13 +28,21 @@
                             <br/>
                             <label for="password">Password</label>
                             <input class="form-control"
+                                   ng-model="model.user.password"
                                    id="password"
                                    placeholder="Password"
                                    type="password"
                                    required>
                         </div>
+                        <div class="ss-padding">
+                            Sign in as Critic?
+                            <label for="chkCritic">
+                                <input id="chkCritic" type="checkbox" ng-model="model.isCritic" />
+                            </label>
+                        </div>
                         <div class="ss-padding ss-center">
-                            <a class="btn ss-black btn-lg">Log In</a>
+                            <a ng-click="model.login(model.user)"
+                               class="btn ss-black btn-lg">Log In</a>
                             <a ng-click="model.goToRegisterPage()"
                                class="btn ss-black btn-lg">New user?</a>
                         </div>

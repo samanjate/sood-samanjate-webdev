@@ -1,0 +1,83 @@
+<header class="ss-container ss-top ss-black ss-xlarge ss-padding-16">
+    <span ng-click="model.goToHomePage()" class="ss-left ss-padding">GO MOVIES</span>
+</header>
+
+
+<!-- !PAGE CONTENT! -->
+<div class="ss-main ss-content ss-content-page">
+
+    <div class="ss-container ss-light-grey ss-padding-32 ss-padding-large">
+        <!-- Profile box -->
+        <div class="ss-content ss-hover-effect">
+            <ul class="ss-ul ss-white">
+                <li class="ss-black ss-xlarge ss-padding-32">Edit Profile</li>
+                <li class="ss-padding-32">
+                    <div class="ss-row">
+                        <div class="ss-quarter ss-padding-large">
+                            <img class="ss-poster-style"
+                                 ng-src="{{model.defaultProfilePic}}"/>
+                            <span class="ss-margin-left-32 ss-margin-top ss-black btn btn-default btn-file">Upload Image<input type="file"></span>
+                            <div class="ss-light-grey ss-margin-top-large">
+                                <div class="ss-dark-gray ss-threequarter ss-margin-top ss-margin-right">
+                                    <h6 class="ss-padding-left-16 ss-large">About</h6>
+                                </div>
+                                <div class="ss-about-textarea">
+                                    <textarea placeholder="Tell me about yourself..."
+                                              class="form-control"
+                                              ng-model="model.user.bio"
+                                              id="bio">My Name is Saman.</textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ss-threequarter ss-padding-large">
+                            <div class="ss-content ss-search-section">
+                                <h4 class="ss-center"><span class="ss-xxxlarge glyphicon glyphicon-floppy-save"></span></h4>
+                                <div class="ss-section">
+                                    <label for="firstName">First Name</label>
+                                    <input class="form-control"
+                                           ng-model="model.user.firstName"
+                                           id="firstName"
+                                           placeholder="First name"
+                                           type="text">
+                                    <br/>
+                                    <label for="lastName">Last Name</label>
+                                    <input class="form-control"
+                                           ng-model="model.user.lastName"
+                                           id="lastName"
+                                           placeholder="Last name"
+                                           type="text">
+                                    <br/>
+                                    <label for="email">Email Address</label>
+                                    <input class="form-control"
+                                           ng-model="model.user.email"
+                                           id="email"
+                                           placeholder="Email address"
+                                           type="email">
+                                    <br/>
+                                    <label for="phone">Phone Number</label>
+                                    <input class="form-control"
+                                           ng-model="model.user.phone"
+                                           id="phone"
+                                           placeholder="Phone number"
+                                           type="text">
+                                    <br/>
+
+                                </div>
+                                <div class="ss-padding ss-center">
+                                    <a ng-click="model.updateProfile(model.user)"
+                                       class="btn ss-black btn-lg">
+                                        Update Profile
+                                    </a>
+                                </div>
+                            </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <!-- end -->
+    </div>
+
+    <div class="ss-black ss-center ss-padding-24">Copyright © Samanjate Sood. All rights reserved.</div>
+
+</div>
+<!-- End page content -->
