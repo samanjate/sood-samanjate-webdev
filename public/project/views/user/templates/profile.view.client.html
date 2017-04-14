@@ -10,7 +10,8 @@
         <!-- Profile box -->
         <div class="ss-content ss-hover-effect">
             <ul class="ss-ul ss-white">
-                <li class="ss-black ss-xlarge ss-padding-32">My Profile</li>
+                <li class="ss-black ss-xlarge ss-padding-32">My Profile<a ng-click="model.logout()"
+                                                                          class="ss-gray ss-right ss-small ss-padding">Log Out</a></li>
                 <li class="ss-padding-32">
                     <div class="ss-row">
                         <div class="ss-quarter ss-padding-large">
@@ -43,6 +44,9 @@
                                 <a ng-click="model.goToEditProfile()"
                                    class="ss-right ss-small ss-padding">Edit Profile</a>
                             </div>
+
+                            <!-- User specific profile -->
+                            <div ng-show="!model.isCritic">
                             <uib-tabset class="ss-small tabbable">
                                 <uib-tab heading="Summary" ng-attr-active="tabs[0].active">
                                     <div class="ss-margin">
@@ -95,42 +99,54 @@
                                     </div>
                                     <div class="ss-margin">
                                         <div class="ss-dark-gray ss-threequarter ss-margin-top ss-margin-right">
-                                            <h6 class="ss-padding-left-16 ss-large">RATING HISTORY</h6>
+                                            <h6 class="ss-padding-left-16 ss-large">HIGHEST RATED BY YOU</h6>
                                         </div>
-                                        <div class="ss-padding-16 ss-margin-top ss-row">
+                                        <div ng-repeat="rate in model.ratingHistory | limitTo:4"
+                                             class="ss-padding-16 ss-row">
                                             <div class="ss-quarter ss-margin-top-32">
-                                                <img ng-src="{{model.posterNotFound}}"
+                                                <img ng-if="rate.poster_path"
+                                                     ng-click="model.goToPage(rate)"
+                                                     ng-src="https://image.tmdb.org/t/p/w500/{{rate.poster_path}}"
+                                                     class="ss-col.s12 ss-padding">
+                                                <img ng-if="!rate.poster_path"
+                                                     ng-click="model.goToPage(rate)"
+                                                     ng-src="{{model.posterNotFound}}"
                                                  class="ss-col.s12 ss-padding">
                                             </div>
                                             <div class="ss-threequarter ss-margin-top-32">
-                                                <h6 class="ss-padding">Title</h6>
-                                            </div>
-                                        </div>
-                                        <div class="ss-padding-16 ss-margin-top ss-row">
-                                            <div class="ss-quarter">
-                                                <img ng-src="{{model.posterNotFound}}"
-                                                     class="ss-col.s12 ss-padding">
-                                            </div>
-                                            <div class="ss-threequarter">
-                                                <h6 class="ss-padding">Title</h6>
-                                            </div>
-                                        </div>
-                                        <div class="ss-padding-16 ss-margin-top ss-row">
-                                            <div class="ss-quarter">
-                                                <img ng-src="{{model.posterNotFound}}"
-                                                     class="ss-col.s12 ss-padding">
-                                            </div>
-                                            <div class="ss-threequarter">
-                                                <h6 class="ss-padding">Title</h6>
-                                            </div>
-                                        </div>
-                                        <div class="ss-padding-16 ss-margin-top ss-row">
-                                            <div class="ss-quarter">
-                                                <img ng-src="{{model.posterNotFound}}"
-                                                     class="ss-col.s12 ss-padding">
-                                            </div>
-                                            <div class="ss-threequarter">
-                                                <h6 class="ss-padding">Title</h6>
+                                                <h6 ng-if="rate.original_title" class="ss-padding">{{rate.original_title}}</h6>
+                                                <h6 ng-if="rate.original_name" class="ss-padding">{{rate.original_name}}</h6>
+                                                <fieldset class="rating ss-margin-left" disabled>
+                                                    <input type="radio" value="5" ng-checked="rate.rating===5">
+                                                    <label class = "full"></label>
+
+                                                    <input type="radio" value="4.5" ng-checked="rate.rating===4.5">
+                                                    <label class="half"></label>
+
+                                                    <input type="radio" value="4" ng-checked="rate.rating===4">
+                                                    <label class = "full"></label>
+
+                                                    <input type="radio" value="3.5" ng-checked="rate.rating===3.5">
+                                                    <label class="half"></label>
+
+                                                    <input type="radio" value="3" ng-checked="rate.rating===3">
+                                                    <label class = "full" title="3 stars"></label>
+
+                                                    <input type="radio" value="2.5" ng-checked="rate.rating===2.5">
+                                                    <label class="half" title="2.5 stars"></label>
+
+                                                    <input type="radio" value="2" ng-checked="rate.rating===2">
+                                                    <label class = "full" title="2 stars"></label>
+
+                                                    <input type="radio" value="1.5" ng-checked="rate.rating===1.5">
+                                                    <label class="half" title="1.5 stars"></label>
+
+                                                    <input type="radio" value="1" ng-checked="rate.rating===1">
+                                                    <label class = "full" title="1 star"></label>
+
+                                                    <input type="radio" value="0.5" ng-checked="rate.rating===0.5">
+                                                    <label class="half" title="0.5 stars"></label>
+                                                </fieldset>
                                             </div>
                                         </div>
                                     </div>
@@ -140,13 +156,52 @@
                                         <div class="ss-dark-gray ss-threequarter ss-margin-top ss-margin-right">
                                             <h6 class="ss-padding-left-16 ss-large">MOVIE RATINGS</h6>
                                         </div>
-                                        <div class="ss-padding-16 ss-margin-top ss-row">
+                                        <div ng-repeat="rate in model.user.ratings"
+                                             class="ss-padding-16 ss-row">
                                             <div class="ss-quarter ss-margin-top-32">
-                                                <img ng-src="{{model.posterNotFound}}"
+                                                <img ng-if="rate.poster_path"
+                                                     ng-click="model.goToPage(rate)"
+                                                     ng-src="https://image.tmdb.org/t/p/w500/{{rate.poster_path}}"
+                                                     class="ss-col.s12 ss-padding">
+                                                <img ng-if="!rate.poster_path"
+                                                     ng-click="model.goToPage(rate)"
+                                                     ng-src="{{model.posterNotFound}}"
                                                      class="ss-col.s12 ss-padding">
                                             </div>
                                             <div class="ss-threequarter ss-margin-top-32">
-                                                <h6 class="ss-padding">Title</h6>
+                                                <h6 ng-if="rate.original_title" class="ss-padding">{{rate.original_title}}</h6>
+                                                <h6 ng-if="rate.original_name" class="ss-padding">{{rate.original_name}}</h6>
+                                                <fieldset class="rating ss-margin-left" disabled>
+                                                    <input type="radio" value="5" ng-checked="rate.rating===5">
+                                                    <label class = "full"></label>
+
+                                                    <input type="radio" value="4.5" ng-checked="rate.rating===4.5">
+                                                    <label class="half"></label>
+
+                                                    <input type="radio" value="4" ng-checked="rate.rating===4">
+                                                    <label class = "full"></label>
+
+                                                    <input type="radio" value="3.5" ng-checked="rate.rating===3.5">
+                                                    <label class="half"></label>
+
+                                                    <input type="radio" value="3" ng-checked="rate.rating===3">
+                                                    <label class = "full" title="3 stars"></label>
+
+                                                    <input type="radio" value="2.5" ng-checked="rate.rating===2.5">
+                                                    <label class="half" title="2.5 stars"></label>
+
+                                                    <input type="radio" value="2" ng-checked="rate.rating===2">
+                                                    <label class = "full" title="2 stars"></label>
+
+                                                    <input type="radio" value="1.5" ng-checked="rate.rating===1.5">
+                                                    <label class="half" title="1.5 stars"></label>
+
+                                                    <input type="radio" value="1" ng-checked="rate.rating===1">
+                                                    <label class = "full" title="1 star"></label>
+
+                                                    <input type="radio" value="0.5" ng-checked="rate.rating===0.5">
+                                                    <label class="half" title="0.5 stars"></label>
+                                                </fieldset>
                                             </div>
                                         </div>
                                     </div>
@@ -156,34 +211,103 @@
                                         <div class="ss-dark-gray ss-threequarter ss-margin-top ss-margin-right">
                                             <h6 class="ss-padding-left-16 ss-large">TV RATINGS</h6>
                                         </div>
-                                        <div class="ss-padding-16 ss-margin-top ss-row">
+                                        <div ng-repeat="rate in model.user.ratingsTv"
+                                             class="ss-padding-16 ss-row">
                                             <div class="ss-quarter ss-margin-top-32">
-                                                <img ng-src="{{model.posterNotFound}}"
+                                                <img ng-if="rate.poster_path"
+                                                     ng-click="model.goToPage(rate)"
+                                                     ng-src="https://image.tmdb.org/t/p/w500/{{rate.poster_path}}"
+                                                     class="ss-col.s12 ss-padding">
+                                                <img ng-if="!rate.poster_path"
+                                                     ng-click="model.goToPage(rate)"
+                                                     ng-src="{{model.posterNotFound}}"
                                                      class="ss-col.s12 ss-padding">
                                             </div>
                                             <div class="ss-threequarter ss-margin-top-32">
-                                                <h6 class="ss-padding">Title</h6>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </uib-tab>
-                                <uib-tab heading="Critics" ng-attr-active="tabs[3].active">
-                                    <div class="ss-margin">
-                                        <div class="ss-dark-gray ss-threequarter ss-margin-top ss-margin-right">
-                                            <h6 class="ss-padding-left-16 ss-large">CRITIC REVIEWS</h6>
-                                        </div>
-                                        <div class="ss-padding-16 ss-margin-top ss-row">
-                                            <div class="ss-quarter ss-margin-top-32">
-                                                <img ng-src="{{model.posterNotFound}}"
-                                                     class="ss-col.s12 ss-padding">
-                                            </div>
-                                            <div class="ss-threequarter ss-margin-top-32">
-                                                <h6 class="ss-padding">Title</h6>
+                                                <h6 ng-if="rate.original_title" class="ss-padding">{{rate.original_title}}</h6>
+                                                <h6 ng-if="rate.original_name" class="ss-padding">{{rate.original_name}}</h6>
+                                                <fieldset class="rating ss-margin-left" disabled>
+                                                    <input type="radio" value="5" ng-checked="rate.rating===5">
+                                                    <label class = "full"></label>
+
+                                                    <input type="radio" value="4.5" ng-checked="rate.rating===4.5">
+                                                    <label class="half"></label>
+
+                                                    <input type="radio" value="4" ng-checked="rate.rating===4">
+                                                    <label class = "full"></label>
+
+                                                    <input type="radio" value="3.5" ng-checked="rate.rating===3.5">
+                                                    <label class="half"></label>
+
+                                                    <input type="radio" value="3" ng-checked="rate.rating===3">
+                                                    <label class = "full" title="3 stars"></label>
+
+                                                    <input type="radio" value="2.5" ng-checked="rate.rating===2.5">
+                                                    <label class="half" title="2.5 stars"></label>
+
+                                                    <input type="radio" value="2" ng-checked="rate.rating===2">
+                                                    <label class = "full" title="2 stars"></label>
+
+                                                    <input type="radio" value="1.5" ng-checked="rate.rating===1.5">
+                                                    <label class="half" title="1.5 stars"></label>
+
+                                                    <input type="radio" value="1" ng-checked="rate.rating===1">
+                                                    <label class = "full" title="1 star"></label>
+
+                                                    <input type="radio" value="0.5" ng-checked="rate.rating===0.5">
+                                                    <label class="half" title="0.5 stars"></label>
+                                                </fieldset>
                                             </div>
                                         </div>
                                     </div>
                                 </uib-tab>
                             </uib-tabset>
+                            </div>
+
+                            <!-- Critics specific profile -->
+                            <div ng-show="model.isCritic">
+                            <h6 class="ss-xlarge ss-padding">My Reviews: </h6>
+                            <div ng-repeat="review in model.reviews | limitTo:25" class="ss-threequarter ss-padding">
+                                <h6 class="">{{review.name}}</h6>
+                                <div class="ss-threequarter">
+                                    <fieldset class="rating" disabled>
+                                        <input type="radio" value="5" ng-checked="review.rating===5">
+                                        <label class = "full"></label>
+
+                                        <input type="radio" value="4.5" ng-checked="review.rating===4.5">
+                                        <label class="half"></label>
+
+                                        <input type="radio" value="4" ng-checked="review.rating===4">
+                                        <label class = "full"></label>
+
+                                        <input type="radio" value="3.5" ng-checked="review.rating===3.5">
+                                        <label class="half"></label>
+
+                                        <input type="radio" value="3" ng-checked="review.rating===3">
+                                        <label class = "full"></label>
+
+                                        <input type="radio" value="2.5" ng-checked="review.rating===2.5">
+                                        <label class="half"></label>
+
+                                        <input type="radio" value="2" ng-checked="review.rating===2">
+                                        <label class = "full"></label>
+
+                                        <input type="radio" value="1.5" ng-checked="review.rating===1.5">
+                                        <label class="half"></label>
+
+                                        <input type="radio" value="1" ng-checked="review.rating===1">
+                                        <label class = "full"></label>
+
+                                        <input type="radio" value="0.5" ng-checked="review.rating===0.5">
+                                        <label class="half"></label>
+                                    </fieldset>
+                                </div>
+                                <br/><br/><br/>
+                                <div >
+                                    {{review.review}}
+                                </div>
+                                <hr/>
+                            </div>
                         </div>
                     </div>
                 </li>

@@ -15,7 +15,18 @@
             UserService
                 .findUserById(userId)
                 .success(function (user) {
-                    vm.user = user;
+                    if(user) {
+                        vm.user = user;
+                        vm.isCritic = false;
+                    } else {
+                        UserService
+                            .findCriticById(userId)
+                            .success(function (user) {
+                                vm.user = user;
+                                vm.isCritic = true;
+                            });
+                    }
+
                 });
         }
 
@@ -26,12 +37,12 @@
 
         function goToHomePage() {
             if(!userId || userId==0)  $location.url("/");
-            else $location.url('/' + userId );
+            else $location.url('/' + userIriticd );
         }
 
-        function updateProfile(newUser) {
+        function updateProfile(newUser, isCritic) {
             UserService
-                .updateUser(userId, newUser)
+                .updateUser(userId, newUser, isCritic)
                 .success(function (user) {
                     $location.url("/"+user._id+"/profile");
                 });

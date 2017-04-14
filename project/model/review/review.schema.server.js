@@ -1,10 +1,13 @@
 var mongoose = require('mongoose');
 var ReviewSchema = mongoose.Schema({
     criticId: {type: mongoose.Schema.Types.ObjectId, ref:'project.critic.gomovies'},
-    movieId: {type: mongoose.Schema.Types.ObjectId, ref:'project.movie.gomovies'},
-    tvId: {type: mongoose.Schema.Types.ObjectId, ref:'project.tv.gomovies'},
+    criticName: String,
+    id: String,
+    type: {type: String, enum: ['tv','movie']},
     review: String,
+    rating: Number,
     name: String,
+    poster_path: String,
     dateCreated: {type:Date, default: Date.now()}
 
 }, {collection: 'project.review.gomovies'});

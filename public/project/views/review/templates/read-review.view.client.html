@@ -1,0 +1,80 @@
+<header class="ss-container ss-top ss-black ss-xlarge ss-padding-16">
+    <span ng-click="model.goToHomePage()" class="ss-left ss-padding">GO MOVIES</span>
+</header>
+
+
+<!-- !PAGE CONTENT! -->
+<div class="ss-main ss-content ss-content-page">
+
+    <div class="ss-container ss-light-grey ss-padding-32 ss-padding-large">
+        <!-- Profile box -->
+        <div class="ss-content ss-hover-effect">
+            <ul class="ss-ul ss-white">
+                <li class="ss-black ss-xlarge ss-padding-32">Critic Reviews</li>
+                <li class="ss-padding-32">
+                    <div class="ss-row">
+                        <div class="ss-quarter ss-padding-large">
+                            <img ng-if="model.movie.poster_path"
+                                 ng-click="model.goToMoviePage()"
+                                 ng-src="https://image.tmdb.org/t/p/w500/{{model.movie.poster_path}}"/>
+                            <h6 ng-if="model.movie.original_title"
+                                class="ss-center ss-margin-top">{{model.movie.original_title}}</h6>
+                            <img ng-if="model.tv.poster_path"
+                                 ng-click="model.goToTvPage()"
+                                 ng-src="https://image.tmdb.org/t/p/w500/{{model.tv.poster_path}}"/>
+                            <h6 ng-if="model.tv.original_name"
+                                class="ss-center ss-margin-top">{{model.tv.original_name}}</h6>
+                        </div>
+                        <h6 class="ss-xlarge ss-padding">Comments: </h6>
+                        <h6 ng-if="!model.reviews.length" class="ss-small">No one seems to have reviewed this yet.</h6>
+                        <div ng-repeat="review in model.reviews | limitTo:25" class="ss-threequarter ss-padding">
+                            <div class="ss-threequarter">
+                                <fieldset class="rating" disabled>
+                                    <input type="radio" value="5" ng-checked="review.rating===5">
+                                    <label class = "full"></label>
+
+                                    <input type="radio" value="4.5" ng-checked="review.rating===4.5">
+                                    <label class="half"></label>
+
+                                    <input type="radio" value="4" ng-checked="review.rating===4">
+                                    <label class = "full"></label>
+
+                                    <input type="radio" value="3.5" ng-checked="review.rating===3.5">
+                                    <label class="half"></label>
+
+                                    <input type="radio" value="3" ng-checked="review.rating===3">
+                                    <label class = "full"></label>
+
+                                    <input type="radio" value="2.5" ng-checked="review.rating===2.5">
+                                    <label class="half"></label>
+
+                                    <input type="radio" value="2" ng-checked="review.rating===2">
+                                    <label class = "full"></label>
+
+                                    <input type="radio" value="1.5" ng-checked="review.rating===1.5">
+                                    <label class="half"></label>
+
+                                    <input type="radio" value="1" ng-checked="review.rating===1">
+                                    <label class = "full"></label>
+
+                                    <input type="radio" value="0.5" ng-checked="review.rating===0.5">
+                                    <label class="half"></label>
+                                </fieldset>
+                            </div>
+                            <br/><br/><br/>
+                            <div >
+                                {{review.review}} --- <i>{{review.criticName}}</i>
+                            </div>
+                            <hr/>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <!-- end -->
+    </div>
+
+    <div class="ss-black ss-center ss-padding-24">Copyright © Samanjate Sood. All rights reserved.</div>
+
+</div>
+<!-- End page content -->

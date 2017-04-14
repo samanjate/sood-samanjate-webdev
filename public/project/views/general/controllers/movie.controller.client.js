@@ -3,7 +3,7 @@
         .module("GoMovies")
         .controller("MovieController", movieController);
 
-    function movieController($sce, $location, $routeParams, MovieService) {
+    function movieController($sce, $location, $routeParams, MovieService, UserService) {
         var vm = this;
 
         vm.posterNotFound = 'http://s3.amazonaws.com/static.betaeasy.com/screenshot/456/456-25984-14192637741419263774.42.jpeg';
@@ -13,6 +13,44 @@
 
         function init() {
             vm.wantToSee = false;
+            vm.isUser = false;
+            vm.isCritic = false;
+            vm.isGuest = false;
+            vm.stopRating = false;
+            if(userId == 0) vm.isGuest = true;
+            MovieService
+                .getMovieByIdFromDb(movieId)
+                .then(function (response) {
+                    if(response.data.numOfRatings)
+                        vm.userAvgRating = (response.data.numOfRatings * 2) / response.data.totalRatings;
+                }, function (err) {
+                });
+            UserService
+                .findUserById(userId)
+                .then(function (user) {
+                    console.log(user.data);
+                    if(user.data) {
+                        vm.isUser = true;
+                        var ratedMovies = user.data.ratings;
+                        for(var m in ratedMovies) {
+                            if(ratedMovies[m].id == movieId) {
+                                vm.stars = ratedMovies[m].rating;
+                                vm.stopRating = true;
+                            }
+                        }
+                    } else {
+                        UserService
+                            .findCriticById(userId)
+                            .then(function (user) {
+                                if(user.data) vm.isCritic = true;
+                                else vm.isGuest = true;
+                            }, function (err) {
+
+                            });
+                    }
+                }, function (err) {
+
+                });
             MovieService
                 .getMovieById(movieId)
                 .then(function (response) {
@@ -52,6 +90,9 @@
         vm.goToLoginOrProfile = goToLoginOrProfile;
         vm.addToWantToSee = addToWantToSee;
         vm.deleteToWantToSee = deleteToWantToSee;
+        vm.rateThis = rateThis;
+        vm.goToReadReview = goToReadReview;
+        vm.goToWriteReview = goToWriteReview;
 
         function goToLoginOrProfile() {
             if(!userId || userId==0) $location.url('/login');
@@ -94,6 +135,31 @@
                     vm.wantToSee = false;
                 }, function (err) {
                 });
+        }
+
+        function rateThis(stars, movie, isCritic) {
+            UserService
+                .updateUserRating(userId,movie,stars,isCritic)
+                .then(function (response) {
+                    MovieService
+                        .updateRatings(movie,stars)
+                        .then(function (response) {
+                            vm.stopRating = true;
+                            vm.stars = stars;
+                            vm.movieFromDb = response.data;
+                            vm.userAvgRating = (response.data.numOfRatings * 2) / response.data.totalRatings;
+                        }, function (err) {
+                        });
+                }, function(err) {
+                });
+        }
+
+        function goToReadReview(movieId) {
+            $location.url("/" + userId + "/read-review/" + movieId);
+        }
+
+        function goToWriteReview(movieId) {
+            $location.url("/" + userId + "/write-review/" + movieId);
         }
 
     }

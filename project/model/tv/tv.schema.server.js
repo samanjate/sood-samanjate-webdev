@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 var TvSchema = mongoose.Schema({
-    tmdbId: String,
+    id: String,
     name: String,
     poster_path: String,
     totalRatings: Number,

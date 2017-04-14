@@ -12,7 +12,11 @@
         var api = {
             "getSearchResults" : getSearchResults,
             "getMoviesByGenre" : getMoviesByGenre,
-            "getPersonById" : getPersonById
+            "getPersonById" : getPersonById,
+            "checkIfAlreadyReviewed": checkIfAlreadyReviewed,
+            "publishReview" : publishReview,
+            "findReviews": findReviews,
+            "findCriticReviews": findCriticReviews
         };
 
         return api;
@@ -31,6 +35,22 @@
             var tags = 'images,movie_credits,tv_credits';
             var url = baseUrl + 'person/'+personId+'?api_key='+key+'&language='+language+'&append_to_response=' + tags;
             return $http.get(url);
+        }
+
+        function publishReview(review) {
+            return $http.post('/api/publish/', review);
+        }
+
+        function checkIfAlreadyReviewed(id, criticId) {
+            return $http.get('/api/check?id='+id+"&criticId="+criticId);
+        }
+
+        function findReviews(eId) {
+            return $http.get('/api/reviews?eId='+eId);
+        }
+
+        function findCriticReviews(userId) {
+            return $http.get('/api/reviews?uid='+userId);
         }
     }
 

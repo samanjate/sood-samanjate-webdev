@@ -1,0 +1,103 @@
+<header class="ss-container ss-top ss-black ss-xlarge ss-padding-16">
+    <span ng-click="model.goToHomePage()" class="ss-left ss-padding">GO MOVIES</span>
+</header>
+
+
+<!-- !PAGE CONTENT! -->
+<div class="ss-main ss-content ss-content-page">
+
+    <div class="ss-container ss-light-grey ss-padding-32 ss-padding-large">
+        <!-- Profile box -->
+        <div class="ss-content ss-hover-effect">
+            <ul class="ss-ul ss-white">
+                <li class="ss-black ss-xlarge ss-padding-32">Write a Review</li>
+                <li class="ss-padding-32">
+                    <div class="ss-row">
+                        <div class="ss-quarter ss-padding-large">
+                            <img ng-if="model.movie.poster_path"
+                                 ng-src="https://image.tmdb.org/t/p/w500/{{model.movie.poster_path}}"/>
+                            <h6 ng-if="model.movie.original_title"
+                                class="ss-center ss-margin-top">{{model.movie.original_title}}</h6>
+                            <img ng-if="model.tv.poster_path"
+                                 ng-src="https://image.tmdb.org/t/p/w500/{{model.tv.poster_path}}"/>
+                            <h6 ng-if="model.tv.original_name"
+                                class="ss-center ss-margin-top">{{model.tv.original_name}}</h6>
+                        </div>
+                        <div class="ss-threequarter ss-padding">
+                            <div ng-show="model.error" class="alert alert-danger" role="alert">
+                                {{model.error}}
+                            </div>
+                            <div ng-show="model.alreadyReview" class="alert alert-danger" role="alert">
+                                You have already reviewed this.
+                            </div>
+                            <label class="ss-margin-bottom" for="website-description">Write your review</label>
+
+                            <div class="ss-margin-bottom">
+                                    <fieldset class="rating">
+                                        <input type="radio" id="star5" name="rating" value="5"
+                                               ng-value="5" ng-model="model.stars" />
+                                        <label class = "full" for="star5" title="5 stars"></label>
+
+                                        <input type="radio" id="star4half" name="rating" value="4.5"
+                                               ng-value="4.5" ng-model="model.stars" />
+                                        <label class="half" for="star4half" title="4.5 stars"></label>
+
+                                        <input type="radio" id="star4" name="rating" value="4"
+                                               ng-value="4" ng-model="model.stars" />
+                                        <label class = "full" for="star4" title="4 stars"></label>
+
+                                        <input type="radio" id="star3half" name="rating" value="3.5"
+                                               ng-value="3.5" ng-model="model.stars" />
+                                        <label class="half" for="star3half" title="3.5 stars"></label>
+
+                                        <input type="radio" id="star3" name="rating" value="3"
+                                               ng-value="3" ng-model="model.stars" />
+                                        <label class = "full" for="star3" title="3 stars"></label>
+
+                                        <input type="radio" id="star2half" name="rating" value="2.5"
+                                               ng-value="2.5" ng-model="model.stars" />
+                                        <label class="half" for="star2half" title="2.5 stars"></label>
+
+                                        <input type="radio" id="star2" name="rating" value="2"
+                                               ng-value="2" ng-model="model.stars" />
+                                        <label class = "full" for="star2" title="2 stars"></label>
+
+                                        <input type="radio" id="star1half" name="rating" value="1.5"
+                                               ng-value="1.5" ng-model="model.stars" />
+                                        <label class="half" for="star1half" title="1.5 stars"></label>
+
+                                        <input type="radio" id="star1" name="rating" value="1"
+                                               ng-value="1" ng-model="model.stars" />
+                                        <label class = "full" for="star1" title="1 star"></label>
+
+                                        <input type="radio" id="starhalf" name="rating" value="0.5"
+                                               ng-value="0.5" ng-model="model.stars" />
+                                        <label class="half" for="starhalf" title="0.5 stars"></label>
+                                    </fieldset>
+                            </div>
+
+
+                            <textarea ng-model="model.review"
+                                      placeholder="Write a review..."
+                                      class="form-control"
+                                      rows="10"
+                                      id="website-description"
+                                      required></textarea>
+                            <a ng-click="model.postReview(model.review, model.tv, model.movie, model.stars, model.user)"
+                               ng-show="!model.alreadyReview"
+                               class="btn ss-right ss-black ss-margin-top">Post</a>
+                            <a ng-click="model.goBack(model.tv)"
+                               ng-show="model.alreadyReview"
+                               class="btn ss-right ss-black ss-margin-top">Back</a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <!-- end -->
+    </div>
+
+    <div class="ss-black ss-center ss-padding-24">Copyright © Samanjate Sood. All rights reserved.</div>
+
+</div>
+<!-- End page content -->

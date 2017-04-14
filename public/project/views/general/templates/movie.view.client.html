@@ -31,9 +31,14 @@
                 <span class="ss-large ss-left glyphicon glyphicon-star ss-padding"></span>
                 <h3 class="ss-large ss-padding">tmdb Ratings: {{model.movie.vote_average}}/10</h3>
                 <h3></h3>
-                <span class="ss-large ss-left glyphicon glyphicon-star-empty ss-padding"></span>
-                <h3 class="ss-large ss-padding">User Ratings: {{model.movie.vote_average}}/10</h3>
-                <div class="ss-row">
+                <span ng-if="model.isUser"
+                      class="ss-large ss-left glyphicon glyphicon-star-empty ss-padding"></span>
+                <h3 ng-if="model.isUser && model.userAvgRating"
+                    class="ss-large ss-padding">User Ratings: {{model.userAvgRating}}/10</h3>
+                <h3 ng-if="model.isUser && !model.userAvgRating"
+                    class="ss-large ss-padding">Be the first one to rate this movie.</h3>
+                <div ng-show="model.isUser"
+                     class="ss-row">
                     <div class="ss-half">
                         <span ng-click="model.addToWantToSee()"
                               ng-if="!model.wantToSee"
@@ -43,43 +48,75 @@
                               class="ss-large ss-left glyphicon glyphicon-ok ss-padding"></span>
                         <h3 class="ss-large">Want-To-See</h3>
                     </div>
+                    <div ng-show="model.isCritic"
+                         class="ss-half">
+                        <h3></h3>
+                    </div>
                     <div class="ss-half">
-                        <fieldset class="rating">
-                            <input type="radio" id="star5" name="rating" value="5" />
-                            <label class = "full" for="star5" title="Awesome - 5 stars"></label>
+                        <fieldset class="rating" ng-disabled="model.stopRating">
+                            <input type="radio" id="star5" name="rating" value="5"
+                                   ng-value="5" ng-model="model.stars"
+                                   ng-click="model.rateThis(model.stars,model.movie,model.isCritic)"/>
+                            <label class = "full" for="star5" title="5 stars"></label>
 
-                            <input type="radio" id="star4half" name="rating" value="4.5" />
-                            <label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
+                            <input type="radio" id="star4half" name="rating" value="4.5"
+                                   ng-value="4.5" ng-model="model.stars"
+                                   ng-click="model.rateThis(model.stars,model.movie,model.isCritic)"/>
+                            <label class="half" for="star4half" title="4.5 stars"></label>
 
-                            <input type="radio" id="star4" name="rating" value="4" />
-                            <label class = "full" for="star4" title="Pretty good - 4 stars"></label>
+                            <input type="radio" id="star4" name="rating" value="4"
+                                   ng-value="4" ng-model="model.stars"
+                                   ng-click="model.rateThis(model.stars,model.movie,model.isCritic)"/>
+                            <label class = "full" for="star4" title="4 stars"></label>
 
-                            <input type="radio" id="star3half" name="rating" value="3.5" />
-                            <label class="half" for="star3half" title="Meh - 3.5 stars"></label>
+                            <input type="radio" id="star3half" name="rating" value="3.5"
+                                   ng-value="3.5" ng-model="model.stars"
+                                   ng-click="model.rateThis(model.stars,model.movie,model.isCritic)"/>
+                            <label class="half" for="star3half" title="3.5 stars"></label>
 
-                            <input type="radio" id="star3" name="rating" value="3" />
-                            <label class = "full" for="star3" title="Meh - 3 stars"></label>
+                            <input type="radio" id="star3" name="rating" value="3"
+                                   ng-value="3" ng-model="model.stars"
+                                   ng-click="model.rateThis(model.stars,model.movie,model.isCritic)"/>
+                            <label class = "full" for="star3" title="3 stars"></label>
 
-                            <input type="radio" id="star2half" name="rating" value="2.5" />
-                            <label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
+                            <input type="radio" id="star2half" name="rating" value="2.5"
+                                   ng-value="2.5" ng-model="model.stars"
+                                   ng-click="model.rateThis(model.stars,model.movie,model.isCritic)"/>
+                            <label class="half" for="star2half" title="2.5 stars"></label>
 
-                            <input type="radio" id="star2" name="rating" value="2" />
-                            <label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
+                            <input type="radio" id="star2" name="rating" value="2"
+                                   ng-value="2" ng-model="model.stars"
+                                   ng-click="model.rateThis(model.stars,model.movie,model.isCritic)"/>
+                            <label class = "full" for="star2" title="2 stars"></label>
 
-                            <input type="radio" id="star1half" name="rating" value="1.5" />
-                            <label class="half" for="star1half" title="Meh - 1.5 stars"></label>
+                            <input type="radio" id="star1half" name="rating" value="1.5"
+                                   ng-value="1.5" ng-model="model.stars"
+                                   ng-click="model.rateThis(model.stars,model.movie,model.isCritic)"/>
+                            <label class="half" for="star1half" title="1.5 stars"></label>
 
-                            <input type="radio" id="star1" name="rating" value="1" />
-                            <label class = "full" for="star1" title="Sucks big time - 1 star"></label>
+                            <input type="radio" id="star1" name="rating" value="1"
+                                   ng-value="1" ng-model="model.stars"
+                                   ng-click="model.rateThis(model.stars,model.movie,model.isCritic)"/>
+                            <label class = "full" for="star1" title="1 star"></label>
 
-                            <input type="radio" id="starhalf" name="rating" value="0.5" />
-                            <label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
+                            <input type="radio" id="starhalf" name="rating" value="0.5"
+                                   ng-value="0.5" ng-model="model.stars"
+                                   ng-click="model.rateThis(model.stars,model.movie,model.isCritic)"/>
+                            <label class="half" for="starhalf" title="0.5 stars"></label>
                         </fieldset>
                     </div>
                 </div>
                 <br/><br/><br/>
-                <div class="ss-right">
-                    <a class="ss-small ss-padding">Read Reviews</a>
+                <div ng-if="model.isUser || model.isCritic"
+                     class="ss-right">
+                    <a ng-click="model.goToReadReview(model.movie.id)"
+                       class="ss-small ss-padding">Read Reviews</a>
+                </div>
+                <br/>
+                <div ng-if="model.isCritic"
+                     class="ss-right">
+                    <a ng-click="model.goToWriteReview(model.movie.id)"
+                       class="ss-small ss-padding">Write a Review</a>
                 </div>
             </div>
         </div>

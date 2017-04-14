@@ -10,6 +10,8 @@ module.exports = function (app, AudienceModel) {
     app.put("/api/audience/:uid", updateUser);
     app.delete("/api/audience/wts/:uid", deleteToWantToSee);
     app.delete("/api/audience/wtstv/:uid", deleteToWantToSeeTv);
+    app.put("/api/audience/rate/:uid", updateUserRatings);
+    app.put("/api/audience/ratetv/:uid", updateUserRatingsTv);
 
 
     function createUser(req, res) {
@@ -134,7 +136,7 @@ module.exports = function (app, AudienceModel) {
         AudienceModel
             .addToWantToSee(userId,movie)
             .then(function (response) {
-                res.json(response)
+                res.json(response);
             },function (err) {
                 return err;
             });
@@ -146,7 +148,7 @@ module.exports = function (app, AudienceModel) {
         AudienceModel
             .addToWantToSeeTv(userId,tv)
             .then(function (response) {
-                res.json(response)
+                res.json(response);
             },function (err) {
                 return err;
             });
@@ -158,7 +160,7 @@ module.exports = function (app, AudienceModel) {
         AudienceModel
             .deleteToWantToSee(userId,movieId)
             .then(function (response) {
-                res.json(response)
+                res.json(response);
             },function (err) {
                 return err;
             });
@@ -170,10 +172,36 @@ module.exports = function (app, AudienceModel) {
         AudienceModel
             .deleteToWantToSeeTv(userId,tvId)
             .then(function (response) {
-                res.json(response)
+                res.json(response);
             },function (err) {
                 return err;
             });
+    }
+
+    function updateUserRatings(req, res) {
+        var userId = req.params.uid;
+        var movie = req.body;
+        var rate = Number(req.query.rate);
+        AudienceModel
+            .updateUserRating(userId, movie, rate)
+            .then(function (response) {
+                res.json(response);
+            }, function (err) {
+                return err;
+            })
+    }
+
+    function updateUserRatingsTv(req, res) {
+        var userId = req.params.uid;
+        var tv = req.body;
+        var rate = Number(req.query.rate);
+        AudienceModel
+            .updateUserRatingTv(userId, tv, rate)
+            .then(function (response) {
+                res.json(response);
+            }, function (err) {
+                return err;
+            })
     }
 
 };

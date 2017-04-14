@@ -3,13 +3,52 @@
         .module("GoMovies")
         .controller("TvController", tvController);
 
-    function tvController($sce, $location, $routeParams, TvShowService) {
+    function tvController($sce, $location, $routeParams, TvShowService, UserService) {
         var vm = this;
 
         var userId = $routeParams['uid'];
         var tvId = $routeParams['tid'];
 
         function init() {
+            vm.wantToSee = false;
+            vm.isUser = false;
+            vm.isCritic = false;
+            vm.isGuest = false;
+            vm.stopRating = false;
+            if(userId == 0) vm.isGuest = true;
+            TvShowService
+                .getTvByIdFromDb(tvId)
+                .then(function (response) {
+                    console.lof
+                    if(response.data.numOfRatings)
+                        vm.userAvgRating = (response.data.numOfRatings * 2) / response.data.totalRatings;
+                }, function (err) {
+
+                });
+            UserService
+                .findUserById(userId)
+                .then(function (user) {
+                    if(user.data)  {
+                        vm.isUser = true;
+                        var ratedTv = user.data.ratingsTv;
+                        for(var t in ratedTv) {
+                            if(ratedTv[t].id == tvId) {
+                                vm.stars = ratedTv[t].rating;
+                                vm.stopRating = true;
+                            }
+                        }
+                    } else {
+                        UserService
+                            .findCriticById(userId)
+                            .then(function (user) {
+                                if(user) vm.isCritic = true;
+                                else vm.isGuest = true;
+                            }, function (err) {
+
+                            });
+                    }}, function (err) {
+
+                });
             TvShowService
                 .getTvDetails(tvId)
                 .then(function (response) {
@@ -49,6 +88,9 @@
         vm.goToLoginOrProfile = goToLoginOrProfile;
         vm.addToWantToSee = addToWantToSee;
         vm.deleteToWantToSee = deleteToWantToSee;
+        vm.rateThis = rateThis;
+        vm.goToReadReview = goToReadReview;
+        vm.goToWriteReview = goToWriteReview;
 
         function goToLoginOrProfile() {
             if(!userId || userId==0) $location.url('/login');
@@ -91,6 +133,32 @@
                     vm.wantToSee = false;
                 }, function (err) {
                 });
+        }
+
+        function rateThis(stars, tv, isCritic) {
+            UserService
+                .updateUserRatingTv(userId,tv,stars,isCritic)
+                .then(function (response) {
+                    TvShowService
+                        .updateRatings(tv,stars)
+                        .then(function (response) {
+                            vm.stopRating = true;
+                            vm.stars = stars;
+                            vm.movieFromDb = response.data;
+                            vm.userAvgRating = (response.data.numOfRatings * 2) / response.data.totalRatings;
+                        }, function (err) {
+                        });
+                }, function(err) {
+
+                });
+        }
+
+        function goToReadReview(tvId) {
+            $location.url("/" + userId + "/read-review/" + tvId);
+        }
+
+        function goToWriteReview(tvId) {
+            $location.url("/" + userId + "/write-review/" + tvId);
         }
     }
 

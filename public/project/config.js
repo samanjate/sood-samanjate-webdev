@@ -55,5 +55,15 @@
                 controller: "TvController",
                 controllerAs: "model"
             })
+            .when("/:uid/write-review/:eid", {
+                templateUrl: "views/review/templates/write-review.view.client.html",
+                controller: "WReviewController",
+                controllerAs: "model"
+            })
+            .when("/:uid/read-review/:eid", {
+                templateUrl: "views/review/templates/read-review.view.client.html",
+                controller: "RReviewController",
+                controllerAs: "model"
+            })
     }
 })();

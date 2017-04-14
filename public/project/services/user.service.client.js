@@ -11,6 +11,8 @@
             "findUserByUsername": findUserByUsername,
             "findCriticByUsername": findCriticByUsername,
             "findUserByCredentials": findUserByCredentials,
+            "updateUserRating": updateUserRating,
+            "updateUserRatingTv": updateUserRatingTv,
             "updateUser": updateUser
         };
 
@@ -42,8 +44,19 @@
             else return $http.get("/api/audience?username="+username+"&password="+password);
         }
 
-        function updateUser(userId, newUser) {
-            return $http.put("/api/audience/"+userId, newUser);
+        function updateUser(userId, newUser, isCritic) {
+            if(isCritic) return $http.put("/api/critic/"+userId, newUser);
+            else return $http.put("/api/audience/"+userId, newUser);
+        }
+
+        function updateUserRating(userId, movie, rating, isCritic) {
+            if(isCritic) return $http.put("/api/critic/rate/"+userId+'?rate='+rating, movie);
+            else return $http.put("/api/audience/rate/"+userId+'?rate='+rating, movie);
+        }
+
+        function updateUserRatingTv(userId, tv, rating, isCritic) {
+            if(isCritic) return $http.put("/api/critic/ratetv/"+userId+'?rate='+rating, tv);
+            else return $http.put("/api/audience/ratetv/"+userId+'?rate='+rating, tv);
         }
 
     }

@@ -17,7 +17,9 @@
             "getSimilarTv" : getSimilarTv,
             "getWantToSeeTv": getWantToSeeTv,
             "addToWantToSee": addToWantToSee,
-            "deleteToWantToSee": deleteToWantToSee
+            "deleteToWantToSee": deleteToWantToSee,
+            "getTvByIdFromDb": getTvByIdFromDb,
+            "updateRatings": updateRatings
         };
 
         return api;
@@ -58,6 +60,14 @@
 
         function deleteToWantToSee(userId, tvId) {
             return $http.delete("/api/audience/wtstv/"+userId+'?tid='+ tvId);
+        }
+
+        function updateRatings(tv, rate) {
+            return $http.put("/api/tv?rate="+rate, tv);
+        }
+
+        function getTvByIdFromDb(tvId) {
+            return $http.get("/api/tv?tid="+tvId);
         }
     }
 

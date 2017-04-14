@@ -15,10 +15,12 @@
             "movieGenres" : movieGenres,
             "popularPeople" : popularPeople,
             "getMovieById" : getMovieById,
+            "getMovieByIdFromDb": getMovieByIdFromDb,
             "getWantToSeeMovies": getWantToSeeMovies,
             "addToWantToSee": addToWantToSee,
             "deleteToWantToSee": deleteToWantToSee,
-            "getSimilarMovies" : getSimilarMovies
+            "getSimilarMovies" : getSimilarMovies,
+            "updateRatings": updateRatings
         };
 
         return api;
@@ -49,6 +51,10 @@
             return $http.get(url);
         }
 
+        function getMovieByIdFromDb(movieId) {
+            return $http.get("/api/movie?mid="+movieId);
+        }
+
         function getSimilarMovies(movieId) {
             var url = baseUrl + 'movie/'+movieId+'/similar?api_key='+key+'&language='+language+'&page=1';
             return $http.get(url);
@@ -64,6 +70,10 @@
 
         function deleteToWantToSee(userId, movieId) {
             return $http.delete("/api/audience/wts/"+userId+'?mid='+ movieId);
+        }
+
+        function updateRatings(movie, rate) {
+            return $http.put("/api/movie?rate="+rate, movie);
         }
     }
 

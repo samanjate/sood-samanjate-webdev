@@ -16,6 +16,8 @@ module.exports = function () {
         "deleteToWantToSee": deleteToWantToSee,
         "addToWantToSeeTv": addToWantToSeeTv,
         "deleteToWantToSeeTv": deleteToWantToSeeTv,
+        "updateUserRating": updateUserRating,
+        "updateUserRatingTv": updateUserRatingTv,
         "setModel":setModel
     };
 
@@ -123,6 +125,32 @@ module.exports = function () {
                         user[0].wantToSeeTv.splice(t,1);
                     }
                 }
+                user[0].save();
+                return user[0];
+            }, function (err) {
+                return err;
+            });
+    }
+
+    function updateUserRating(userId, movie, rate) {
+        return AudienceModel
+            .find({"_id":userId})
+            .then(function (user) {
+                movie.rating = rate;
+                user[0].ratings.push(movie);
+                user[0].save();
+                return user[0];
+            }, function (err) {
+                return err;
+            });
+    }
+
+    function updateUserRatingTv(userId, tv, rate) {
+        return AudienceModel
+            .find({"_id":userId})
+            .then(function (user) {
+                tv.rating = rate;
+                user[0].ratingsTv.push(tv);
                 user[0].save();
                 return user[0];
             }, function (err) {

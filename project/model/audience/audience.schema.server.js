@@ -24,7 +24,22 @@ var AudienceSchema = mongoose.Schema({
             vote_average: Number
         }],
     // movies rated by users
-    ratings: [ {type: mongoose.Schema.Types.ObjectId, ref:'project.rating.gomovies'}],
+    ratings: [
+        {
+            id: String,
+            original_title: String,
+            poster_path: String,
+            vote_average: Number,
+            rating: Number
+        }],
+    ratingsTv: [
+        {
+            id: String,
+            original_name: String,
+            poster_path: String,
+            vote_average: Number,
+            rating: Number
+        }],
     follows: [{type: mongoose.Schema.Types.ObjectId, ref:'project.critic.gomovies'}],
     dateCreated: {type:Date, default: Date.now()}
 
