@@ -35,8 +35,8 @@ module.exports = function () {
     function findUserbyUsername(username) {
         return AudienceModel.find({"username":username});
     }
-    function findUserByCredentials(_username, _password) {
-        return AudienceModel.find({username:_username, password: _password});
+    function findUserByCredentials(username, password) {
+        return AudienceModel.find({username: username, password: password});
     }
 
     function updateUser(userId, updatedUser) {

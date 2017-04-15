@@ -1,7 +1,14 @@
 module.exports = function (app, AudienceModel) {
 
+    var passport = require('passport');
+    var LocalStrategy = require('passport-local').Strategy;
+    passport.use('user-local',new LocalStrategy(localStrategy));
+    passport.serializeUser(serializeUser);
+    passport.deserializeUser(deserializeUser);
+
     app.post("/api/audience", createUser);
     app.get("/api/audience", findUser);
+    app.post("/api/login/audience", passport.authenticate('user-local'), login);
     app.get("/api/audience/wts/:uid",getWantToSeeMovies);
     app.get("/api/audience/wtstv/:uid",getWantToSeeTv);
     app.post("/api/audience/wts/:uid",addToWantToSeeMovies);
@@ -12,6 +19,56 @@ module.exports = function (app, AudienceModel) {
     app.delete("/api/audience/wtstv/:uid", deleteToWantToSeeTv);
     app.put("/api/audience/rate/:uid", updateUserRatings);
     app.put("/api/audience/ratetv/:uid", updateUserRatingsTv);
+    app.get("/api/loggedin", loggedin);
+    app.post("/api/logout/audience", logout);
+
+
+    function localStrategy(username, password, done) {
+        AudienceModel
+            .findUserByCredentials(username, password)
+            .then(function(user) {
+                    if (!user.length) {
+                        return done(null, false);
+                    }
+                    return done(null, user);
+                },
+                function(err) {
+                    if (err) { return done(err); }
+                }
+            );
+    }
+
+    function serializeUser(user, done) {
+        done(null, user);
+    }
+
+    function deserializeUser(user, done) {
+        AudienceModel
+            .findUserById(user._id)
+            .then(
+                function(user){
+                    done(null, user);
+                },
+                function(err){
+                    done(err, null);
+                }
+            );
+    }
+
+    function login(req, res) {
+        var user = req.user;
+        res.json(user);
+    }
+
+    function loggedin(req, res) {
+        res.json(req.isAuthenticated() ? req.user : null);
+    }
+
+    function logout(req, res) {
+        req.logOut();
+        res.send(200);
+    }
+
 
 
     function createUser(req, res) {
@@ -24,10 +81,16 @@ module.exports = function (app, AudienceModel) {
         newUser.profilePic = null;
         AudienceModel
             .createUser(newUser)
-            .then(function (newUser) {
-                res.json(newUser);
-            },function (err) {
-                res.sendStatus(404).send(err);
+            .then(function(user){
+                if(user){
+                    req.login(user, function(err) {
+                        if(err) {
+                            res.status(400).send(err);
+                        } else {
+                            res.json(user);
+                        }
+                    });
+                }
             });
     }
 

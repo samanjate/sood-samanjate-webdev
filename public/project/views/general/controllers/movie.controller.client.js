@@ -28,7 +28,6 @@
             UserService
                 .findUserById(userId)
                 .then(function (user) {
-                    console.log(user.data);
                     if(user.data) {
                         vm.isUser = true;
                         var ratedMovies = user.data.ratings;

@@ -2,7 +2,7 @@
     angular
         .module("GoMovies")
         .factory("UserService", UserService);
-    function UserService($http) {
+    function UserService($http, $rootScope) {
 
         var api = {
             "createUser" : createUser,
@@ -13,6 +13,9 @@
             "findUserByCredentials": findUserByCredentials,
             "updateUserRating": updateUserRating,
             "updateUserRatingTv": updateUserRatingTv,
+            "setCurrentUser": setCurrentUser,
+            "getCurrentUser": getCurrentUser,
+            "logout": logout,
             "updateUser": updateUser
         };
 
@@ -39,9 +42,9 @@
             return $http.get("/api/critic?username="+username);
         }
 
-        function findUserByCredentials(username, password, isCritic) {
-            if(isCritic) return $http.get("/api/critic?username="+username+"&password="+password);
-            else return $http.get("/api/audience?username="+username+"&password="+password);
+        function findUserByCredentials(user, isCritic) {
+            if(isCritic) return $http.post("/api/login/critic",user);
+            else return $http.post("/api/login/audience",user);
         }
 
         function updateUser(userId, newUser, isCritic) {
@@ -57,6 +60,32 @@
         function updateUserRatingTv(userId, tv, rating, isCritic) {
             if(isCritic) return $http.put("/api/critic/ratetv/"+userId+'?rate='+rating, tv);
             else return $http.put("/api/audience/ratetv/"+userId+'?rate='+rating, tv);
+        }
+
+        function setCurrentUser(user) {
+            $rootScope.currentUser = user;
+        }
+
+        function getCurrentUser() {
+            $http.get("/api/loggedin/critic")
+                .success(function (user) {
+                    return user;
+                })
+                .error(function (error) {
+                    $http.get("/api/loggedin")
+                        .success(function (user) {
+                            return user;
+                        })
+                        .error(function (error) {
+                            return error;
+                        });
+                });
+        }
+
+        function logout(user) {
+            if(user.userType == 'critic') return $http.post("/api/logout/critic");
+            else return $http.post("/api/logout/audience");
+
         }
 
     }

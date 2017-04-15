@@ -66,4 +66,22 @@
                 controllerAs: "model"
             })
     }
+
+    function checkLoggedIn(UserService, $q, $location) {
+        var deferred = $q.defer();
+        UserService
+            .getCurrentUser()
+            .then(function(response) {
+                var currentUser = response;
+                if(currentUser) {
+                    UserService.setCurrentUser(currentUser);
+                    deferred.resolve();
+                } else {
+                    UserService.setCurrentUser(null);
+                    deferred.reject();
+                    $location.url("/login");
+                }
+            });
+        return deferred.promise;
+    }
 })();

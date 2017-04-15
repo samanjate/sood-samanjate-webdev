@@ -3,7 +3,7 @@
         .module('GoMovies')
         .controller('ProfileController', profileController);
 
-    function profileController($location, $routeParams, UserService, MovieService, TvShowService, SearchService) {
+    function profileController($location, $routeParams, $rootScope, UserService, MovieService, TvShowService, SearchService) {
         var vm = this;
 
         var userId = $routeParams['uid'];
@@ -60,8 +60,13 @@
         vm.goToPage = goToPage;
         vm.logout = logout;
 
-        function logout() {
-            $location.url("/");
+        function logout(user) {
+            UserService
+                .logout(user)
+                .then(function(){
+                    $rootScope.currentUser = null;
+                    $location.url("/");
+                });
         }
 
         function goToHomePage() {

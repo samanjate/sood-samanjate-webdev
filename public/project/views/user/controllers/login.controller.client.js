@@ -3,7 +3,7 @@
         .module('GoMovies')
         .controller('LoginController', loginController);
 
-    function loginController($location, UserService) {
+    function loginController($location, UserService, $rootScope) {
         var vm = this;
 
         function init() {
@@ -26,11 +26,11 @@
 
         function login(user) {
             UserService
-                .findUserByCredentials(user.username, user.password, vm.isCritic)
-                .success(function (user) {
-                    if(user) {
-                        $location.url("/"+user._id+"/profile");
-                    }
+                .findUserByCredentials(user, vm.isCritic)
+                .success(function (response) {
+                    var user = response[0];
+                    $rootScope.currentUser = user;
+                    $location.url('/'+user._id+"/profile");
                 })
                 .error(function (error) {
                     vm.error = "User not found";

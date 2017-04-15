@@ -1,10 +1,59 @@
 module.exports = function (app, CriticModel) {
 
+    var passport = require('passport');
+    var LocalStrategy = require('passport-local').Strategy;
+    passport.use('critic-local',new LocalStrategy(localStrategy));
+    passport.serializeUser(serializeUser);
+    passport.deserializeUser(deserializeUser);
+
     app.post("/api/critic", createUser);
     app.get("/api/critic", findUser);
+    app.post("/api/login/critic",passport.authenticate('critic-local'), login);
     app.get("/api/critic/:uid", findUserById);
     app.put("/api/critic/:uid", updateUser);
+    app.post("/api/logout/critic", logout);
 
+    function logout(req, res) {
+        req.logOut();
+        res.send(200);
+    }
+
+    function localStrategy(username, password, done) {
+        CriticModel
+            .findUserByCredentials(username, password)
+            .then(function(user) {
+                    if (!user.length) {
+                        return done(null, false);
+                    }
+                    return done(null, user);
+                },
+                function(err) {
+                    if (err) { return done(err); }
+                }
+            );
+    }
+
+    function serializeUser(user, done) {
+        done(null, user);
+    }
+
+    function deserializeUser(user, done) {
+        CriticModel
+            .findUserById(user._id)
+            .then(
+                function(user){
+                    done(null, user);
+                },
+                function(err){
+                    done(err, null);
+                }
+            );
+    }
+
+    function login(req, res) {
+        var user = req.user;
+        res.json(user);
+    }
 
     function createUser(req, res) {
         var newUser = req.body;
@@ -17,10 +66,16 @@ module.exports = function (app, CriticModel) {
         newUser.userType = 'critic';
         CriticModel
             .createUser(newUser)
-            .then(function (newUser) {
-                res.json(newUser);
-            },function (err) {
-                res.sendStatus(404).send(err);
+            .then(function(user){
+                if(user){
+                    req.login(user, function(err) {
+                        if(err) {
+                            res.status(400).send(err);
+                        } else {
+                            res.json(user);
+                        }
+                    });
+                }
             });
     }
 

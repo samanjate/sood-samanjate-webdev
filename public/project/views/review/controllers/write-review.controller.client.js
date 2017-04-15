@@ -38,7 +38,6 @@
             UserService
                 .findCriticById(userId)
                 .then(function (user) {
-                    console.log(user);
                     vm.user = user.data;
                 });
         }

@@ -3,7 +3,7 @@
         .module('GoMovies')
         .controller('RegisterController', registerController);
 
-    function registerController($location, UserService) {
+    function registerController($location, $rootScope, UserService) {
         var vm = this;
 
         function init() {
@@ -30,6 +30,7 @@
                         UserService
                             .createUser(user,vm.isCritic)
                             .success(function (user) {
+                                $rootScope.currentUser = user;
                                 $location.url("/"+user._id+"/profile");
                             });
                     });
