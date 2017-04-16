@@ -147,7 +147,9 @@
         <h3>TRAILERS</h3>
         <div class="ss-row-padding ss-padding-16">
             <div ng-repeat="trailer in model.trailers | limitTo:3" class="ss-third">
-                <iframe class="ss-black" width="100%" ng-src="{{trailer.video_path}}" frameborder="0" allowfullscreen=""></iframe>
+                <div class="embed-responsive embed-responsive-16by9">
+                    <iframe class="ss-black" width="100%" height="100%" ng-src="{{trailer.video_path}}" frameborder="0" allowfullscreen=""></iframe>
+                </div>
             </div>
         </div>
     </div>
