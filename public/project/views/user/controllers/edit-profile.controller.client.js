@@ -3,7 +3,7 @@
         .module('GoMovies')
         .controller('EditProfileController', editProfileController);
 
-    function editProfileController($location, $routeParams, $rootScope, UserService) {
+    function editProfileController($location, $rootScope, UserService) {
         var vm = this;
 
         if(!$rootScope.currentUser) {

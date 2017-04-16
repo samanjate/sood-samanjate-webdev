@@ -169,3 +169,6 @@ body {
 #ImageCarousel {
     margin-top: 23px;
 }
+.remove-margin {
+    margin-bottom: -32px!important;
+}

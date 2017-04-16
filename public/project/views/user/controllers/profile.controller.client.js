@@ -3,7 +3,7 @@
         .module('GoMovies')
         .controller('ProfileController', profileController);
 
-    function profileController($location, $routeParams, $rootScope, UserService, MovieService, TvShowService, SearchService) {
+    function profileController($location, $rootScope, UserService, MovieService, TvShowService, SearchService) {
         var vm = this;
 
         if(!$rootScope.currentUser) {

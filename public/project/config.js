@@ -69,7 +69,9 @@
         $http.get('/api/loggedin/audience')
             .success(function(user) {
             $rootScope.errorMessage = null;
-            if (user) $rootScope.currentUser = user;
+            if (user) {
+                $rootScope.currentUser = user;
+            }
              deferred.resolve();
         });
         return deferred.promise;
