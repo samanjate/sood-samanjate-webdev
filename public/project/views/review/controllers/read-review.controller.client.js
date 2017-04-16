@@ -10,25 +10,30 @@
 
         var userId = $rootScope.currentUser._id;
         var eId = $routeParams['eid'];
+        var type = $routeParams.type;
 
         function init() {
-            MovieService
-                .getMovieById(eId)
-                .success(function (response) {
-                    if(response) {
-                        vm.movie = response;
-                    }
-                })
-                .error(function (err) {
-                    TvShowService
-                        .getTvDetails(eId)
-                        .then(function (response) {
-                            console.log(response);
-                            if(response) {
-                                vm.tv = response;
-                            }
-                        });
-                });
+            if(type == 'tv') {
+                TvShowService
+                    .getTvDetails(eId)
+                    .then(function (response) {
+                        console.log(response);
+                        if(response) {
+                            vm.tv = response.data;
+                        }
+                    });
+            } else {
+                MovieService
+                    .getMovieById(eId)
+                    .success(function (response) {
+                        if(response) {
+                            vm.movie = response;
+                        }
+                    })
+                    .error(function (err) {
+
+                    });
+            }
             SearchService
                 .findReviews(eId)
                 .then(function (response) {

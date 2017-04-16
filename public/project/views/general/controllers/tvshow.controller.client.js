@@ -151,11 +151,11 @@
         }
 
         function goToReadReview(tvId) {
-            $location.url("/read-review/" + tvId);
+            $location.url("/read-review/" + tvId+"?type=tv");
         }
 
         function goToWriteReview(tvId) {
-            $location.url("/write-review/" + tvId);
+            $location.url("/write-review/" + tvId+"?type=tv");
         }
     }
 

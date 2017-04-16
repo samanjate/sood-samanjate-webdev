@@ -152,11 +152,11 @@
         }
 
         function goToReadReview(movieId) {
-            $location.url("/read-review/" + movieId);
+            $location.url("/read-review/" + movieId+"?type=movie");
         }
 
         function goToWriteReview(movieId) {
-            $location.url("/write-review/" + movieId);
+            $location.url("/write-review/" + movieId+"?type=movie");
         }
 
     }
