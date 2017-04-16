@@ -3,8 +3,10 @@ module.exports = function (app, AudienceModel) {
     var passport = require('passport');
     var LocalStrategy = require('passport-local').Strategy;
     passport.use('user-local',new LocalStrategy(localStrategy));
+    var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
     passport.serializeUser(serializeUser);
     passport.deserializeUser(deserializeUser);
+    var bcrypt = require("bcrypt-nodejs");
 
     app.post("/api/audience", createUser);
     app.get("/api/audience", findUser);
@@ -19,15 +21,64 @@ module.exports = function (app, AudienceModel) {
     app.delete("/api/audience/wtstv/:uid", deleteToWantToSeeTv);
     app.put("/api/audience/rate/:uid", updateUserRatings);
     app.put("/api/audience/ratetv/:uid", updateUserRatingsTv);
-    app.get("/api/loggedin", loggedin);
+    app.get("/api/loggedin/audience", loggedin);
     app.post("/api/logout/audience", logout);
 
+    app.get('/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
+    app.get('/google/oauth/callback',
+        passport.authenticate('google', {
+            successRedirect: '/project/index.html#/profile',
+            failureRedirect: '/project/index.html#/login'
+        }));
+
+    passport.use(new GoogleStrategy({
+        clientID     : '867012240436-0lducptf2nsavmlnq4hm9mfr3kfmrjmt.apps.googleusercontent.com',
+        clientSecret : 'vYXffI3hvJ4Qqx4g0pdwQshN',
+        callbackURL  : 'od-samanjate-webdev.herokuapp.com/google/oauth/callback'
+    }, googleStrategy));
+
+    function googleStrategy(token, refreshToken, profile, done) {
+        AudienceModel
+            .findUserByGoogleId(profile.id)
+            .then(
+                function(user) {
+                    if(user) {
+                        return done(null, user);
+                    } else {
+                        var email = profile.emails[0].value;
+                        var emailParts = email.split("@");
+                        var newGoogleUser = {
+                            username:  emailParts[0],
+                            firstName: profile.name.givenName,
+                            lastName:  profile.name.familyName,
+                            email:     email,
+                            google: {
+                                id:    profile.id,
+                                token: token
+                            }
+                        };
+                        return AudienceModel.createUser(newGoogleUser);
+                    }
+                },
+                function(err) {
+                    if (err) { return done(err); }
+                }
+            )
+            .then(
+                function(user){
+                    return done(null, user);
+                },
+                function(err){
+                    if (err) { return done(err); }
+                }
+            );
+    }
 
     function localStrategy(username, password, done) {
         AudienceModel
-            .findUserByCredentials(username, password)
+            .findUserbyUsername(username)
             .then(function(user) {
-                    if (!user.length) {
+                    if (!user.length && bcrypt.compareSync(password, user[0].password)) {
                         return done(null, false);
                     }
                     return done(null, user);
@@ -61,7 +112,7 @@ module.exports = function (app, AudienceModel) {
     }
 
     function loggedin(req, res) {
-        res.json(req.isAuthenticated() ? req.user : null);
+        res.send(req.user);
     }
 
     function logout(req, res) {
@@ -79,6 +130,7 @@ module.exports = function (app, AudienceModel) {
         newUser.phone = null;
         newUser.bio = null;
         newUser.profilePic = null;
+        newUser.password = bcrypt.hashSync(newUser.password);
         AudienceModel
             .createUser(newUser)
             .then(function(user){

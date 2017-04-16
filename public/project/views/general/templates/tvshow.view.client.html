@@ -31,11 +31,11 @@
                 <span class="ss-large ss-left glyphicon glyphicon-star ss-padding"></span>
                 <h3 class="ss-large ss-padding">tmdb Ratings: {{model.tv.vote_average}}/10</h3>
                 <h3></h3>
-                <span ng-if="model.isUser || model.isCritic"
+                <span ng-if="model.isUser"
                       class="ss-large ss-left glyphicon glyphicon-star-empty ss-padding"></span>
-                <h3 ng-if="(model.isUser || model.isCritic) && model.userAvgRating"
+                <h3 ng-if="model.isUser && model.userAvgRating"
                     class="ss-large ss-padding">User Ratings: {{model.userAvgRating}}/10</h3>
-                <h3 ng-if="(model.isUser || model.isCritic) && !model.userAvgRating"
+                <h3 ng-if="model.isUser && !model.userAvgRating"
                     class="ss-large ss-padding">Be the first one to rate this TV show.</h3>
                 <div ng-show="model.isUser"
                      class="ss-row">

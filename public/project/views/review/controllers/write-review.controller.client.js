@@ -3,12 +3,12 @@
         .module("GoMovies")
         .controller("WReviewController", reviewController);
 
-    function reviewController($location, $routeParams, MovieService, TvShowService, SearchService, UserService) {
+    function reviewController($location, $routeParams, MovieService, TvShowService, SearchService, UserService, $rootScope) {
         var vm = this;
 
         vm.posterNotFound = 'http://s3.amazonaws.com/static.betaeasy.com/screenshot/456/456-25984-14192637741419263774.42.jpeg';
 
-        var userId = $routeParams['uid'];
+        var userId = $rootScope.currentUser._id;
         var eId = $routeParams['eid'];
 
         function init() {
@@ -49,13 +49,12 @@
         vm.goBack = goBack;
 
         function goToHomePage() {
-            if(!userId || userId==0)  $location.url("/");
-            else $location.url('/' + userId );
+            $location.url('/');
         }
 
         function goBack(tv) {
-            if(tv != null) $location.url('/' + userId + '/tv/' + eId);
-            else $location.url('/' + userId + '/movie/' + eId);
+            if(tv != null) $location.url('/tv/' + eId);
+            else $location.url('/movie/' + eId);
         }
 
         function postReview(r, tv, movie, rating, user) {
@@ -86,8 +85,8 @@
             SearchService
                 .publishReview(review)
                 .then(function (response) {
-                    if(response.data.type == 'tv') $location.url('/' + userId + '/tv/' + eId);
-                    else $location.url('/' + userId + '/movie/' + eId);
+                    if(response.data.type == 'tv') $location.url('/tv/' + eId);
+                    else $location.url('/movie/' + eId);
                 }, function (err) {
                     vm.error = "Some Error occurred"
                 });

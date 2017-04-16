@@ -3,10 +3,11 @@
         .module("GoMovies")
         .controller("HomeController", homeController);
 
-    function homeController($location, $routeParams, MovieService, TvShowService) {
+    function homeController($location, MovieService, TvShowService, $rootScope) {
         var vm = this;
 
-        var userId = $routeParams['uid'];
+        var userId = null;
+        if($rootScope.currentUser) userId = $rootScope.currentUser._id;
 
         function init() {
             vm.searchKeyword = null;
@@ -64,35 +65,30 @@
         
         function searchResults() {
             if(vm.searchKeyword) {
-                if(userId) $location.url("/" + userId + "/search?keyword=" + vm.searchKeyword);
-                else $location.url("/0/search?keyword=" + vm.searchKeyword);
+                $location.url("/search?keyword=" + vm.searchKeyword);
             }
 
         }
 
         function findGenreMovies(name, id) {
-            if(userId) $location.url("/" + userId + "/search?keyword=" + name + "&genre=" + id);
-            else $location.url("/0/search?keyword=" + name + "&genre=" + id);
+            $location.url("/search?keyword=" + name + "&genre=" + id);
         }
 
         function goToMoviePage(movieId) {
-            if(userId) $location.url("/" + userId + "/movie/" + movieId);
-            else $location.url("/0/movie/" + movieId);
+            $location.url("/movie/" + movieId);
         }
 
         function goToPersonProfile(personId) {
-            if(userId) $location.url("/" + userId + "/person/" + personId);
-            else $location.url("/0/person/" + personId);
+            $location.url("/person/" + personId);
         }
 
         function goToTvPage(tvId) {
-            if(userId) $location.url("/" + userId + "/tv/" + tvId);
-            else $location.url("/0/tv/" + tvId);
+            $location.url("/tv/" + tvId);
         }
 
         function goToLoginOrProfile() {
             if(!userId || userId==0) $location.url('/login');
-            else $location.url('/' + userId + '/profile');
+            else $location.url('/profile');
         }
 
     }

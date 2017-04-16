@@ -5,6 +5,7 @@ module.exports = function (app, CriticModel) {
     passport.use('critic-local',new LocalStrategy(localStrategy));
     passport.serializeUser(serializeUser);
     passport.deserializeUser(deserializeUser);
+    var bcrypt = require("bcrypt-nodejs");
 
     app.post("/api/critic", createUser);
     app.get("/api/critic", findUser);
@@ -12,17 +13,22 @@ module.exports = function (app, CriticModel) {
     app.get("/api/critic/:uid", findUserById);
     app.put("/api/critic/:uid", updateUser);
     app.post("/api/logout/critic", logout);
+    app.get("/api/loggedin/critic", loggedin);
 
     function logout(req, res) {
         req.logOut();
         res.send(200);
     }
 
+    function loggedin(req, res) {
+        res.json(req.isAuthenticated() ? req.user : null);
+    }
+
     function localStrategy(username, password, done) {
         CriticModel
-            .findUserByCredentials(username, password)
+            .findUserbyUsername(username)
             .then(function(user) {
-                    if (!user.length) {
+                    if (!user.length && bcrypt.compareSync(password, user[0].password)) {
                         return done(null, false);
                     }
                     return done(null, user);
@@ -64,6 +70,7 @@ module.exports = function (app, CriticModel) {
         newUser.bio = null;
         newUser.profilePic = null;
         newUser.userType = 'critic';
+        newUser.password = bcrypt.hashSync(newUser.password);
         CriticModel
             .createUser(newUser)
             .then(function(user){

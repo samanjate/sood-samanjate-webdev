@@ -3,12 +3,12 @@
         .module("GoMovies")
         .controller("RReviewController", reviewController);
 
-    function reviewController($location, $routeParams, MovieService, TvShowService, SearchService) {
+    function reviewController($location, $routeParams, MovieService, TvShowService, SearchService, $rootScope) {
         var vm = this;
 
         vm.posterNotFound = 'http://s3.amazonaws.com/static.betaeasy.com/screenshot/456/456-25984-14192637741419263774.42.jpeg';
 
-        var userId = $routeParams['uid'];
+        var userId = $rootScope.currentUser._id;
         var eId = $routeParams['eid'];
 
         function init() {
@@ -48,18 +48,15 @@
         vm.goToTvPage = goToTvPage;
 
         function goToHomePage() {
-            if(!userId || userId==0)  $location.url("/");
-            else $location.url('/' + userId );
+            $location.url('/');
         }
 
         function goToMoviePage() {
-            if(!userId || userId==0)  $location.url("/0/movie/"+eId);
-            else $location.url('/' + userId +"/movie/"+eId);
+            $location.url("/movie/"+eId);
         }
 
         function goToTvPage() {
-            if(!userId || userId==0)  $location.url("/0/tv/"+eId);
-            else $location.url('/' + userId +"/tv/"+eId);
+            $location.url("/tv/"+eId);
         }
 
     }

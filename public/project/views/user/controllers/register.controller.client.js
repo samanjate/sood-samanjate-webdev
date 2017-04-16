@@ -20,7 +20,11 @@
         }
 
         function register(user) {
-            if(vm.isCritic) {
+            if(!user || !user.username || !user.password || !user.cpassword) {
+                vm.error = "Please provide useranme and password"
+            } else if(user.password != user.cpassword) {
+                vm.error = "Passwords do not match"
+            } else if(vm.isCritic) {
                 UserService
                     .findCriticByUsername(user.username)
                     .success(function (user) {
@@ -31,7 +35,7 @@
                             .createUser(user,vm.isCritic)
                             .success(function (user) {
                                 $rootScope.currentUser = user;
-                                $location.url("/"+user._id+"/profile");
+                                $location.url("/profile");
                             });
                     });
             } else {
@@ -44,7 +48,7 @@
                         UserService
                             .createUser(user,vm.isCritic)
                             .success(function (user) {
-                                $location.url("/"+user._id+"/profile");
+                                $location.url("/profile");
                             });
                     });
             }

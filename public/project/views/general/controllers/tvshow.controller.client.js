@@ -3,10 +3,11 @@
         .module("GoMovies")
         .controller("TvController", tvController);
 
-    function tvController($sce, $location, $routeParams, TvShowService, UserService) {
+    function tvController($sce, $location, $routeParams, TvShowService, UserService,$rootScope) {
         var vm = this;
 
-        var userId = $routeParams['uid'];
+        var userId = 0;
+        if($rootScope.currentUser) userId = $rootScope.currentUser._id;
         var tvId = $routeParams['tid'];
 
         function init() {
@@ -19,7 +20,6 @@
             TvShowService
                 .getTvByIdFromDb(tvId)
                 .then(function (response) {
-                    console.lof
                     if(response.data.numOfRatings)
                         vm.userAvgRating = (response.data.numOfRatings * 2) / response.data.totalRatings;
                 }, function (err) {
@@ -94,22 +94,19 @@
 
         function goToLoginOrProfile() {
             if(!userId || userId==0) $location.url('/login');
-            else $location.url('/' + userId + '/profile');
+            else $location.url('/profile');
         }
 
         function goToPersonProfile(personId) {
-            if(userId) $location.url("/" + userId + "/person/" + personId);
-            else $location.url("/0/person/" + personId);
+            $location.url("/person/" + personId);
         }
 
         function goToHomePage() {
-            if(!userId || userId==0)  $location.url("/");
-            else $location.url('/' + userId );
+            $location.url('/');
         }
 
         function goToTvPage(tvId) {
-            if(userId) $location.url("/" + userId + "/tv/" + tvId);
-            else $location.url("/0/tv/" + tvId);
+            $location.url("/tv/" + tvId);
         }
 
         function addToWantToSee() {
@@ -154,11 +151,11 @@
         }
 
         function goToReadReview(tvId) {
-            $location.url("/" + userId + "/read-review/" + tvId);
+            $location.url("/read-review/" + tvId);
         }
 
         function goToWriteReview(tvId) {
-            $location.url("/" + userId + "/write-review/" + tvId);
+            $location.url("/write-review/" + tvId);
         }
     }
 

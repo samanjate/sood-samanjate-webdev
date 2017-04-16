@@ -9,6 +9,7 @@ module.exports = function () {
         "findUserById": findUserById,
         "findUserbyUsername": findUserbyUsername,
         "findUserByCredentials": findUserByCredentials,
+        "findUserByGoogleId": findUserByGoogleId,
         "updateUser": updateUser,
         "findWantToSeeMovies": findWantToSeeMovies,
         "findWantToSeeTv": findWantToSeeTv,
@@ -30,6 +31,10 @@ module.exports = function () {
 
     function findUserById(userId) {
         return AudienceModel.findById(userId);
+    }
+
+    function findUserByGoogleId(googleId) {
+        return AudienceModel.findOne({'google.id' : googleId});
     }
 
     function findUserbyUsername(username) {

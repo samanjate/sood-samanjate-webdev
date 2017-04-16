@@ -25,17 +25,22 @@
         }
 
         function login(user) {
-            UserService
-                .findUserByCredentials(user, vm.isCritic)
-                .success(function (response) {
-                    var user = response[0];
-                    $rootScope.currentUser = user;
-                    $location.url('/'+user._id+"/profile");
-                })
-                .error(function (error) {
-                    vm.error = "User not found";
-                    return null;
-                });
+            if(!user || !user.username || !user.password) {
+                vm.error = "Username and password are required";
+            } else {
+                UserService
+                    .findUserByCredentials(user, vm.isCritic)
+                    .success(function (response) {
+                        var user = response[0];
+                        $rootScope.currentUser = user;
+                        $location.url("/profile");
+                    })
+                    .error(function (error) {
+                        vm.error = "User not found";
+                        return null;
+                    });
+            }
+
         }
     }
 })();

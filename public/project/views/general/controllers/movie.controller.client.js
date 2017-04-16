@@ -3,12 +3,13 @@
         .module("GoMovies")
         .controller("MovieController", movieController);
 
-    function movieController($sce, $location, $routeParams, MovieService, UserService) {
+    function movieController($sce, $location, $routeParams, MovieService, UserService, $rootScope) {
         var vm = this;
 
         vm.posterNotFound = 'http://s3.amazonaws.com/static.betaeasy.com/screenshot/456/456-25984-14192637741419263774.42.jpeg';
 
-        var userId = $routeParams['uid'];
+        var userId = 0;
+        if($rootScope.currentUser) userId = $rootScope.currentUser._id;
         var movieId = $routeParams['mid'];
 
         function init() {
@@ -95,22 +96,19 @@
 
         function goToLoginOrProfile() {
             if(!userId || userId==0) $location.url('/login');
-            else $location.url('/' + userId + '/profile');
+            else $location.url('/profile');
         }
 
         function goToMoviePage(movieId) {
-            if(userId) $location.url("/" + userId + "/movie/" + movieId);
-            else $location.url("/0/movie/" + movieId);
+            $location.url("/movie/" + movieId);
         }
 
         function goToPersonProfile(personId) {
-            if(userId) $location.url("/" + userId + "/person/" + personId);
-            else $location.url("/0/person/" + personId);
+            $location.url("/person/" + personId);
         }
 
         function goToHomePage() {
-            if(!userId || userId==0)  $location.url("/");
-            else $location.url('/' + userId );
+            $location.url('/');
         }
 
         function addToWantToSee() {
@@ -154,11 +152,11 @@
         }
 
         function goToReadReview(movieId) {
-            $location.url("/" + userId + "/read-review/" + movieId);
+            $location.url("/read-review/" + movieId);
         }
 
         function goToWriteReview(movieId) {
-            $location.url("/" + userId + "/write-review/" + movieId);
+            $location.url("/write-review/" + movieId);
         }
 
     }

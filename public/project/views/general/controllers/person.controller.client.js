@@ -3,10 +3,11 @@
         .module("GoMovies")
         .controller("PersonController", personController);
 
-    function personController($routeParams, $location, SearchService) {
+    function personController($routeParams, $location, SearchService, $rootScope) {
         var vm = this;
 
-        var userId = $routeParams['uid'];
+        var userId = 0;
+        if($rootScope.currentUser) userId = $rootScope.currentUser._id;
         var personId = $routeParams['pid'];
 
         function init() {
@@ -26,22 +27,19 @@
 
         function goToLoginOrProfile() {
             if(!userId || userId==0) $location.url('/login');
-            else $location.url('/' + userId + '/profile');
+            else $location.url('/profile');
         }
 
         function goToMoviePage(movieId) {
-            if(userId) $location.url("/" + userId + "/movie/" + movieId);
-            else $location.url("/0/movie/" + movieId);
+            $location.url("/movie/" + movieId);
         }
 
         function goToTvPage(tvId) {
-            if(userId) $location.url("/" + userId + "/tv/" + tvId);
-            else $location.url("/0/tv/" + tvId);
+            $location.url("/tv/" + tvId);
         }
 
         function goToHomePage() {
-            if(!userId || userId==0)  $location.url("/");
-            else $location.url('/' + userId );
+            $location.url('/');
         }
 
     }

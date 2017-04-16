@@ -3,11 +3,12 @@
         .module("GoMovies")
         .controller("SearchController", searchController);
 
-    function searchController($routeParams, $location, SearchService) {
+    function searchController($routeParams, $location, SearchService,$rootScope) {
         var vm = this;
         vm.keyword = $routeParams.keyword;
         vm.genre = $routeParams.genre;
-        var userId = $routeParams['uid'];
+        var userId = 0;
+        if($rootScope.currentUser) userId = $rootScope.currentUser._id;
 
         function init() {
             if(vm.genre) {
@@ -48,27 +49,23 @@
 
         function goToLoginOrProfile() {
             if(!userId || userId==0) $location.url('/login');
-            else $location.url('/' + userId + '/profile');
+            else $location.url('/profile');
         }
 
         function goToMoviePage(movieId) {
-            if(userId) $location.url("/" + userId + "/movie/" + movieId);
-            else $location.url("/0/movie/" + movieId);
+            $location.url("/movie/" + movieId);
         }
 
         function goToTvPage(tvId) {
-            if(userId) $location.url("/" + userId + "/tv/" + tvId);
-            else $location.url("/0/tv/" + tvId);
+            $location.url("/tv/" + tvId);
         }
 
         function goToHomePage() {
-            if(!userId || userId==0)  $location.url("/");
-            else $location.url('/' + userId );
+            $location.url('/');
         }
 
         function goToPersonProfile(personId) {
-            if(userId) $location.url("/" + userId + "/person/" + personId);
-            else $location.url("/0/person/" + personId);
+            $location.url("/person/" + personId);
         }
 
     }

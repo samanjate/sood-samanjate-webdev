@@ -6,7 +6,10 @@
     function profileController($location, $routeParams, $rootScope, UserService, MovieService, TvShowService, SearchService) {
         var vm = this;
 
-        var userId = $routeParams['uid'];
+        if(!$rootScope.currentUser) {
+            $location.url('/login');
+        }
+        var userId = $rootScope.currentUser._id;
 
         vm.posterNotFound = 'http://s3.amazonaws.com/static.betaeasy.com/screenshot/456/456-25984-14192637741419263774.42.jpeg';
         vm.defaultProfilePic = 'http://www.racialjusticenetwork.co.uk/wp-content/uploads/2016/12/default-profile-picture.png';
@@ -70,29 +73,26 @@
         }
 
         function goToHomePage() {
-            if(!userId || userId ==0)  $location.url("/");
-            else $location.url('/' + userId );
+            $location.url('/');
         }
 
         function goToEditProfile() {
             if(!userId || userId==0) $location.url('/login');
-            else $location.url('/' + userId + '/edit-profile');
+            else $location.url('/edit-profile');
         }
 
         function goToMoviePage(movieId) {
-            if(!userId || userId==0) $location.url('/0/movie/'+movieId);
-            else $location.url('/' + userId + '/movie/'+movieId);
+            $location.url('/movie/'+movieId);
         }
 
         function goToTvPage(tvId) {
-            if(!userId || userId==0) $location.url('/0/tv/'+tvId);
-            else $location.url('/' + userId + '/tv/'+tvId);
+            $location.url('/tv/'+tvId);
         }
 
         function goToPage(obj) {
-            if(!userId || userId==0) $location.url('/0/tv/'+tvId);
-            else if(obj.original_name) $location.url('/' + userId + '/tv/'+obj.id);
-            else $location.url('/' + userId + '/movie/'+obj.id);
+            if(!userId || userId==0) $location.url('/tv/'+tvId);
+            else if(obj.original_name) $location.url('/tv/'+obj.id);
+            else $location.url('/movie/'+obj.id);
         }
 
 

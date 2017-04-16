@@ -46,6 +46,12 @@
                             <a ng-click="model.goToRegisterPage()"
                                class="btn ss-black btn-lg">New user?</a>
                         </div>
+                        <div ng-show="!model.isCritic" class="ss-padding ss-center">
+                            <a href="/auth/google" class="btn btn-danger btn-lg">
+                                <span class="fa fa-google-plus"></span>
+                                Google
+                            </a>
+                        </div>
                     </div>
                 </li>
             </ul>

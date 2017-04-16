@@ -13,8 +13,6 @@
             "findUserByCredentials": findUserByCredentials,
             "updateUserRating": updateUserRating,
             "updateUserRatingTv": updateUserRatingTv,
-            "setCurrentUser": setCurrentUser,
-            "getCurrentUser": getCurrentUser,
             "logout": logout,
             "updateUser": updateUser
         };
@@ -60,26 +58,6 @@
         function updateUserRatingTv(userId, tv, rating, isCritic) {
             if(isCritic) return $http.put("/api/critic/ratetv/"+userId+'?rate='+rating, tv);
             else return $http.put("/api/audience/ratetv/"+userId+'?rate='+rating, tv);
-        }
-
-        function setCurrentUser(user) {
-            $rootScope.currentUser = user;
-        }
-
-        function getCurrentUser() {
-            $http.get("/api/loggedin/critic")
-                .success(function (user) {
-                    return user;
-                })
-                .error(function (error) {
-                    $http.get("/api/loggedin")
-                        .success(function (user) {
-                            return user;
-                        })
-                        .error(function (error) {
-                            return error;
-                        });
-                });
         }
 
         function logout(user) {

@@ -17,7 +17,6 @@
                         <div class="ss-quarter ss-padding-large">
                             <img class="ss-poster-style"
                                  ng-src="{{model.defaultProfilePic}}"/>
-                            <span class="ss-margin-left-32 ss-margin-top ss-black btn btn-default btn-file">Upload Image<input type="file"></span>
                             <div class="ss-light-grey ss-margin-top-large">
                                 <div class="ss-dark-gray ss-threequarter ss-margin-top ss-margin-right">
                                     <h6 class="ss-padding-left-16 ss-large">About</h6>
@@ -101,6 +100,12 @@
                                         <div class="ss-dark-gray ss-threequarter ss-margin-top ss-margin-right">
                                             <h6 class="ss-padding-left-16 ss-large">HIGHEST RATED BY YOU</h6>
                                         </div>
+                                        <div class="ss-threequarter ss-margin-top ss-margin-right"
+                                             ng-if="!model.ratingHistory.length">
+                                            <h6 class="ss-padding-left-16 ss-small">
+                                                This user has not Rated anything yet.
+                                            </h6>
+                                        </div>
                                         <div ng-repeat="rate in model.ratingHistory | limitTo:4"
                                              class="ss-padding-16 ss-row">
                                             <div class="ss-quarter ss-margin-top-32">
@@ -155,6 +160,12 @@
                                     <div class="ss-margin">
                                         <div class="ss-dark-gray ss-threequarter ss-margin-top ss-margin-right">
                                             <h6 class="ss-padding-left-16 ss-large">MOVIE RATINGS</h6>
+                                        </div>
+                                        <div class="ss-threequarter ss-margin-top ss-margin-right"
+                                             ng-if="!model.user.ratings.length">
+                                            <h6 class="ss-padding-left-16 ss-small">
+                                                This user has not Rated any Movies yet.
+                                            </h6>
                                         </div>
                                         <div ng-repeat="rate in model.user.ratings"
                                              class="ss-padding-16 ss-row">
@@ -211,6 +222,12 @@
                                         <div class="ss-dark-gray ss-threequarter ss-margin-top ss-margin-right">
                                             <h6 class="ss-padding-left-16 ss-large">TV RATINGS</h6>
                                         </div>
+                                        <div class="ss-threequarter ss-margin-top ss-margin-right"
+                                             ng-if="!model.user.ratingsTv.length">
+                                            <h6 class="ss-padding-left-16 ss-small">
+                                                This user has not Rated any TV Shows yet.
+                                            </h6>
+                                        </div>
                                         <div ng-repeat="rate in model.user.ratingsTv"
                                              class="ss-padding-16 ss-row">
                                             <div class="ss-quarter ss-margin-top-32">
@@ -266,7 +283,10 @@
 
                             <!-- Critics specific profile -->
                             <div ng-show="model.isCritic">
-                            <h6 class="ss-xlarge ss-padding">My Reviews: </h6>
+                                <h6 ng-if="model.reviews.length"
+                                    class="ss-xlarge ss-padding">My Reviews: </h6>
+                                <h6 ng-if="!model.reviews.length"
+                                    class="ss-small ss-padding">This user has not Reviewed anything.</h6>
                             <div ng-repeat="review in model.reviews | limitTo:25" class="ss-threequarter ss-padding">
                                 <h6 class="">{{review.name}}</h6>
                                 <div class="ss-threequarter">

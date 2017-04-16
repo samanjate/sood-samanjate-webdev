@@ -16,7 +16,6 @@
                         <div class="ss-quarter ss-padding-large">
                             <img class="ss-poster-style"
                                  ng-src="{{model.defaultProfilePic}}"/>
-                            <span class="ss-margin-left-32 ss-margin-top ss-black btn btn-default btn-file">Upload Image<input type="file"></span>
                             <div class="ss-light-grey ss-margin-top-large">
                                 <div class="ss-dark-gray ss-threequarter ss-margin-top ss-margin-right">
                                     <h6 class="ss-padding-left-16 ss-large">About</h6>
@@ -31,7 +30,8 @@
                         </div>
                         <div class="ss-threequarter ss-padding-large">
                             <div class="ss-content ss-search-section">
-                                <h4 class="ss-center"><span class="ss-xxxlarge glyphicon glyphicon-floppy-save"></span></h4>
+                                <h4 class="ss-center"><span ng-click="model.updateProfile(model.user, model.isCritic)"
+                                                            class="ss-xxxlarge glyphicon glyphicon-floppy-save"></span></h4>
                                 <div class="ss-section">
                                     <label for="firstName">First Name</label>
                                     <input class="form-control"
@@ -64,6 +64,10 @@
 
                                 </div>
                                 <div class="ss-padding ss-center">
+                                    <a ng-click="model.goBack()"
+                                       class="btn ss-black btn-lg">
+                                        Back
+                                    </a>
                                     <a ng-click="model.updateProfile(model.user, model.isCritic)"
                                        class="btn ss-black btn-lg">
                                         Update Profile

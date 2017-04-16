@@ -40,6 +40,10 @@ var AudienceSchema = mongoose.Schema({
             vote_average: Number,
             rating: Number
         }],
+    google: {
+        id:    String,
+        token: String
+    },
     follows: [{type: mongoose.Schema.Types.ObjectId, ref:'project.critic.gomovies'}],
     dateCreated: {type:Date, default: Date.now()}
 

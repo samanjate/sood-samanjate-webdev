@@ -20,68 +20,58 @@
                 controller: "RegisterController",
                 controllerAs: "model"
             })
-            .when("/:uid/profile", {
+            .when("/profile", {
                 templateUrl: "views/user/templates/profile.view.client.html",
                 controller: "ProfileController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: { checkLoggedin: checkLoggedin}
             })
-            .when("/:uid/edit-profile", {
+            .when("/edit-profile", {
                 templateUrl: "views/user/templates/edit-profile.view.client.html",
                 controller: "EditProfileController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: { checkLoggedin: checkLoggedin}
             })
-            .when("/:uid", {
-                templateUrl: "views/general/templates/home.view.client.html",
-                controller: "HomeController",
-                controllerAs: "model"
-            })
-            .when("/:uid/search", {
+            .when("/search", {
                 templateUrl: "views/general/templates/search.view.client.html",
                 controller: "SearchController",
                 controllerAs: "model"
             })
-            .when("/:uid/movie/:mid", {
+            .when("/movie/:mid", {
                 templateUrl: "views/general/templates/movie.view.client.html",
                 controller: "MovieController",
                 controllerAs: "model"
             })
-            .when("/:uid/person/:pid", {
+            .when("/person/:pid", {
                 templateUrl: "views/general/templates/person.view.client.html",
                 controller: "PersonController",
                 controllerAs: "model"
             })
-            .when("/:uid/tv/:tid", {
+            .when("/tv/:tid", {
                 templateUrl: "views/general/templates/tvshow.view.client.html",
                 controller: "TvController",
                 controllerAs: "model"
             })
-            .when("/:uid/write-review/:eid", {
+            .when("/write-review/:eid", {
                 templateUrl: "views/review/templates/write-review.view.client.html",
                 controller: "WReviewController",
                 controllerAs: "model"
             })
-            .when("/:uid/read-review/:eid", {
+            .when("/read-review/:eid", {
                 templateUrl: "views/review/templates/read-review.view.client.html",
                 controller: "RReviewController",
                 controllerAs: "model"
             })
     }
 
-    function checkLoggedIn(UserService, $q, $location) {
+    var checkLoggedin = function($q, $http, $location, $rootScope) {
         var deferred = $q.defer();
-        UserService
-            .getCurrentUser()
-            .then(function(response) {
-                var currentUser = response;
-                if(currentUser) {
-                    UserService.setCurrentUser(currentUser);
-                    deferred.resolve();
-                } else {
-                    UserService.setCurrentUser(null);
-                    deferred.reject();
-                    $location.url("/login");
-                }
-            });
+        $http.get('/api/loggedin/audience')
+            .success(function(user) {
+            $rootScope.errorMessage = null;
+            if (user) $rootScope.currentUser = user;
+             deferred.resolve();
+        });
         return deferred.promise;
-    }
+    };
 })();

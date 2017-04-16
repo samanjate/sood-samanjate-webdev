@@ -17,7 +17,6 @@ a:hover {
 
 body {
     padding-top: 53px;
-    padding-bottom: 60px;
     overflow: auto;
 }
 
@@ -166,4 +165,7 @@ body {
 .hoverable img:hover {
     opacity: 0.8;
     cursor: pointer;
+}
+#ImageCarousel {
+    margin-top: 23px;
 }
