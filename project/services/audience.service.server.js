@@ -34,7 +34,7 @@ module.exports = function (app, AudienceModel) {
     passport.use(new GoogleStrategy({
         clientID     : '867012240436-0lducptf2nsavmlnq4hm9mfr3kfmrjmt.apps.googleusercontent.com',
         clientSecret : 'vYXffI3hvJ4Qqx4g0pdwQshN',
-        callbackURL  : 'od-samanjate-webdev.herokuapp.com/google/oauth/callback'
+        callbackURL  : 'http://sood-samanjate-webdev.herokuapp.com/google/oauth/callback'
     }, googleStrategy));
 
     function googleStrategy(token, refreshToken, profile, done) {
